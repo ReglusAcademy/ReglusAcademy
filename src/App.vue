@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  user-select: none;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+/* padronize cores e use no projeto todo :D */
+:root {
+  --rosaEscuro: #D96277;
+  --rosaAlt: #CF5084;
+  --rosaClaro: #F29580;
+  --roxo: #A432A6;
+  --rosaRoxeado: #BF4594;
+  --azulClaro: #977EF2;
+  --preto: #0D0D0D;
+  --cinzaTxt: #3B3B3B;
+}
+
+ul, li, a {
+  list-style: none;
+  text-decoration: none;
+  font-weight: bold;
 }
 </style>
