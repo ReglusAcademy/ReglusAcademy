@@ -4,8 +4,8 @@
             <div class="lista">
                 <img :src="logo" class="logo">
                 <ul>
-                    <li>Produto</li>
-                    <li>Serviços</li>
+                    <li>Home</li>
+                    <li>Funcionalidades</li>
                     <li>Recursos</li>
                     <li>Organização</li>
                 </ul>
@@ -13,10 +13,14 @@
 
             <div class="lista">
                 <ul>
-                    <li>Saiba mais</li> 
+                    <li>Sobre Nós</li> 
                     <p>|</p>
-                    <li>Fazer login</li>
-                    <li id="free">USE GRATUITAMENTE</li>
+                    <li>
+                        <router-link to="/login">Fazer Login</router-link>
+                    </li>
+                    <li id="free">
+                        <router-link to="/cadastro">USE GRATUITAMENTE</router-link>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -28,13 +32,13 @@ export default {
     name: "NavigationSync",
     data() {
         return {
-            logo: require("@/assets/StudySync.png"),
+            logo: require("@/assets/logoreglus.png"),
         };
     }
 }
 </script>
 
-<style scoped>
+<style>
 .logo {
     width: 100px;
     margin-right: 2em;
@@ -53,9 +57,18 @@ ul {
     gap: 1em;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .lista {
     display: flex;
     padding: 0em 2em;
+}
+
+#free a {
+    color: #fff;
 }
 
 #free {
@@ -64,9 +77,5 @@ ul {
     padding: 0.5em;
 }
 
-p {
-    opacity: 0.3;
-    user-select: none;
-}
 
 </style>

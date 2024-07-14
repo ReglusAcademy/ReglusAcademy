@@ -13,7 +13,6 @@ export default {
   margin: 0;
   padding: 0;
   font-family: 'Nunito Sans', sans-serif;
-  user-select: none;
 }
 
 #app {
