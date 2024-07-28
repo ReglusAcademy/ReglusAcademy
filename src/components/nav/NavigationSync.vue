@@ -4,7 +4,9 @@
             <div class="lista">
                 <img :src="logo" class="logo">
                 <ul>
-                    <li>Home</li>
+                    <li>
+                        <router-link to="/">Home</router-link>
+                    </li>
                     <li>Funcionalidades</li>
                     <li>Recursos</li>
                     <li>Organização</li>
@@ -19,7 +21,7 @@
                         <router-link to="/login">Fazer Login</router-link>
                     </li>
                     <li id="free">
-                        <router-link to="/cadastro">USE GRATUITAMENTE</router-link>
+                        <router-link to="/redirecionarlogin">USE GRATUITAMENTE</router-link>
                     </li>
                 </ul>
             </div>
