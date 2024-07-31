@@ -14,26 +14,13 @@
                     <li>Organização</li>
                 </ul>
             </div>
-
-            <div class="lista">
-                <ul>
-                    <li>Sobre Nós</li> 
-                    <p>|</p>
-                    <li>
-                        <router-link to="/login">Fazer Login</router-link>
-                    </li>
-                    <li id="free">
-                        <router-link to="/redirecionarlogin">USE GRATUITAMENTE</router-link>
-                    </li>
-                </ul>
-            </div>
         </nav>
     </div>
 </template>
 
 <script>
 export default {
-    name: "NavigationSync",
+    name: "NavigationReglus",
     data() {
         return {
             logo: require("@/assets/logoreglus.png"),
@@ -80,6 +67,4 @@ a {
     background-color: #000;
     padding: 0.5em;
 }
-
-
 </style>

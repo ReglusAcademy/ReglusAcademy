@@ -6,6 +6,7 @@ const routes = [
   { path: '/cadastro', component: () => import('@/views/TelaCadastro.vue')},
   { path: '/cadastroprofessor', component: () => import('@/views/TelaCadastroProfessor.vue')},
   { path: '/redirecionarlogin', component: () => import('@/views/TelaRedirecionamento.vue')},
+  { path: '/agenda', component: () => import('@/views/ReglusAgenda.vue')},
 ]
 
 const router = createRouter({
