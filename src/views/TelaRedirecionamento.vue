@@ -1,73 +1,80 @@
 <template>
-    <div>
-        <NavigationSync />
-        </div>
-    <div class="container">
-      <img src="logoreglus.png" alt="Logo Reglus" class="logo">
-      <h1 class="title"><strong>Descubra uma educação inclusiva e gratuita conosco</strong></h1>
-      <p class="subtitle">Você é um...</p>
-      <div class="buttons">
-        <button class="btn"><router-link to="/cadastroprofessor">Professor</router-link></button>
-        <span class="or">ou</span>
-        <button class="btn"><router-link to="/cadastro">Estudante</router-link></button>
-      </div>
+  <div>
+    <NavigationSync />
+  </div>
+  <div class="container">
+    <img src="logoreglus.png" alt="Logo Reglus" class="logo">
+    <h1 class="title"><strong>Descubra uma educação inclusiva e gratuita conosco</strong></h1>
+    <p class="subtitle">Você é um...</p>
+    <div class="buttons">
+      <button class="btn"><router-link to="/cadastroprofessor">Professor</router-link></button>
+      <span class="or">ou</span>
+      <button class="btn"><router-link to="/cadastro">Estudante</router-link></button>
     </div>
-  </template>
-  <script>
-    import NavigationSync from "@/components/nav/NavigationSync.vue";
+  </div>
+</template>
+<script>
+import NavigationSync from "@/components/nav/NavigationSync.vue";
 
-    export default {
-    name: "CadastroTela",
-    components: {
-        NavigationSync,
-    },
-    };
-  </script>
-  
-  <style scoped>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-    background-color: #ffffff;
-  }
-  
-  .logo {
-    width: 300px;
-    height: auto;
-    margin-bottom: 30px;
-  }
-  
-  .title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-  }
-  
-  .buttons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .btn {
-    background-color: #8C52FF;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    margin: 0 10px;
-  }
-  
-  .or {
-    font-size: 1.2rem;
-    margin: 0 10px;
-  }
-  </style>
+export default {
+  name: "CadastroTela",
+  components: {
+    NavigationSync,
+  },
+};
+</script>
+
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  background-color: #ffffff;
+}
+
+.logo {
+  width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 1.5rem;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 3em
+}
+
+.buttons a {
+  color: white;
+}
+
+.btn {
+  background-color: #8C52FF;
+  color: white;
+  padding: 15px 50px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.or {
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+</style>

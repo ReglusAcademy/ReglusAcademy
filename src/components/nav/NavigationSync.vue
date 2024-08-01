@@ -17,13 +17,13 @@
 
             <div class="lista">
                 <ul>
-                    <li>Sobre Nós</li> 
-                    <p>|</p>
+                    <li>Sobre Nós</li>
+                    <div class="div"></div>
                     <li>
                         <router-link to="/login">Fazer Login</router-link>
                     </li>
-                    <li id="free">
-                        <router-link to="/redirecionarlogin">USE GRATUITAMENTE</router-link>
+                    <li>
+                        <router-link to="/redirecionarlogin" id="btnCadastro">USE GRATUITAMENTE</router-link>
                     </li>
                 </ul>
             </div>
@@ -43,22 +43,25 @@ export default {
 </script>
 
 <style>
+#raiz {
+    padding: 0.5em 2em;
+}
+
 .logo {
-    width: 100px;
-    margin-right: 2em;
+    width: 200px;
 }
 
 .listasOpcoes {
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-    margin: 0em 2em;
 }
 
 ul {
     display: flex;
     align-items: center;
-    gap: 1em;
+    justify-content: center;
+    gap: 1.5em;
 }
 
 a {
@@ -68,18 +71,21 @@ a {
 
 .lista {
     display: flex;
-    padding: 0em 2em;
 }
 
-#free a {
+.div {
+    height: 2em;
+    width: 1px;
+    background-color: black;
+}
+
+#btnCadastro a {
     color: #fff;
 }
 
-#free {
+#btnCadastro {
     color: #fff;
     background-color: #000;
     padding: 0.5em;
 }
-
-
 </style>

@@ -20,6 +20,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
+textarea:focus,
+input:focus,
+select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
 /* padronize cores e use no projeto todo :D */
 :root {
   --rosaEscuro: #D96277;
@@ -32,7 +40,9 @@ export default {
   --cinzaTxt: #3B3B3B;
 }
 
-ul, li, a {
+ul,
+li,
+a {
   list-style: none;
   text-decoration: none;
   font-weight: bold;

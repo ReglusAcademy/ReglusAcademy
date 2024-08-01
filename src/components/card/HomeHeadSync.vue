@@ -7,19 +7,20 @@
                 </div>
                 <div class="textDescription">
                     <h3>ESTUDE GRATUITAMENTE</h3>
-                    <p>Criar um ambiente e comunidade que seja inclusivo através de uma comunidade virtual de estudos, 
-                        visando a educação diária e/ou contínua de pessoas para pessoas de determinado nível de vulnerabilidade socioeconômica 
+                    <p>Criar um ambiente e comunidade que seja inclusivo através de uma comunidade virtual de estudos,
+                        visando a educação diária e/ou contínua de pessoas para pessoas de determinado nível de
+                        vulnerabilidade socioeconômica
                         e para pessoas neurodivergentes.</p>
                 </div>
             </div>
 
             <div class="cardDescription">
                 <div class="iconDescription">
-                    <img :src="livroIcon" alt="icon">
+                    <img :src="profIcon" alt="icon">
                 </div>
                 <div class="textDescription">
                     <h3>SEJA ACOMPANHADO POR UM TUTOR</h3>
-                    <p>Proporcionar visibilidade ao papel fundamental do pedagogo no processo educativo, 
+                    <p>Proporcionar visibilidade ao papel fundamental do pedagogo no processo educativo,
                         utilizando um sistema de salas virtuais que ofereça acompanhamento pedagógico personalizado.
                     </p>
                 </div>
@@ -27,11 +28,11 @@
 
             <div class="cardDescription">
                 <div class="iconDescription">
-                    <img :src="livroIcon" alt="icon">
+                    <img :src="dataIcon" alt="icon">
                 </div>
                 <div class="textDescription">
                     <h3>ORGANIZE SEUS ESTUDOS</h3>
-                    <p>Se organize através de agendas, calendários e criação de pastas 
+                    <p>Se organize através de agendas, calendários e criação de pastas
                         e/ou arquivos dividindo-se em disciplinas ou áreas de estudo.</p>
                 </div>
             </div>
@@ -52,7 +53,9 @@ export default {
     name: "HomeHeadSync",
     data() {
         return {
-            livroIcon: require("@/assets/livro.png"),
+            livroIcon: require("@/assets/content/book.png"),
+            profIcon: require("@/assets/content/teachers.png"),
+            dataIcon: require("@/assets/content/calendar.png"),
         };
     }
 }
@@ -60,7 +63,6 @@ export default {
 
 <style scoped>
 #raiz {
-    margin: 2em;
     display: flex;
 }
 
@@ -68,6 +70,7 @@ export default {
     display: flex;
     background-color: #000;
     width: 45em;
+    height: 12em;
     border-radius: 10px;
     margin: 1em;
 }
@@ -77,35 +80,47 @@ export default {
     flex-direction: column;
     color: #fff;
     justify-content: center;
-    margin-left: 2em;
-    margin-right: 2em;
+    margin: 0em 2em;
+}
+
+.textDescription h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.textDescription p {
+    font-size: 0.9em;
 }
 
 .iconDescription {
-    width: 15em;
-    height: 10em;
-    background-color: #8C52FF;
+    min-width: 15em;
+    background-color: #be9dff;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
 }
 
+.iconDescription img {
+    width: 12em;
+}
+
 .rightCard {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 2em;
+    margin: 1em;
 }
 
-h2 {
-    font-size: 4em;
-    width: 102%;
+.rightCard h2 {
+    font-size: 3.7em;
+    font-weight: bold;
 }
 
-.rightCard > p {
-    font-size: 1.1em;
+.rightCard p {
+    font-size: 1.2em;
     text-align: justify;
 }
 </style>
