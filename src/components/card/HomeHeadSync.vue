@@ -7,10 +7,8 @@
                 </div>
                 <div class="textDescription">
                     <h3>ESTUDE GRATUITAMENTE</h3>
-                    <p>Criar um ambiente e comunidade que seja inclusivo através de uma comunidade virtual de estudos,
-                        visando a educação diária e/ou contínua de pessoas para pessoas de determinado nível de
-                        vulnerabilidade socioeconômica
-                        e para pessoas neurodivergentes.</p>
+                    <p>Estamos criando uma comunidade virtual de estudos verdadeiramente inclusiva, onde todos têm a
+                        oportunidade de aprender e crescer. </p>
                 </div>
             </div>
 
@@ -20,8 +18,8 @@
                 </div>
                 <div class="textDescription">
                     <h3>SEJA ACOMPANHADO POR UM TUTOR</h3>
-                    <p>Proporcionar visibilidade ao papel fundamental do pedagogo no processo educativo,
-                        utilizando um sistema de salas virtuais que ofereça acompanhamento pedagógico personalizado.
+                    <p>Buscamos proporcionar visibilidade ao papel fundamental do pedagogo no processo educativo.
+                        Utilizamos um sistema de salas virtuais que oferece acompanhamento pedagógico personalizado.
                     </p>
                 </div>
             </div>
@@ -69,10 +67,10 @@ export default {
 .cardDescription {
     display: flex;
     background-color: #000;
-    width: 45em;
-    height: 12em;
+    width: 40em;
+    height: 14em;
     border-radius: 10px;
-    margin: 1em;
+    margin-top: 2em;
 }
 
 .textDescription {
@@ -84,7 +82,7 @@ export default {
 }
 
 .textDescription h3 {
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: bold;
 }
 
@@ -110,8 +108,7 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    gap: 2em;
-    margin: 1em;
+    margin: 5em;
 }
 
 .rightCard h2 {
@@ -120,7 +117,7 @@ export default {
 }
 
 .rightCard p {
-    font-size: 1.2em;
+    font-size: 1.5em;
     text-align: justify;
 }
 </style>

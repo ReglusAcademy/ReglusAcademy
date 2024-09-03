@@ -14,13 +14,26 @@
                     <li>Organização</li>
                 </ul>
             </div>
+
+            <div class="lista">
+                <ul>
+                    <li>Sobre Nós</li>
+                    <div class="div"></div>
+                    <li>
+                        <router-link to="/login">Fazer Login</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/redirecionarlogin" id="btnCadastro">USE GRATUITAMENTE</router-link>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </div>
 </template>
 
 <script>
 export default {
-    name: "NavigationReglus",
+    name: "NavReglus",
     data() {
         return {
             logo: require("@/assets/logoreglus.png"),
@@ -30,22 +43,25 @@ export default {
 </script>
 
 <style>
+#raiz {
+    padding: 0em 1.5em;
+}
+
 .logo {
-    width: 100px;
-    margin-right: 2em;
+    width: 150px;
 }
 
 .listasOpcoes {
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-    margin: 0em 2em;
 }
 
 ul {
     display: flex;
     align-items: center;
-    gap: 1em;
+    justify-content: center;
+    gap: 1.5em;
 }
 
 a {
@@ -55,14 +71,19 @@ a {
 
 .lista {
     display: flex;
-    padding: 0em 2em;
 }
 
-#free a {
+.div {
+    height: 2em;
+    width: 1px;
+    background-color: black;
+}
+
+#btnCadastro a {
     color: #fff;
 }
 
-#free {
+#btnCadastro {
     color: #fff;
     background-color: #000;
     padding: 0.5em;

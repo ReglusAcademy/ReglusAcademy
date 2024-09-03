@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <NavigationSync />
-  </div>
-  <img src="logoreglus.png" alt="Logo Reglus" class="logo">
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
+  <NavReglus />
+  <div id="raiz">
+    <div id="align">
+      <div class="container mt-5">
         <div class="card">
           <div class="card-body">
             <form>
@@ -30,37 +27,55 @@
           </div>
         </div>
       </div>
+
+      <img src="logoreglus.png" alt="Logo Reglus" class="logo">
     </div>
   </div>
 </template>
 <script>
-import NavigationSync from "@/components/nav/NavigationSync.vue";
+import NavReglus from "@/components/nav/NavReglus.vue";
 export default {
   name: 'TelaLogin',
   components: {
-    NavigationSync,
+    NavReglus,
   },
 };
 </script>
 <style scoped>
+#align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
-  padding: 20px;
+  margin-bottom: 2em;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto;
-  width: 250px;
-}
-
-.form-group {
-  margin-bottom: 15px;
+  width: 30%;
+  margin-right: 100px;
+  margin-left: 100px;
 }
 
 .form-group label {
   font-weight: bold;
   font-size: 1.1em;
-  margin-bottom: 5px;
+}
+
+.form-control {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #8c52ff;
+  padding: 10px;
+  transition: 2s;
+}
+
+.form-control:focus,
+.form-control:active {
+  border: 1px solid #8c52ff;
+  box-shadow: 0 1px 0 0 #8c52ff;
+  color: #8c52ff;
 }
 
 .btn-primary {
@@ -75,21 +90,6 @@ export default {
   margin: 0 auto;
 }
 
-.form-control {
-  border: none;
-  border-bottom: 1px solid #8c52ff;
-  padding: 10px;
-  transition: 2s;
-  outline: none;
-}
-
-.form-control:focus,
-.form-control:active {
-  border: 1px solid #8c52ff;
-  box-shadow: 0 1px 0 0 #8c52ff;
-  color: #8c52ff;
-}
-
 .btn-primary {
   background-color: #8c52ff;
   border-color: #8c52ff;
@@ -101,9 +101,8 @@ export default {
 }
 
 .card-body {
-  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 1em;
 }
 
 .text-center a {

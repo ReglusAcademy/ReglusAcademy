@@ -1,22 +1,24 @@
 <template>
     <div>
-        <NavigationSync></NavigationSync>
+        <NavReglus></NavReglus>
         <HomeHeadSync></HomeHeadSync>
+        <FooterReglus></FooterReglus>
     </div>
 </template>
 
 <script>
-import NavigationSync from "@/components/nav/NavigationSync.vue"
+import NavReglus from "@/components/nav/NavReglus.vue"
 import HomeHeadSync from "@/components/card/HomeHeadSync.vue"
+import FooterReglus from "@/components/nav/FooterReglus.vue"
 
 export default {
     name: "HomeSync",
     components: {
-        NavigationSync,
-        HomeHeadSync
+        NavReglus,
+        HomeHeadSync,
+        FooterReglus
     }
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

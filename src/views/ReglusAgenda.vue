@@ -1,9 +1,6 @@
 <template>
-  
   <div class="calendar">
-    <div>
-      <NavigationReglus />
-      </div>
+    <NavReglusV2 />
     <div class="calendar-header">
       <button @click="prevMonth">Anterior</button>
       <span>{{ currentMonth }} {{ currentYear }}</span>
@@ -35,12 +32,12 @@
 </template>
 
 <script>
-import NavigationReglus from "@/components/nav/NavigationReglus.vue";
+import NavReglusV2 from "@/components/nav/NavReglusV2.vue";
 export default {
   name: "AgendaReglus",
-    components: {
-      NavigationReglus,
-    },
+  components: {
+    NavReglusV2,
+  },
   data() {
     return {
       currentMonth: new Date().getMonth(),
@@ -99,7 +96,6 @@ export default {
   width: 100%;
   height: 100vh;
   background-color: #fff;
-  padding: 20px;
 }
 
 .calendar-header {
@@ -107,6 +103,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .calendar-header button {
@@ -131,7 +128,8 @@ table {
   width: 100%;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;

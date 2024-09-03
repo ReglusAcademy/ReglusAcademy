@@ -1,25 +1,25 @@
 <template>
   <div>
-    <NavigationSync />
+    <NavReglus />
   </div>
   <div class="container">
     <img src="logoreglus.png" alt="Logo Reglus" class="logo">
     <h1 class="title"><strong>Descubra uma educação inclusiva e gratuita conosco</strong></h1>
     <p class="subtitle">Você é um...</p>
     <div class="buttons">
-      <button class="btn"><router-link to="/cadastroprofessor">Professor</router-link></button>
+      <router-link to="/cadastroprofessor" class="btn">Professor</router-link>
       <span class="or">ou</span>
-      <button class="btn"><router-link to="/cadastro">Estudante</router-link></button>
+      <router-link to="/cadastro" class="btn">Estudante</router-link>
     </div>
   </div>
 </template>
 <script>
-import NavigationSync from "@/components/nav/NavigationSync.vue";
+import NavReglus from "@/components/nav/NavReglus.vue";
 
 export default {
   name: "CadastroTela",
   components: {
-    NavigationSync,
+    NavReglus,
   },
 };
 </script>
