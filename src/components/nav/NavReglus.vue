@@ -7,7 +7,9 @@
                     <li>
                         <router-link to="/">Home</router-link>
                     </li>
-                    <li>Funcionalidades</li>
+                    <li>
+                        <router-link to="/sobre">Funcionalidades</router-link>
+                    </li>
                     <li>
                         <router-link to="/agenda">Recursos</router-link>
                     </li>
