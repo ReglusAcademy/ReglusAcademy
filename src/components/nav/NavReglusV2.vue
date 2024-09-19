@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    name: "NavigationReglus",
+    name: "NavReglusV2",
     data() {
         return {
             logo: require("@/assets/logoreglus.png"),
@@ -52,6 +52,7 @@ export default {
   ul {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1em;
     margin: 0; /* Remove a margem padrão da lista */
     padding: 0; /* Remove o padding padrão da lista */
@@ -75,6 +76,5 @@ export default {
 #free {
     color: #fff;
     background-color: #000;
-    padding: 0.5em;
 }
 </style>

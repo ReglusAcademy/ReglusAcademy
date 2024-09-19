@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavigationReglus />
+    <NavReglus />
     <div class="container">
       <main>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -71,12 +71,12 @@
 </template>
 
 <script>
-import NavigationReglus from "@/components/nav/NavigationReglus.vue";
+import NavReglus from "@/components/nav/NavReglusV2.vue";
 
 export default {
   name: 'ReglusRoomSobre',
   components: {
-    NavigationReglus,
+    NavReglus,
   },
   data() {
     return {

@@ -35,7 +35,7 @@
 
 <script>
 export default {
-    name: "NavigationSync",
+    name: "NavReglus",
     data() {
         return {
             logo: require("@/assets/logoreglus.png"),
@@ -46,11 +46,11 @@ export default {
 
 <style>
 #raiz {
-    padding: 0.5em 2em;
+    padding: 0em 1.5em;
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
 }
 
 .listasOpcoes {

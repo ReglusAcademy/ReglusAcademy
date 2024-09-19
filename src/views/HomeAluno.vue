@@ -1,5 +1,5 @@
 <template>
-    <NavigationReglus />
+    <NavReglus />
     <div class="container">
       <h1>COMECE AGORA</h1>
       <div class="boxes">
@@ -25,11 +25,11 @@
   </template>
   
   <script>
-  import NavigationReglus from "@/components/nav/NavigationReglus.vue";
+  import NavReglus from "@/components/nav/NavReglusV2.vue";
   export default {
     name: "HomeAluno",
     components: {
-      NavigationReglus,
+      NavReglus,
     }
 }
   </script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <NavigationSync />
+      <NavReglus />
       <!-- <img src="logoreglus.png" alt="Logo Reglus" class="logo"> -->
       <div class="container">
         <div class="row justify-content-center">
@@ -214,11 +214,11 @@
   </template>
   
   <script>
-  import NavigationSync from "@/components/nav/NavigationSync.vue";
+  import NavReglus from "@/components/nav/NavReglus.vue";
   export default {
     name: "FormsAluno",
     components: {
-      NavigationSync,
+      NavReglus,
     },
     data() {
       return {

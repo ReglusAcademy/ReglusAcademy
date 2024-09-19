@@ -1,7 +1,8 @@
 <template>
+  <NavReglusV2></NavReglusV2>
   <div class="calendar-container">
     <div>
-      <NavigationReglus />
+      <NavReglus />
     </div>
     <!-- Seleção de Mês -->
     <div class="month-selector">
@@ -53,12 +54,12 @@
 </template>
 
 <script>
-import NavigationReglus from "@/components/nav/NavigationReglus.vue";
+import NavReglusV2 from "@/components/nav/NavReglusV2.vue";
 export default {
   name: "AgendaReglus",
-    components: {
-      NavigationReglus,
-    },
+  components: {
+    NavReglusV2,
+  },
   data() {
     return {
       daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
@@ -162,6 +163,7 @@ export default {
   width: 100%;
   max-width: 300px;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .main-content {

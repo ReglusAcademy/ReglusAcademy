@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavigationSync />
+    <NavReglus />
   </div>
   <!-- <img src="logoreglus.png" alt="Logo Reglus" class="logo"> -->
   <div class="container">
@@ -89,11 +89,11 @@
 </template>
 
 <script>
-import NavigationSync from "@/components/nav/NavigationSync.vue";
+import NavReglus from "@/components/nav/NavReglus.vue";
 export default {
   name: "CadastroTela",
   components: {
-    NavigationSync,
+    NavReglus,
   },
   data() {
     return {

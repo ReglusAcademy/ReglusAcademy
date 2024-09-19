@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavigationSync />
+    <NavReglus />
   </div>
   <!-- <img src="logoreglus.png" alt="Logo Reglus" class="logo"> -->
   <div class="container">
@@ -16,16 +16,16 @@
                 <input type="text" id="name" v-model="form.name" class="form-control" required />
               </div>
               <div class="form-group">
-                <label for="nascimento">Data de Nascimento</label>
-                <input type="date" id="nascimento" v-model="form.nascimento" class="form-control" required />
+                <label for="dateBirth">Data de Nascimento</label>
+                <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" v-model="form.email" class="form-control" required />
               </div>
               <div class="form-group select-container">
-                <label for="formacao">Grau de Formação</label>
-                <select id="formacao" v-model="form.formacao" class="form-control" required>
+                <label for="educationLevel">Grau de Formação</label>
+                <select id="educationLevel" v-model="form.educationLevel" class="form-control" required>
                   <option disabled value="">Selecione o grau de formação</option>
                   <option>Ensino Fundamental</option>
                   <option>Ensino Médio</option>
@@ -37,13 +37,13 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="deficiencia">Pessoa com Deficiência?</label>
-                <select id="deficiencia" v-model="form.deficiencia" class="form-control" required>
+                <label for="disability">Pessoa com Deficiência?</label>
+                <select id="disability" v-model="form.disability" class="form-control" required>
                   <option value="sim">Sim</option>
                   <option value="nao">Não</option>
                 </select>
               </div>
-              <div class="form-group" v-if="form.deficiencia === 'sim'">
+              <div class="form-group" v-if="form.disability === 'sim'">
                 <label for="casosim">Qual o tipo de deficiência?</label>
                 <select id="casosim" v-model="form.casosim" class="form-control" required>
                   <option disabled value="">Selecione o tipo de deficiência</option>
@@ -55,6 +55,18 @@
                 </select>
               </div>
               <!-- <p>Tipo de deficiência selecionada: {{ form.casosim }}</p> -->
+              <div class="form-group">
+                <label for="instituteName">Nome do Instituto em que estuda atualmente</label>
+                <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="state">Estado</label>
+                <input type="text" id="state" v-model="form.state" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="city">Cidade</label>
+                <input type="text" id="city" v-model="form.city" class="form-control" required />
+              </div>
               <div class="form-group">
                 <label for="password">Senha</label>
                 <input type="password" id="password" v-model="form.password" class="form-control" required />
@@ -77,21 +89,25 @@
 </template>
 
 <script>
-import NavigationSync from "@/components/nav/NavigationSync.vue";
+import NavReglus from "@/components/nav/NavReglus.vue";
 export default {
   name: "CadastroTela",
   components: {
-    NavigationSync,
+    NavReglus,
   },
   data() {
     return {
       form: {
         name: '',
-        nascimento: '',
+        dateBirth: '',
         email: '',
-        escolaridade: '',
-        deficiencia: '',
+        educationLevel: '',
+        disability: '',
+        instituteName: '',
+        city: '',
+        state: '',
         casosim: '',
+        comprovante: null,
         password: '',
         password_confirmation: ''
       },

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div>
-        <NavigationReglus />
+        <NavReglus />
       </div>
       <header>
         <div class="logo">
