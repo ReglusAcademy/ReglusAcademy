@@ -8,7 +8,7 @@
                         <router-link to="/">Home</router-link>
                     </li>
                     <li>
-                        <router-link to="/sobre">Funcionalidades</router-link>
+                        <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
                     </li>
                     <li>
                         <router-link to="/agenda">Recursos</router-link>

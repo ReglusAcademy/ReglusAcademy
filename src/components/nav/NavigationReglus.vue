@@ -1,14 +1,14 @@
 <template>
     <div id="raiz">
+        <img :src="logo" class="logo">
         <nav class="listasOpcoes">
             <div class="lista">
-                <img :src="logo" class="logo">
                 <ul>
                     <li>
                         <router-link to="/">Home</router-link>
                     </li>
                     <li>
-                        <router-link to="/sobre">Funcionalidades</router-link>
+                        <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
                     </li>
                     <li>
                         <router-link to="/agenda">Recursos</router-link>
@@ -32,33 +32,41 @@ export default {
 </script>
 
 <style>
-.logo {
-    width: 100px;
-    margin-right: 2em;
-}
-
-.listasOpcoes {
-    font-weight: bold;
+#raiz {
     display: flex;
-    justify-content: space-between;
-    margin: 0em 2em;
-}
+    align-items: center; /* Alinha verticalmente no centro */
+    padding: 10px; /* Adiciona um pouco de padding */
+    width: 100%; /* Ocupa toda a largura disponível */
+  }
 
-ul {
+  .logo {
+    width: 100px;
+    margin-right: 20px; /* Espaço à direita do logo */
+  }
+
+  .listasOpcoes {
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente no centro */
+  }
+
+  ul {
     display: flex;
     align-items: center;
     gap: 1em;
-}
+    margin: 0; /* Remove a margem padrão da lista */
+    padding: 0; /* Remove o padding padrão da lista */
+    list-style-type: none; /* Remove os marcadores de lista */
+  }
 
-a {
+  a {
     text-decoration: none;
-    color: black;
-}
+    color: rgb(0, 0, 0); /* Cor do texto dos links */
+    font-weight: bold; /* Negrito nos links */
+  }
 
-.lista {
+  .lista {
     display: flex;
-    padding: 0em 2em;
-}
+  }
 
 #free a {
     color: #fff;

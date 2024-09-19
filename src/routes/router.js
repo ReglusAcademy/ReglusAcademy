@@ -7,7 +7,11 @@ const routes = [
   { path: '/cadastroprofessor', component: () => import('@/views/TelaCadastroProfessor.vue')},
   { path: '/redirecionarlogin', component: () => import('@/views/TelaRedirecionamento.vue')},
   { path: '/agenda', component: () => import('@/views/ReglusAgenda.vue')},
-  { path: '/sobre', component: () => import('@/views/ReglusRoomSobre.vue')},
+  { path: '/introducaoaprogramacao', component: () => import('@/views/ReglusRoomSobre.vue')},
+  { path: '/educacaoinclusiva', component: () => import('@/views/ReglusRoomInclusiva.vue')},
+  { path: '/sobrenos', component: () => import('@/views/TelaSobreNos.vue')},
+  { path: '/fichadoaluno', component: () => import('@/views/FormsAluno.vue')},
+  { path: '/inicial', component: () => import('@/views/HomeAluno.vue')},
 ]
 
 const router = createRouter({
