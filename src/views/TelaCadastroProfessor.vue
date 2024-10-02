@@ -79,7 +79,7 @@
               <div v-if="passwordMismatch" class="alert alert-danger">
                 As senhas não coincidem.
               </div>
-              <button type="submit" class="btn btn-primary">Cadastre-se</button>
+              <button class="btn"><router-link to="/inicialprofessor">Cadastre-se</router-link></button>
             </form>
           </div>
         </div>
@@ -200,11 +200,10 @@ select:active {
   outline: none;
 }
 
-.btn-primary {
+.btn {
   background-color: #000000;
   border: none;
   border-radius: 3px;
-  color: white;
   padding: 10px 40px;
   font-size: 16px;
   cursor: pointer;
@@ -212,7 +211,11 @@ select:active {
   margin: 0 auto;
 }
 
-.btn-primary:hover {
+.btn a {
+  color: #fff;
+}
+
+.btn:hover {
   opacity: 0.8;
   transition: 2s;
 }
