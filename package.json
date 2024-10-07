@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@syncfusion/ej2-vue-schedule": "^26.1.41",
+    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "core-js": "^3.8.3",
     "font-awesome": "^4.7.0",

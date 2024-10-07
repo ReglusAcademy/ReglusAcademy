@@ -1,86 +1,70 @@
 <template>
   <div>
     <NavReglus />
-  </div>
-  <!-- <img src="logoreglus.png" alt="Logo Reglus" class="logo"> -->
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h2>Bem-vindo educador !</h2>
-            <p>Complete seu cadastro.</p>
-            <form @submit.prevent="register">
-              <div class="form-group">
-                <label for="name">Nome Completo</label>
-                <input type="text" id="name" v-model="form.name" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="nascimento">Data de Nascimento</label>
-                <input type="date" id="nascimento" v-model="form.nascimento" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" v-model="form.email" class="form-control" required />
-              </div>
-              <div class="form-group select-container">
-                <label for="formacao">Grau de Formação</label>
-                <select id="formacao" v-model="form.formacao" class="form-control" required>
-                  <option disabled value="">Selecione o grau de formação</option>
-                  <option>Ensino Fundamental</option>
-                  <option>Ensino Médio</option>
-                  <option>Superior Completo</option>
-                  <option>Superior Incompleto</option>
-                  <option>Pós-graduação</option>
-                  <option>Mestrado</option>
-                  <option>Doutorado</option>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2>Bem-vindo educador!</h2>
+              <p>Complete seu cadastro.</p>
+              <form @submit.prevent="register">
+                <div class="form-group">
+                  <label for="userType">Tipo de Usuário:</label>
+                  <select id="userType" v-model="form.userType" class="form-control" required>
+                    <option value="EDUCATOR">Educador</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="name">Nome Completo</label>
+                  <input type="text" id="name" v-model="form.name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="dateBirth">Data de Nascimento</label>
+                  <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
+                </div>
+                <div class="form-group">
+                <label for="gender">Gênero</label>
+                <select id="gender" required>
+                  <option value="MALE">Masculino</option>
+                  <option value="FEMALE">Feminino</option>
                 </select>
               </div>
-              <!-- <p>Formação selecionada: {{ form.formacao }}</p> -->
-              <div class="form-group">
-                <label for="instituicao">Instituição de Formação</label>
-                <input type="text" id="instituicao" v-model="form.instituicao" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="comprovante"
-                  title="Entende-se como comprovante de formação, qualquer documento institucional que comprove a formação do usuário.">Comprovante
-                  de Formação*</label>
-                <input type="file" id="comprovante" @change="handleFileUpload" class="form-control" required />
-              </div>
-              <!-- <p>Arquivo selecionado: {{ form.comprovante.name }}</p> -->
-              <div class="form-group">
-                <label for="deficiencia">Pessoa com Deficiência?</label>
-                <select id="deficiencia" v-model="form.deficiencia" class="form-control" required>
-                  <option value="sim">Sim</option>
-                  <option value="nao">Não</option>
-                </select>
-              </div>
-              <div class="form-group" v-if="form.deficiencia === 'sim'">
-                <label for="casosim">Qual o tipo de deficiência?</label>
-                <select id="casosim" v-model="form.casosim" class="form-control" required>
-                  <option disabled value="">Selecione o tipo de deficiência</option>
-                  <option>Auditiva</option>
-                  <option>Visual</option>
-                  <option>Física</option>
-                  <option>Intelectual</option>
-                  <option>Múltipla</option>
-                </select>
-              </div>
-              <!-- <p>Tipo de deficiência selecionada: {{ form.casosim }}</p> -->
-              <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" v-model="form.password" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="password_confirmation">Confirmar Senha</label>
-                <input type="password" id="password_confirmation" v-model="form.password_confirmation"
-                  class="form-control" required />
-              </div>
-              <div v-if="passwordMismatch" class="alert alert-danger">
-                As senhas não coincidem.
-              </div>
-              <button class="btn"><router-link to="/inicialprofessor">Cadastre-se</router-link></button>
-            </form>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" v-model="form.email" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="passwordHash">Senha</label>
+                  <input type="password" id="passwordHash" v-model="form.passwordHash" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="disability">Deficiência:</label>
+                  <select id="disability" v-model="form.deficiency" class="form-control" required>
+                    <option value="false">Não</option>
+                    <option value="true">Sim</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="educationLevel">Nível de Educação:</label>
+                  <input type="text" id="educationLevel" v-model="form.educationLevel" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="instituteName">Nome do Instituto:</label>
+                  <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="experienceYears">Anos de Experiência:</label>
+                  <input type="number" id="experienceYears" v-model.number="form.experienceYears" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label for="bio">Biografia:</label>
+                  <textarea id="bio" v-model="form.bio" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar Educador</button>
+              </form>
+              <div id="responseMessage" v-if="responseMessage" :style="{ color: responseColor }">{{ responseMessage }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -90,6 +74,7 @@
 
 <script>
 import NavReglus from "@/components/nav/NavReglus.vue";
+
 export default {
   name: "CadastroTela",
   components: {
@@ -98,44 +83,64 @@ export default {
   data() {
     return {
       form: {
+        userType: "EDUCATOR",
         name: '',
-        nascimento: '',
+        dateBirth: '',
         email: '',
-        formacao: '',
-        instituicao: '',
-        comprovante: '',
-        deficiencia: '',
-        casosim: '',
-        password: '',
-        password_confirmation: ''
+        gender: '',
+        passwordHash: '',
+        disability: false,
+        educationLevel: '',
+        instituteName: '',
+        experienceYears: null,
+        bio: ''
       },
-      passwordMismatch: false
+      responseMessage: '',
+      responseColor: 'green' // Cor padrão para sucesso
     }
   },
   methods: {
-    handleFileUpload(event) {
-      this.form.comprovante = event.target.files[0];
-    },
+    async register() {
+      try {
+        const response = await fetch('http://localhost:8080/api/educators', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.form) // Envia o objeto como JSON
+        });
 
-    register() {
-      // Chamar API para cadastrar usuário
-      if (this.form.password !== this.form.password_confirmation) {
-        this.passwordMismatch = true;
-      } else {
-        this.passwordMismatch = false;
-        // Continue com a submissão do formulário, por exemplo, enviar para o servidor
-        alert('Formulário enviado com sucesso!');
-      }
-      console.log('Cadastro realizado com sucesso!');
-    },
+        const result = await response.json();
 
-    watch: {
-      'form.password': function () {
-        this.passwordMismatch = false;
-      },
-      'form.password_confirmation': function () {
-        this.passwordMismatch = false;
+        if (response.ok) {
+          this.responseMessage = 'Educador cadastrado com sucesso!';
+          this.responseColor = 'green';
+          this.resetForm(); // Limpa o formulário
+        } else {
+          this.responseMessage = `Erro: ${result}`;
+          this.responseColor = 'red';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        this.responseMessage = 'Erro ao cadastrar educador.';
+        this.responseColor = 'red';
       }
+    },
+    resetForm() {
+      this.form = {
+        userType: "EDUCATOR",
+        name: '',
+        dateBirth: '',
+        gender: '',
+        email: '',
+        passwordHash: '',
+        disability: false,
+        educationLevel: '',
+        instituteName: '',
+        experienceYears: null,
+        bio: ''
+      };
+      this.responseMessage = ''; // Limpa a mensagem de resposta
     }
   }
 }

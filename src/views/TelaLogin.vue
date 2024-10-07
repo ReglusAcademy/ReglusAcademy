@@ -5,14 +5,14 @@
       <div class="container mt-5">
         <div class="card">
           <div class="card-body">
-            <form>
+            <form @submit.prevent="login">
               <div class="form-group mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+                <input type="email" class="form-control" v-model="email" id="email" placeholder="Digite seu email">
               </div>
               <div class="form-group mb-3">
                 <label for="password">Senha</label>
-                <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                <input type="password" class="form-control" v-model="password" id="password" placeholder="Digite sua senha">
               </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">Login</button>
@@ -34,13 +34,48 @@
 </template>
 <script>
 import NavReglus from "@/components/nav/NavReglus.vue";
+import axios from 'axios';
+
 export default {
   name: 'TelaLogin',
   components: {
     NavReglus,
   },
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        const response = await axios.post('http://localhost:8080/api/auth/login', {
+          email: this.email,
+          password: this.password
+        });
+
+     // Verifica o tipo de usuário retornado pela API
+     const userType = response.data.user_type;
+        console.log("Login com sucesso, Tipo de usuário:", userType);
+
+        // Redireciona com base no tipo de usuário
+        if (userType === 'STUDENT') {
+          this.$router.push('/inicial'); // Redireciona para HomeAluno
+        } else if (userType === 'EDUCATOR') {
+          this.$router.push('/inicialprofessor'); // Redireciona para HomeProfessor
+        } else {
+          alert("Tipo de usuário desconhecido.");
+        }
+      } catch (error) {
+        console.error("Erro no login", error.response.data);
+        alert("Falha no login: " + error.response.data);
+      }
+    }
+  }
 };
 </script>
+
 <style scoped>
 #align {
   display: flex;
