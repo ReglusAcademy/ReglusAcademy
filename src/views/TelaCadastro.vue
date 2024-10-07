@@ -2,15 +2,20 @@
   <div>
     <NavReglus />
   </div>
-  <!-- <img src="logoreglus.png" alt="Logo Reglus" class="logo"> -->
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
           <div class="card-body">
-            <h2>Bem-vindo estudante !</h2>
+            <h2>Bem-vindo estudante!</h2>
             <p>Complete seu cadastro.</p>
             <form @submit.prevent="register">
+              <div class="form-group">
+                <label for="userType">Tipo de Usuário:</label>
+                <select id="userType" v-model="form.userType" class="form-control" required>
+                  <option value="STUDENT">Estudante</option>
+                </select>
+              </div>
               <div class="form-group">
                 <label for="name">Nome Completo</label>
                 <input type="text" id="name" v-model="form.name" class="form-control" required />
@@ -18,6 +23,13 @@
               <div class="form-group">
                 <label for="dateBirth">Data de Nascimento</label>
                 <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="gender">Gênero</label>
+                <select id="gender" v-model="form.gender" class="form-control" required>
+                  <option value="MALE">Masculino</option>
+                  <option value="FEMALE">Feminino</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
@@ -39,8 +51,8 @@
               <div class="form-group">
                 <label for="disability">Pessoa com Deficiência?</label>
                 <select id="disability" v-model="form.disability" class="form-control" required>
-                  <option value="sim">Sim</option>
-                  <option value="nao">Não</option>
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
                 </select>
               </div>
               <div class="form-group" v-if="form.disability === 'sim'">
@@ -54,7 +66,6 @@
                   <option>Múltipla</option>
                 </select>
               </div>
-              <!-- <p>Tipo de deficiência selecionada: {{ form.casosim }}</p> -->
               <div class="form-group">
                 <label for="instituteName">Nome do Instituto em que estuda atualmente</label>
                 <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
@@ -69,17 +80,16 @@
               </div>
               <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" v-model="form.password" class="form-control" required />
+                <input type="password" id="password" v-model="form.passwordHash" class="form-control" required />
               </div>
               <div class="form-group">
                 <label for="password_confirmation">Confirmar Senha</label>
-                <input type="password" id="password_confirmation" v-model="form.password_confirmation"
-                  class="form-control" required />
+                <input type="password" id="password_confirmation" v-model="form.password_confirmation" class="form-control" required />
               </div>
               <div v-if="passwordMismatch" class="alert alert-danger">
                 As senhas não coincidem.
               </div>
-              <button class="btn"><router-link to="/fichadoaluno">Continuar</router-link></button>
+              <button type="submit" class="btn">Cadastrar</button>
             </form>
           </div>
         </div>
@@ -98,59 +108,71 @@ export default {
   data() {
     return {
       form: {
+        userType: "STUDENT",
         name: '',
         dateBirth: '',
         email: '',
+        gender: '',
+        passwordHash: '',
+        disability: false, // Valor padrão
         educationLevel: '',
-        disability: '',
         instituteName: '',
         city: '',
         state: '',
         casosim: '',
-        comprovante: null,
-        password: '',
-        password_confirmation: ''
+        FinalObservations: 'No observations'
       },
       passwordMismatch: false
-    }
+    };
   },
   methods: {
-    handleFileUpload(event) {
-      this.form.comprovante = event.target.files[0];
-    },
+    async register() {
+      try {
+        const response = await fetch('http://localhost:8080/api/students', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.form) // Envia o objeto como JSON
+        });
 
-    register() {
-      // Chamar API para cadastrar usuário
-      if (this.form.password !== this.form.password_confirmation) {
-        this.passwordMismatch = true;
-      } else {
-        this.passwordMismatch = false;
-        // Continue com a submissão do formulário, por exemplo, enviar para o servidor
-        alert('Formulário enviado com sucesso!');
-      }
-      console.log('Cadastro realizado com sucesso!');
-    },
+        const result = await response.json();
 
-    watch: {
-      'form.password': function () {
-        this.passwordMismatch = false;
-      },
-      'form.password_confirmation': function () {
-        this.passwordMismatch = false;
+        if (response.ok) {
+          this.responseMessage = 'Estudante cadastrado com sucesso!';
+          this.responseColor = 'green';
+          this.resetForm(); // Limpa o formulário
+        } else {
+          this.responseMessage = `Erro: ${result}`;
+          this.responseColor = 'red';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        this.responseMessage = 'Erro ao cadastrar estudante.';
+        this.responseColor = 'red';
       }
+    },
+    resetForm() {
+      this.form = {
+        userType: "STUDENT",
+        name: '',
+        dateBirth: '',
+        gender: '',
+        email: '',
+        passwordHash: '',
+        disability: false,
+        educationLevel: '',
+        instituteName: '',
+        experienceYears: null,
+        bio: ''
+      };
+      this.responseMessage = ''; // Limpa a mensagem de resposta
     }
   }
 }
 </script>
-<style scoped>
-/*
-.logo {
-  display: block;
-  margin: 0 auto;
-  width: 250px;
-}
-*/
 
+<style scoped>
 .card {
   border: 1px solid #8c52ff73;
   padding: 1em 2em;
@@ -211,10 +233,6 @@ select:active {
   cursor: pointer;
   display: block;
   margin: 0 auto;
-}
-
-.btn a {
-  color: #fff;
 }
 
 .btn:hover {
