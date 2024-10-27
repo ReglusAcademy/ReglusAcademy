@@ -1,7 +1,7 @@
 <template>
     <NavReglus />
     <div class="container">
-      <h1>COMECE AGORA</h1>
+      <h1>Olá, nome!</h1>
       <div class="boxes">
         <div class="box blue">
           <div class="content">
@@ -27,17 +27,20 @@
   <script>
   import NavReglus from "@/components/nav/NavReglusV2.vue";
   export default {
-    name: "HomeAluno",
+    name: "HomeEstudante",
     components: {
       NavReglus,
     }
 }
+
   </script>
   
   <style>
   .container {
-    text-align: center;
-    margin: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   
   .boxes {

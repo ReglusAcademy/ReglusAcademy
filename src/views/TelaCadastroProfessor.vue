@@ -6,15 +6,9 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <h2>Bem-vindo educador!</h2>
+              <h2>Bem-vindo, Educador(a)!</h2>
               <p>Complete seu cadastro.</p>
               <form @submit.prevent="register">
-                <div class="form-group">
-                  <label for="userType">Tipo de Usuário:</label>
-                  <select id="userType" v-model="form.userType" class="form-control" required>
-                    <option value="EDUCATOR">Educador</option>
-                  </select>
-                </div>
                 <div class="form-group">
                   <label for="name">Nome Completo</label>
                   <input type="text" id="name" v-model="form.name" class="form-control" required />
@@ -107,7 +101,7 @@ export default {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(this.form) // Envia o objeto como JSON
+          body: JSON.stringify(this.form)
         });
 
         const result = await response.json();
@@ -115,14 +109,15 @@ export default {
         if (response.ok) {
           this.responseMessage = 'Educador cadastrado com sucesso!';
           this.responseColor = 'green';
-          this.resetForm(); // Limpa o formulário
+          this.resetForm();
+          this.$router.push('/login');
         } else {
           this.responseMessage = `Erro: ${result}`;
           this.responseColor = 'red';
         }
       } catch (error) {
         console.error('Error:', error);
-        this.responseMessage = 'Erro ao cadastrar educador.';
+        this.responseMessage = 'Erro ao cadastrar.';
         this.responseColor = 'red';
       }
     },
@@ -146,14 +141,6 @@ export default {
 }
 </script>
 <style scoped>
-/*
-.logo {
-  display: block;
-  margin: 0 auto;
-  width: 250px;
-}
-*/
-
 .card {
   border: 1px solid #8c52ff73;
   padding: 1em 2em;

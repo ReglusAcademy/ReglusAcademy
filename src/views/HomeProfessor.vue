@@ -1,11 +1,11 @@
 <template>
     <NavReglus />
     <div class="container">
-      <h1>Educador, Seja Bem Vindo!</h1>
+      <h1>Olá, nome!</h1>
       <div class="boxes">
         <div class="box blue">
           <div class="content">
-            <h2>Agende reuniões com os estudantes</h2>
+            <h2>Agende reuniões</h2>
             <p class="small-text">Gratuito</p>
             <router-link to="/agenda" class="button">Agende</router-link>
           </div>
@@ -14,7 +14,7 @@
   
         <div class="box purple">
           <div class="content">
-            <h2>Acompanhe os seus estudantes</h2>
+            <h2>Acompanhe seus estudantes</h2>
             <p class="small-text">Gratuito</p>
             <router-link to="/listaralunos" class="button">Acompanhe</router-link>
           </div>
@@ -36,8 +36,10 @@
   
   <style>
   .container {
-    text-align: center;
-    margin: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   
   .boxes {

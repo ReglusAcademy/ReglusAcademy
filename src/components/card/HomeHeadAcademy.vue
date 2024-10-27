@@ -48,7 +48,7 @@
 
 <script>
 export default {
-    name: "HomeHeadSync",
+    name: "HomeHeadAcademy",
     data() {
         return {
             livroIcon: require("@/assets/content/book.png"),

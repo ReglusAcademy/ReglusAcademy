@@ -7,15 +7,9 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-body">
-            <h2>Bem-vindo estudante!</h2>
+            <h2>Bem-vindo(a) Estudante!</h2>
             <p>Complete seu cadastro.</p>
             <form @submit.prevent="register">
-              <div class="form-group">
-                <label for="userType">Tipo de Usuário:</label>
-                <select id="userType" v-model="form.userType" class="form-control" required>
-                  <option value="STUDENT">Estudante</option>
-                </select>
-              </div>
               <div class="form-group">
                 <label for="name">Nome Completo</label>
                 <input type="text" id="name" v-model="form.name" class="form-control" required />
@@ -101,26 +95,26 @@
 <script>
 import NavReglus from "@/components/nav/NavReglus.vue";
 export default {
-  name: "CadastroTela",
+  name: "TelaCadastroEstudante",
   components: {
     NavReglus,
   },
   data() {
     return {
       form: {
-        userType: "STUDENT",
+        userType: 'STUDENT',
         name: '',
         dateBirth: '',
         email: '',
         gender: '',
         passwordHash: '',
-        disability: false, // Valor padrão
+        disability: '',
         educationLevel: '',
         instituteName: '',
         city: '',
         state: '',
         casosim: '',
-        FinalObservations: 'No observations'
+        FinalObservations: ''
       },
       passwordMismatch: false
     };
@@ -133,7 +127,7 @@ export default {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(this.form) // Envia o objeto como JSON
+          body: JSON.stringify(this.form)
         });
 
         const result = await response.json();
@@ -141,7 +135,8 @@ export default {
         if (response.ok) {
           this.responseMessage = 'Estudante cadastrado com sucesso!';
           this.responseColor = 'green';
-          this.resetForm(); // Limpa o formulário
+          this.resetForm();
+          this.$router.push('/login');
         } else {
           this.responseMessage = `Erro: ${result}`;
           this.responseColor = 'red';
@@ -226,6 +221,7 @@ select:active {
 
 .btn {
   background-color: #000000;
+  color: #fff;
   border: none;
   border-radius: 3px;
   padding: 10px 40px;

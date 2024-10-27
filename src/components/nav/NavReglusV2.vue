@@ -5,7 +5,7 @@
             <div class="lista">
                 <ul>
                     <li>
-                        <router-link to="/">Home</router-link>
+                        <router-link to="/">Início</router-link>
                     </li>
                     <li>
                         <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
@@ -14,6 +14,9 @@
                         <router-link to="/agenda">Recursos</router-link>
                     </li>
                     <li>Organização</li>
+                    <li>
+                        <button @click="logout" class="logout-button">Logout</button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -27,6 +30,13 @@ export default {
         return {
             logo: require("@/assets/logoreglus.png"),
         };
+    },
+    methods: {
+        logout() {
+            localStorage.removeItem('user');
+            localStorage.removeItem('userType');
+            this.$router.push('/');
+        }
     }
 }
 </script>
@@ -34,40 +44,40 @@ export default {
 <style>
 #raiz {
     display: flex;
-    align-items: center; /* Alinha verticalmente no centro */
-    padding: 10px; /* Adiciona um pouco de padding */
-    width: 100%; /* Ocupa toda a largura disponível */
-  }
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+}
 
-  .logo {
+.logo {
     width: 100px;
-    margin-right: 20px; /* Espaço à direita do logo */
-  }
+    margin-right: 20px;
+}
 
-  .listasOpcoes {
+.listasOpcoes {
     display: flex;
-    align-items: center; /* Alinha os itens verticalmente no centro */
-  }
+    align-items: center;
+}
 
-  ul {
+ul {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1em;
-    margin: 0; /* Remove a margem padrão da lista */
-    padding: 0; /* Remove o padding padrão da lista */
-    list-style-type: none; /* Remove os marcadores de lista */
-  }
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
 
-  a {
+a {
     text-decoration: none;
-    color: rgb(0, 0, 0); /* Cor do texto dos links */
-    font-weight: bold; /* Negrito nos links */
-  }
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
 
-  .lista {
+.lista {
     display: flex;
-  }
+}
 
 #free a {
     color: #fff;

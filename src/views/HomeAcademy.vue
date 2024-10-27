@@ -1,21 +1,21 @@
 <template>
     <div>
         <NavReglus></NavReglus>
-        <HomeHeadSync></HomeHeadSync>
+        <HomeHeadAcademy></HomeHeadAcademy>
         <FooterReglus></FooterReglus>
     </div>
 </template>
 
 <script>
 import NavReglus from "@/components/nav/NavReglus.vue"
-import HomeHeadSync from "@/components/card/HomeHeadSync.vue"
+import HomeHeadAcademy from "@/components/card/HomeHeadAcademy.vue"
 import FooterReglus from "@/components/nav/FooterReglus.vue"
 
 export default {
-    name: "HomeSync",
+    name: "HomeAcademy",
     components: {
         NavReglus,
-        HomeHeadSync,
+        HomeHeadAcademy,
         FooterReglus
     }
 }

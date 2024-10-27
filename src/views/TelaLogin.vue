@@ -12,7 +12,8 @@
               </div>
               <div class="form-group mb-3">
                 <label for="password">Senha</label>
-                <input type="password" class="form-control" v-model="password" id="password" placeholder="Digite sua senha">
+                <input type="password" class="form-control" v-model="password" id="password"
+                  placeholder="Digite sua senha">
               </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">Login</button>
@@ -55,17 +56,19 @@ export default {
           password: this.password
         });
 
-     // Verifica o tipo de usuário retornado pela API
-     const userType = response.data.user_type;
-        console.log("Login com sucesso, Tipo de usuário:", userType);
+        const userType = response.data.user_type;
+        const user = response.data.user;
 
-        // Redireciona com base no tipo de usuário
+        localStorage.setItem('userType', userType);
+        localStorage.setItem('user', JSON.stringify(user));
+
+        console.log("Login com sucesso, Tipo de usuário:", userType);
         if (userType === 'STUDENT') {
-          this.$router.push('/inicial'); // Redireciona para HomeAluno
+          this.$router.push('/inicioestudante'); 
         } else if (userType === 'EDUCATOR') {
-          this.$router.push('/inicialprofessor'); // Redireciona para HomeProfessor
+          this.$router.push('/inicioeducador'); 
         } else {
-          alert("Tipo de usuário desconhecido.");
+          alert("Tipo de usuário desconhecido. Contate o administrador do Sistema.");
         }
       } catch (error) {
         console.error("Erro no login", error.response.data);

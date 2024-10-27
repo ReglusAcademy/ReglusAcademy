@@ -12,7 +12,6 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito Sans', sans-serif;
 }
 
 #app {
@@ -28,7 +27,6 @@ select:focus {
   outline: 0;
 }
 
-/* padronize cores e use no projeto todo :D */
 :root {
   --rosaEscuro: #D96277;
   --rosaAlt: #CF5084;

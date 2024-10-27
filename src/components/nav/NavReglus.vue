@@ -5,14 +5,14 @@
                 <img :src="logo" class="logo">
                 <ul>
                     <li>
-                        <router-link to="/">Home</router-link>
+                        <router-link to="/">Início</router-link>
                     </li>
-                    <li>
+                    <!-- <li>
                         <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <router-link to="/agenda">Recursos</router-link>
-                    </li>
+                    </li> -->
                     <li>Organização</li>
                 </ul>
             </div>
