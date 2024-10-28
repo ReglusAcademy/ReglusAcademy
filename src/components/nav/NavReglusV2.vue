@@ -14,10 +14,11 @@
                         <router-link to="/agenda">Recursos</router-link>
                     </li>
                     <li>Organização</li>
-                    <li>
-                        <button @click="logout" class="logout-button">Logout</button>
-                    </li>
                 </ul>
+            </div>
+
+            <div class="lista">
+                <button @click="logout" class="logout-button">Logout</button>
             </div>
         </nav>
     </div>
@@ -55,8 +56,12 @@ export default {
 }
 
 .listasOpcoes {
+    font-weight: bold;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%; 
+    margin: 0em 2em;
 }
 
 ul {
@@ -79,12 +84,19 @@ a {
     display: flex;
 }
 
-#free a {
+.logout-button {
+    border: none;
+    padding: 1em 2em;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    background: var(--roxo);
     color: #fff;
+    transition: 1s;
 }
 
-#free {
-    color: #fff;
-    background-color: #000;
+.logout-button:hover {
+    background: var(--azulClaro);
+    transition: 1s;
 }
 </style>

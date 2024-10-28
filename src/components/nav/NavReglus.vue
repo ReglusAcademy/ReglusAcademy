@@ -7,12 +7,6 @@
                     <li>
                         <router-link to="/">Início</router-link>
                     </li>
-                    <!-- <li>
-                        <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
-                    </li> -->
-                    <!-- <li>
-                        <router-link to="/agenda">Recursos</router-link>
-                    </li> -->
                     <li>Organização</li>
                 </ul>
             </div>
@@ -20,7 +14,6 @@
             <div class="lista">
                 <ul>
                     <li>Sobre Nós</li>
-                    <div class="div"></div>
                     <li>
                         <router-link to="/login">Fazer Login</router-link>
                     </li>
@@ -57,12 +50,13 @@ export default {
     font-weight: bold;
     display: flex;
     justify-content: space-between;
+    align-items: center; 
+    width: 100%; 
 }
 
 ul {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 1.5em;
 }
 
@@ -73,21 +67,14 @@ a {
 
 .lista {
     display: flex;
-}
-
-.div {
-    height: 2em;
-    width: 1px;
-    background-color: black;
-}
-
-#btnCadastro a {
-    color: #fff;
+    align-items: center;
 }
 
 #btnCadastro {
     color: #fff;
     background-color: #000;
     padding: 0.5em;
+    border: none; 
+    cursor: pointer; 
 }
 </style>

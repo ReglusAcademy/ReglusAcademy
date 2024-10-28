@@ -2,9 +2,7 @@
   <div>
     <NavReglus />
   </div>
-  <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6">
         <div class="card">
           <div class="card-body">
             <h2>Bem-vindo(a) Estudante!</h2>
@@ -43,13 +41,13 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="disability">Pessoa com Deficiência?</label>
-                <select id="disability" v-model="form.disability" class="form-control" required>
-                  <option value="true">Sim</option>
-                  <option value="false">Não</option>
+                <label for="deficiencia">Pessoa com Deficiência?</label>
+                <select id="deficiencia" v-model="form.deficiencia" class="form-control" required>
+                  <option value="sim">Sim</option>
+                  <option value="nao">Não</option>
                 </select>
               </div>
-              <div class="form-group" v-if="form.disability === 'sim'">
+              <div class="form-group" v-if="form.deficiencia === 'sim'">
                 <label for="casosim">Qual o tipo de deficiência?</label>
                 <select id="casosim" v-model="form.casosim" class="form-control" required>
                   <option disabled value="">Selecione o tipo de deficiência</option>
@@ -88,8 +86,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -172,6 +168,7 @@ export default {
   border: 1px solid #8c52ff73;
   padding: 1em 2em;
   margin-bottom: 5em;
+  width: 600px;
 }
 
 .form-group {

@@ -1,65 +1,82 @@
 <template>
   <div>
     <NavReglus />
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h2>Bem-vindo, Educador(a)!</h2>
-              <p>Complete seu cadastro.</p>
-              <form @submit.prevent="register">
-                <div class="form-group">
-                  <label for="name">Nome Completo</label>
-                  <input type="text" id="name" v-model="form.name" class="form-control" required />
-                </div>
-                <div class="form-group">
-                  <label for="dateBirth">Data de Nascimento</label>
-                  <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
-                </div>
-                <div class="form-group">
-                <label for="gender">Gênero</label>
-                <select id="gender" required>
-                  <option value="MALE">Masculino</option>
-                  <option value="FEMALE">Feminino</option>
-                </select>
-              </div>
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" v-model="form.email" class="form-control" required />
-                </div>
-                <div class="form-group">
-                  <label for="passwordHash">Senha</label>
-                  <input type="password" id="passwordHash" v-model="form.passwordHash" class="form-control" required />
-                </div>
-                <div class="form-group">
-                  <label for="disability">Deficiência:</label>
-                  <select id="disability" v-model="form.deficiency" class="form-control" required>
-                    <option value="false">Não</option>
-                    <option value="true">Sim</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="educationLevel">Nível de Educação:</label>
-                  <input type="text" id="educationLevel" v-model="form.educationLevel" class="form-control" required />
-                </div>
-                <div class="form-group">
-                  <label for="instituteName">Nome do Instituto:</label>
-                  <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
-                </div>
-                <div class="form-group">
-                  <label for="experienceYears">Anos de Experiência:</label>
-                  <input type="number" id="experienceYears" v-model.number="form.experienceYears" class="form-control" required />
-                </div>
-                <div class="form-group">
-                  <label for="bio">Biografia:</label>
-                  <textarea id="bio" v-model="form.bio" class="form-control"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Cadastrar Educador</button>
-              </form>
-              <div id="responseMessage" v-if="responseMessage" :style="{ color: responseColor }">{{ responseMessage }}</div>
+    <div class="row justify-content-center">
+      <div class="card">
+        <div class="card-body">
+          <h2>Bem-vindo, Educador(a)!</h2>
+          <p>Complete seu cadastro.</p>
+          <form @submit.prevent="register">
+            <div class="form-group">
+              <label for="name">Nome Completo</label>
+              <input type="text" id="name" v-model="form.name" class="form-control" required />
             </div>
-          </div>
+            <div class="form-group">
+              <label for="dateBirth">Data de Nascimento</label>
+              <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="gender">Gênero</label>
+              <select id="gender" required>
+                <option value="MALE">Masculino</option>
+                <option value="FEMALE">Feminino</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" v-model="form.email" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="passwordHash">Senha</label>
+              <input type="password" id="passwordHash" v-model="form.passwordHash" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="disability">Pessoa com Deficiência?</label>
+              <select id="disability" v-model="form.disability" class="form-control" required>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+              </select>
+            </div>
+            <div class="form-group" v-if="form.disability === 'sim'">
+              <label for="casosim">Qual o tipo de deficiência?</label>
+              <select id="casosim" v-model="form.casosim" class="form-control" required>
+                <option disabled value="">Selecione o tipo de deficiência</option>
+                <option>Auditiva</option>
+                <option>Visual</option>
+                <option>Física</option>
+                <option>Intelectual</option>
+                <option>Múltipla</option>
+              </select>
+            </div>
+            <div class="form-group select-container">
+              <label for="educationLevel">Grau de Formação</label>
+              <select id="educationLevel" v-model="form.educationLevel" class="form-control" required>
+                <option disabled value="">Selecione o grau de formação</option>
+                <option>Ensino Fundamental</option>
+                <option>Ensino Médio</option>
+                <option>Superior Completo</option>
+                <option>Superior Incompleto</option>
+                <option>Pós-graduação</option>
+                <option>Mestrado</option>
+                <option>Doutorado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="instituteName">Nome do Instituto:</label>
+              <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="experienceYears">Anos de Experiência:</label>
+              <input type="number" id="experienceYears" v-model.number="form.experienceYears" class="form-control"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="bio">Biografia:</label>
+              <textarea id="bio" v-model="form.bio" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </form>
+          <div id="responseMessage" v-if="responseMessage" :style="{ color: responseColor }">{{ responseMessage }}</div>
         </div>
       </div>
     </div>
@@ -83,8 +100,9 @@ export default {
         email: '',
         gender: '',
         passwordHash: '',
-        disability: false,
+        disability: '',
         educationLevel: '',
+        casosim: '',
         instituteName: '',
         experienceYears: null,
         bio: ''
@@ -145,6 +163,7 @@ export default {
   border: 1px solid #8c52ff73;
   padding: 1em 2em;
   margin-bottom: 5em;
+  width: 600px;
 }
 
 .form-group {

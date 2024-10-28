@@ -1,6 +1,5 @@
 <template>
   <NavReglus />
-  <div id="raiz">
     <div id="align">
       <div class="container mt-5">
         <div class="card">
@@ -16,7 +15,7 @@
                   placeholder="Digite sua senha">
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Entrar</button>
               </div>
               <div class="text-center mt-3">
                 <a href="#">Esqueceu senha?</a>
@@ -28,10 +27,7 @@
           </div>
         </div>
       </div>
-
-      <img src="logoreglus.png" alt="Logo Reglus" class="logo">
     </div>
-  </div>
 </template>
 <script>
 import NavReglus from "@/components/nav/NavReglus.vue";
@@ -88,12 +84,7 @@ export default {
 
 .container {
   margin-bottom: 2em;
-}
-
-.logo {
-  width: 30%;
-  margin-right: 100px;
-  margin-left: 100px;
+  width: 600px;
 }
 
 .form-group label {
@@ -106,7 +97,7 @@ export default {
   outline: none;
   border-bottom: 1px solid #8c52ff;
   padding: 10px;
-  transition: 2s;
+  transition: border-color 0.3s;
 }
 
 .form-control:focus,
@@ -117,30 +108,28 @@ export default {
 }
 
 .btn-primary {
-  background-color: #8C52FF;
+  background-color: #8c52ff;
   border: none;
   border-radius: 3px;
   color: white;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1.1em;
+  width: 100px;
   cursor: pointer;
   display: block;
-  margin: 0 auto;
-}
-
-.btn-primary {
-  background-color: #8c52ff;
-  border-color: #8c52ff;
+  margin: 1em auto;
 }
 
 .btn-primary:hover {
   background-color: #5a3abf;
-  border-color: #5a3abf;
 }
 
 .card-body {
   border-radius: 10px;
-  margin: 1em;
+  padding: 2em; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  background: #fff !important;
+  width: 600px;
 }
 
 .text-center a {
