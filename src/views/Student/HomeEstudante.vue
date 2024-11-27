@@ -72,7 +72,6 @@ export default {
 
 .blue {
   background-color: #8c52ff;
-  /* Azul escuro */
 }
 
 .purple {
@@ -102,7 +101,6 @@ export default {
 
 .image {
   width: 100px;
-  /* Ajuste o tamanho da imagem conforme necessário */
   height: auto;
 }
 </style>

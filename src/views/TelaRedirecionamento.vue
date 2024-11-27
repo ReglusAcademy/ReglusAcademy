@@ -3,7 +3,7 @@
     <NavReglus />
   </div>
   <div class="container">
-    <img src="logoreglus.png" alt="Logo Reglus" class="logo">
+    <img src="/public/logoreglus.png" alt="Logo Reglus" class="logo">
     <h1 class="title"><strong>Descubra uma educação inclusiva e gratuita conosco</strong></h1>
     <p class="subtitle">Você é um...</p>
     <div class="buttons">
@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import NavReglus from "@/components/nav/NavReglus.vue";
+import NavReglus from "@/components/nav/NavOut.vue";
 
 export default {
   name: "CadastroTela",

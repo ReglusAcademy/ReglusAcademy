@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import NavReglus from "@/components/nav/NavReglus.vue";
+import NavReglus from "@/components/nav/NavOut.vue";
 
 export default {
   name: "CadastroTela",

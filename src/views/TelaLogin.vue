@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-import NavReglus from "@/components/nav/NavReglus.vue";
+import NavReglus from "@/components/nav/NavOut.vue";
 import axios from 'axios';
 
 export default {

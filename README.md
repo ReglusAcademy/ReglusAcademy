@@ -15,6 +15,6 @@ Trabalho de conclusão de curso de [Caroline Medeiros](https://github.com/mecaro
   - Aspectos sociais
   - Interesses
   - Saúde e bem estar
-  - Autoavaliação 
+  - Autoavaliação
 
 :construction: **SISTEMA EM CONSTRUÇÃO** :construction:

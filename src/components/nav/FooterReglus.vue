@@ -1,6 +1,6 @@
 <template>
     <div id="raiz">
-        <p class="Title">Reglus Academy</p>
+        <p class="Title">&copy; 2024 <strong>Reglus Academy</strong> - Todos os direitos reservados.</p>
     </div>
 </template>
 
@@ -12,7 +12,6 @@ export default {
 
 <style scoped>
 #raiz {
-    border-top: 1px solid grey;
     margin-top: 1em;
     width: 100%; 
     display: flex;

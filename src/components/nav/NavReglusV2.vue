@@ -18,6 +18,7 @@
             </div>
 
             <div class="lista">
+                <button class="view-account"><router-link to="/minhacontareglus">Conta</router-link></button>
                 <button @click="logout" class="logout-button">Logout</button>
             </div>
         </nav>
@@ -29,7 +30,7 @@ export default {
     name: "NavReglusV2",
     data() {
         return {
-            logo: require("@/assets/logoreglus.png"),
+            logo: `${process.env.BASE_URL}logoreglus-nobg.png`,
         };
     },
     methods: {
@@ -84,19 +85,18 @@ a {
     display: flex;
 }
 
-.logout-button {
+button {
     border: none;
     padding: 1em 2em;
     border-radius: 5px;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: bold;
-    background: var(--roxo);
-    color: #fff;
+    background: none;
     transition: 1s;
 }
 
-.logout-button:hover {
-    background: var(--azulClaro);
+button:hover, a:hover {
+    color: var(--roxo);
     transition: 1s;
 }
 </style>

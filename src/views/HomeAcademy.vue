@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import NavReglus from "@/components/nav/NavReglus.vue"
+import NavReglus from "@/components/nav/NavOut.vue"
 import HomeHeadAcademy from "@/components/card/HomeHeadAcademy.vue"
 import FooterReglus from "@/components/nav/FooterReglus.vue"
 

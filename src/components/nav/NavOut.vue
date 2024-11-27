@@ -1,19 +1,17 @@
 <template>
     <div id="raiz">
-        <nav class="listasOpcoes">
             <div class="lista">
-                <img :src="logo" class="logo">
                 <ul>
+                    <img :src="logo" class="logo">
                     <li>
-                        <router-link to="/">Início</router-link>
+                        <router-link to="/" style="color: var(--roxo)">Início</router-link>
                     </li>
-                    <li>Organização</li>
+                    <li>Sobre Nós</li>
                 </ul>
             </div>
 
-            <div class="lista">
+            <div class="lista right">
                 <ul>
-                    <li>Sobre Nós</li>
                     <li>
                         <router-link to="/login">Fazer Login</router-link>
                     </li>
@@ -22,47 +20,27 @@
                     </li>
                 </ul>
             </div>
-        </nav>
     </div>
 </template>
 
 <script>
 export default {
-    name: "NavReglus",
+    name: "NavOut",
     data() {
         return {
-            logo: require("@/assets/logoreglus.png"),
+            logo: `${process.env.BASE_URL}logoreglus-nobg.png`,
         };
     }
 }
 </script>
 
-<style>
+<style scoped>
 #raiz {
-    padding: 0em 1.5em;
-}
-
-.logo {
-    width: 150px;
-}
-
-.listasOpcoes {
-    font-weight: bold;
     display: flex;
     justify-content: space-between;
-    align-items: center; 
-    width: 100%; 
-}
-
-ul {
-    display: flex;
     align-items: center;
-    gap: 1.5em;
-}
-
-a {
-    text-decoration: none;
-    color: black;
+    width: 100%;
+    padding: 0em 2em;
 }
 
 .lista {
@@ -70,11 +48,42 @@ a {
     align-items: center;
 }
 
+.right {
+    margin-right: 20px;
+}
+
+.logo {
+    width: 100px;
+    margin-top: 1em;
+}
+
+.lista ul {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: 1s;
+}
+
+a:hover {
+    color: var(--roxo);
+}
+
 #btnCadastro {
     color: #fff;
     background-color: #000;
     padding: 0.5em;
+    border-radius: 3px;
     border: none; 
     cursor: pointer; 
+    transition: 2s;
+}
+
+#btnCadastro:hover {
+    background-color: var(--roxo);
 }
 </style>

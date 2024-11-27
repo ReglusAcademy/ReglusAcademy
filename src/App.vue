@@ -28,14 +28,12 @@ select:focus {
 }
 
 :root {
-  --rosaEscuro: #D96277;
-  --rosaAlt: #CF5084;
-  --rosaClaro: #F29580;
-  --roxo: #A432A6;
-  --rosaRoxeado: #BF4594;
-  --azulClaro: #977EF2;
+  --branco: #fcfcfc;
+  --marromlogo: #2e2214;
+  --cinza: #212529;
   --preto: #0D0D0D;
-  --cinzaTxt: #3B3B3B;
+  --roxo: #A432A6;
+  --lilas: #9c68ff;
 }
 
 ul,
