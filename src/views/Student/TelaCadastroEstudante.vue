@@ -7,7 +7,7 @@
       <div class="card-body">
         <h2>Bem-vindo(a) Estudante!</h2>
         <p>Complete seu cadastro.</p>
-        <form @submit.prevent="register">
+        <form @submit.prevent="submitForm">
           <div class="form-group">
             <label for="name">Nome Completo</label>
             <input type="text" id="name" v-model="form.name" class="form-control" required />
@@ -123,7 +123,34 @@ export default {
         city: '',
         state: '',
         casosim: '',
-        FinalObservations: ''
+        finalObservations: '',
+        socialAspectRequest: {
+          livingWith: "UNDEFINED",
+          relationshipWithClassmates: "UNDEFINED",
+          relationshipWithTeachers: "UNDEFINED",
+          relationshipWithFamily: "UNDEFINED"
+        },
+        studyHabitRequest: {
+          studyMethods: "UNDEFINED",
+          studyHoursPerDay: "UNDEFINED",
+          studyLocations: "UNDEFINED",
+          studyPlan: "UNDEFINED"
+        },
+        healthWellbeingRequest: {
+          healthCondition: "UNDEFINED",
+          physicalActivity: "UNDEFINED",
+          dietaryEvaluation: "UNDEFINED",
+          sleepHours: "UNDEFINED"
+        },
+        interestHobbyRequest: {
+          activitiesOutsideSchool: "UNDEFINED",
+          dreamsGoals: "UNDEFINED"
+        },
+        selfAssessmentRequest: {
+          performanceEvaluation: "UNDEFINED",
+          strengths: "UNDEFINED",
+          improvementAreas: "UNDEFINED"
+        }
       },
       states: [],
       cities: []
@@ -165,10 +192,38 @@ export default {
       }
     },
 
-    async register() {
-      if (this.passwordMismatch) {
-        return;
-      }
+    async submitForm() {
+      const data = {
+        ...this.form,
+        finalObservations: "UNDEFINED",
+        socialAspectRequest: {
+          livingWith: "UNDEFINED",
+          relationshipWithClassmates: "UNDEFINED",
+          relationshipWithTeachers: "UNDEFINED",
+          relationshipWithFamily: "UNDEFINED"
+        },
+        studyHabitRequest: {
+          studyMethods: "UNDEFINED",
+          studyHoursPerDay: "UNDEFINED",
+          studyLocations: "UNDEFINED",
+          studyPlan: "UNDEFINED"
+        },
+        healthWellbeingRequest: {
+          healthCondition: "UNDEFINED",
+          physicalActivity: "UNDEFINED",
+          dietaryEvaluation: "UNDEFINED",
+          sleepHours: "UNDEFINED"
+        },
+        interestHobbyRequest: {
+          activitiesOutsideSchool: "UNDEFINED",
+          dreamsGoals: "UNDEFINED"
+        },
+        selfAssessmentRequest: {
+          performanceEvaluation: "UNDEFINED",
+          strengths: "UNDEFINED",
+          improvementAreas: "UNDEFINED"
+        }
+      };
 
       try {
         const response = await fetch('http://localhost:8080/api/students', {
@@ -176,49 +231,18 @@ export default {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(this.form)
+          body: JSON.stringify(data)
         });
 
-        const result = await response.json();
-
-        if (!response.ok) {
-  const errorText = await response.text();  // Lê a resposta como texto
-  console.error('Erro na requisição:', errorText);  // Mostra a resposta no console
-}
-
         if (response.ok) {
-          this.responseMessage = 'Estudante cadastrado com sucesso!';
-          this.responseColor = 'green';
-          this.resetForm();
           this.$router.push('/login');
         } else {
-          this.responseMessage = `Erro: ${result}`;
-          this.responseColor = 'red';
+          alert("Erro ao realizar o cadastro. Consulte um admin.");
         }
       } catch (error) {
-        console.error('Error:', error);
-        this.responseMessage = 'Erro ao cadastrar estudante.';
-        this.responseColor = 'red';
+        console.error("Erro:", error);
+        alert("Ocorreu um erro inesperado.");
       }
-    },
-    resetForm() {
-      this.form = {
-        userType: "STUDENT",
-        name: '',
-        dateBirth: '',
-        email: '',
-        gender: '',
-        passwordHash: '',
-        password_confirmation: '',
-        disability: false,
-        educationLevel: '',
-        instituteName: '',
-        city: '',
-        state: '',
-        casosim: '',
-        FinalObservations: ''
-      };
-      this.responseMessage = '';
     },
   }
 }

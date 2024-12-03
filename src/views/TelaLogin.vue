@@ -57,8 +57,6 @@ export default {
 
         localStorage.setItem('userType', userType);
         localStorage.setItem('user', JSON.stringify(user));
-
-        console.log("Login com sucesso, Tipo de usuário:", userType);
         if (userType === 'STUDENT') {
           this.$router.push('/inicioestudante'); 
         } else if (userType === 'EDUCATOR') {
