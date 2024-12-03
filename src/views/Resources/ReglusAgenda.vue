@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import NavReglusV2 from "@/components/nav/NavReglusV2.vue";
+import NavReglusV2 from "@/components/nav/NavIn.vue";
 export default {
   name: "AgendaReglus",
   components: {

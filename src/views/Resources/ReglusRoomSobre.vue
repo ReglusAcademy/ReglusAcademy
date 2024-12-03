@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import NavReglus from "@/components/nav/NavReglusV2.vue";
+import NavReglus from "@/components/nav/NavIn.vue";
 
 export default {
   name: 'ReglusRoomSobre',

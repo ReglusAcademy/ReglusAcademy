@@ -27,7 +27,7 @@
 
 <script>
 export default {
-    name: "NavReglusV2",
+    name: "NavIn",
     data() {
         return {
             logo: `${process.env.BASE_URL}logoreglus-nobg.png`,
