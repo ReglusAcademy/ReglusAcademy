@@ -38,7 +38,10 @@ export default {
   },
   mounted() {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
+    
+    if (!user) {
+      this.$router.push('/');
+    } else {
       this.userName = user.name;
     }
   }

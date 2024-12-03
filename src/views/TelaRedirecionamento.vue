@@ -7,9 +7,9 @@
     <h1 class="title"><strong>Descubra uma educação inclusiva e gratuita conosco</strong></h1>
     <p class="subtitle">Você é um...</p>
     <div class="buttons">
-      <router-link to="/cadastroprofessor" class="btn">Professor</router-link>
+      <router-link to="/cadastroeducador" class="btn">Professor</router-link>
       <span class="or">ou</span>
-      <router-link to="/cadastro" class="btn">Estudante</router-link>
+      <router-link to="/cadastroestudante" class="btn">Estudante</router-link>
     </div>
   </div>
 </template>

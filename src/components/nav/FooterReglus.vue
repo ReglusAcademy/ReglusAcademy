@@ -20,6 +20,5 @@ export default {
 
 .Title {
     padding: 3em;
-    font-weight: bold;
 }
 </style>

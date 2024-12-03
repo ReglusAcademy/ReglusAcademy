@@ -1,27 +1,25 @@
 <template>
     <div id="raiz">
-        <img :src="logo" class="logo">
-        <nav class="listasOpcoes">
-            <div class="lista">
-                <ul>
-                    <li>
-                        <router-link to="/">Início</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/agenda">Recursos</router-link>
-                    </li>
-                    <li>Organização</li>
-                </ul>
-            </div>
+        <div class="lista">
+            <ul>
+                <img :src="logo" class="logo">
+                <li>
+                    <router-link to="/">Início</router-link>
+                </li>
+                <li>
+                    <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
+                </li>
+                <li>
+                    <router-link to="/agenda">Recursos</router-link>
+                </li>
+                <li>Organização</li>
+            </ul>
+        </div>
 
-            <div class="lista">
-                <button class="view-account"><router-link to="/minhacontareglus">Conta</router-link></button>
-                <button @click="logout" class="logout-button">Logout</button>
-            </div>
-        </nav>
+        <div class="lista">
+            <button class="view-account"><router-link to="/minhacontareglus">Conta</router-link></button>
+            <button @click="logout" class="logout-button">Logout</button>
+        </div>
     </div>
 </template>
 
@@ -45,25 +43,27 @@ export default {
 
 <style>
 #raiz {
+    font-weight: bold;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
     width: 100%;
+    padding: 0em 2em;
 }
 
 .logo {
     width: 100px;
-    margin-right: 20px;
+    margin-top: 1em;
 }
 
-.listasOpcoes {
+/* .listasOpcoes {
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-    align-items: center; 
-    width: 100%; 
+    align-items: center;
+    width: 100%;
     margin: 0em 2em;
-}
+} */
 
 ul {
     display: flex;
@@ -77,12 +77,20 @@ ul {
 
 a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: black;
+    transition: 1s;
     font-weight: bold;
 }
 
 .lista {
     display: flex;
+    align-items: center;
+}
+
+.lista ul {
+    display: flex;
+    align-items: center;
+    gap: 2em;
 }
 
 button {
@@ -95,7 +103,8 @@ button {
     transition: 1s;
 }
 
-button:hover, a:hover {
+button:hover,
+a:hover {
     color: var(--roxo);
     transition: 1s;
 }
