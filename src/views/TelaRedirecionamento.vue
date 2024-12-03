@@ -3,7 +3,7 @@
     <NavReglus />
   </div>
   <div class="container">
-    <img src="/public/logoreglus.png" alt="Logo Reglus" class="logo">
+    <img src="/logoreglus.png" alt="Logo Reglus" class="logo">
     <h1 class="title"><strong>Descubra uma educação inclusiva e gratuita conosco</strong></h1>
     <p class="subtitle">Você é um...</p>
     <div class="buttons">
@@ -31,11 +31,12 @@ export default {
   align-items: center;
   justify-content: center;
   height: 50vh;
+  margin-top: 2em;
   background-color: #ffffff;
 }
 
 .logo {
-  width: 300px;
+  width: 200px;
   height: auto;
   margin-bottom: 10px;
 }
@@ -63,14 +64,19 @@ export default {
 }
 
 .btn {
-  background-color: #8C52FF;
+  background-color: var(--lilas);
   color: white;
   padding: 15px 50px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 1.2rem;
   cursor: pointer;
   margin: 0 10px;
+  transition: 1s;
+}
+
+.btn:hover {
+  background-color: var(--lilashover);
 }
 
 .or {

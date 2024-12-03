@@ -95,20 +95,21 @@ export default {
 .form-control {
   border: none;
   outline: none;
-  border-bottom: 1px solid #8c52ff;
+  border: 1px solid #fff;
+  border-bottom: 1px solid var(--lilas);
   padding: 10px;
   transition: border-color 0.3s;
 }
 
 .form-control:focus,
 .form-control:active {
-  border: 1px solid #8c52ff;
-  box-shadow: 0 1px 0 0 #8c52ff;
-  color: #8c52ff;
+  border: 1px solid var(--lilas);
+  box-shadow: 0 1px 0 0 var(--lilas);
+  color: var(--lilas);
 }
 
 .btn-primary {
-  background-color: #8c52ff;
+  background-color: var(--lilas);
   border: none;
   border-radius: 3px;
   color: white;
@@ -118,10 +119,11 @@ export default {
   cursor: pointer;
   display: block;
   margin: 1em auto;
+  transition: 1s;
 }
 
 .btn-primary:hover {
-  background-color: #5a3abf;
+  background-color: var(--lilashover);
 }
 
 .card-body {
@@ -133,20 +135,17 @@ export default {
 }
 
 .text-center a {
-  color: #8c52ff;
+  color: var(--lilas);
   text-decoration: none;
-}
-
-.text-center a:hover {
-  text-decoration: underline;
 }
 
 .text-center router-link {
-  color: #8c52ff;
+  color: var(--lilas);
   text-decoration: none;
 }
 
-.text-center router-link:hover {
-  text-decoration: underline;
+a:hover {
+  transition: 1s;
+  color: var(--lilashover)
 }
 </style>

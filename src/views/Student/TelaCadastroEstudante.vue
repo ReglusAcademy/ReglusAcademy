@@ -2,90 +2,102 @@
   <div>
     <NavReglus />
   </div>
-    <div class="row justify-content-center">
-        <div class="card">
-          <div class="card-body">
-            <h2>Bem-vindo(a) Estudante!</h2>
-            <p>Complete seu cadastro.</p>
-            <form @submit.prevent="register">
-              <div class="form-group">
-                <label for="name">Nome Completo</label>
-                <input type="text" id="name" v-model="form.name" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="dateBirth">Data de Nascimento</label>
-                <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="gender">Gênero</label>
-                <select id="gender" v-model="form.gender" class="form-control" required>
-                  <option value="MALE">Masculino</option>
-                  <option value="FEMALE">Feminino</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" v-model="form.email" class="form-control" required />
-              </div>
-              <div class="form-group select-container">
-                <label for="educationLevel">Grau de Formação</label>
-                <select id="educationLevel" v-model="form.educationLevel" class="form-control" required>
-                  <option disabled value="">Selecione o grau de formação</option>
-                  <option>Ensino Fundamental</option>
-                  <option>Ensino Médio</option>
-                  <option>Superior Completo</option>
-                  <option>Superior Incompleto</option>
-                  <option>Pós-graduação</option>
-                  <option>Mestrado</option>
-                  <option>Doutorado</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="deficiencia">Pessoa com Deficiência?</label>
-                <select id="deficiencia" v-model="form.deficiencia" class="form-control" required>
-                  <option value="sim">Sim</option>
-                  <option value="nao">Não</option>
-                </select>
-              </div>
-              <div class="form-group" v-if="form.deficiencia === 'sim'">
-                <label for="casosim">Qual o tipo de deficiência?</label>
-                <select id="casosim" v-model="form.casosim" class="form-control" required>
-                  <option disabled value="">Selecione o tipo de deficiência</option>
-                  <option>Auditiva</option>
-                  <option>Visual</option>
-                  <option>Física</option>
-                  <option>Intelectual</option>
-                  <option>Múltipla</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="instituteName">Nome do Instituto em que estuda atualmente</label>
-                <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="state">Estado</label>
-                <input type="text" id="state" v-model="form.state" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="city">Cidade</label>
-                <input type="text" id="city" v-model="form.city" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" v-model="form.passwordHash" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="password_confirmation">Confirmar Senha</label>
-                <input type="password" id="password_confirmation" v-model="form.password_confirmation" class="form-control" required />
-              </div>
-              <div v-if="passwordMismatch" class="alert alert-danger">
-                As senhas não coincidem.
-              </div>
-              <button type="submit" class="btn">Cadastrar</button>
-            </form>
+  <div class="row justify-content-center">
+    <div class="card">
+      <div class="card-body">
+        <h2>Bem-vindo(a) Estudante!</h2>
+        <p>Complete seu cadastro.</p>
+        <form @submit.prevent="register">
+          <div class="form-group">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" v-model="form.name" class="form-control" required />
           </div>
-        </div>
+          <div class="form-group">
+            <label for="dateBirth">Data de Nascimento</label>
+            <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gênero</label>
+            <select id="gender" v-model="form.gender" class="form-control" required>
+              <option disabled value="">Por favor, escolha o que melhor define você.</option>
+              <option value="MALE">Masculino</option>
+              <option value="FEMALE">Feminino</option>
+              <option value="OTHER">Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" v-model="form.email" class="form-control" required />
+          </div>
+          <div class="form-group select-container">
+            <label for="educationLevel">Grau de Formação</label>
+            <select id="educationLevel" v-model="form.educationLevel" class="form-control" required>
+              <option disabled value="">Selecione o grau de formação.</option>
+              <option value="Elementary">Ensino Fundamental</option>
+              <option value="Secondary">Ensino Médio</option>
+              <option value="Undergraduate">Superior Completo</option>
+              <option value="Incomplete">Superior Incompleto</option>
+              <option value="Graduate">Pós-graduação</option>
+              <option value="Master">Mestrado</option>
+              <option value="Doctorate">Doutorado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="disability">Pessoa com Deficiência?</label>
+            <select id="disability" v-model="form.disability" class="form-control" required>
+              <option disabled value="">Você possui alguma deficiência?</option>
+              <option value="sim">Sim</option>
+              <option value="No">Não</option>
+            </select>
+          </div>
+          <div class="form-group" v-if="form.disability === 'sim'">
+            <label for="casosim">Qual o tipo de deficiência?</label>
+            <select id="casosim" v-model="form.casosim" class="form-control" required>
+              <option disabled value="">Selecione o tipo de deficiência.</option>
+              <option value="Hearing">Auditiva</option>
+              <option value="Visual">Visual</option>
+              <option value="Physical">Física</option>
+              <option value="Intellectual">Intelectual</option>
+              <option value="Multiple">Múltipla</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="instituteName">Nome do Instituto em que estuda atualmente</label>
+            <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="state">Estado</label>
+            <select id="state" v-model="form.state" class="form-control" required @change="fetchCities">
+              <option disabled value="">Selecione o Estado</option>
+              <option v-for="state in states" :key="state.sigla" :value="state.sigla">
+                {{ state.nome }} ({{ state.sigla }})
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="city">Cidade</label>
+            <select id="city" v-model="form.city" class="form-control" required>
+              <option disabled value="">Selecione a Cidade</option>
+              <option v-for="city in cities" :key="city">{{ city }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" v-model="form.passwordHash" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="password_confirmation">Confirmar Senha</label>
+            <input type="password" id="password_confirmation" v-model="form.password_confirmation" class="form-control"
+              required />
+          </div>
+          <div v-if="passwordMismatch" class="alert alert-danger">
+            As senhas não coincidem.
+          </div>
+          <button type="submit" class="btn">Cadastrar</button>
+        </form>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -104,6 +116,7 @@ export default {
         email: '',
         gender: '',
         passwordHash: '',
+        password_confirmation: '',
         disability: '',
         educationLevel: '',
         instituteName: '',
@@ -112,11 +125,51 @@ export default {
         casosim: '',
         FinalObservations: ''
       },
-      passwordMismatch: false
+      states: [],
+      cities: []
     };
   },
+  created() {
+    this.fetchStates();
+  },
+  computed: {
+    passwordMismatch() {
+      return this.form.passwordHash !== this.form.password_confirmation;
+    }
+  },
   methods: {
+    async fetchStates() {
+      try {
+        const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+        const data = await response.json();
+
+        this.states = data.map(state => ({
+          sigla: state.sigla,
+          nome: state.nome
+        }));
+      } catch (error) {
+        console.error('Erro ao carregar os estados:', error);
+      }
+    },
+
+    async fetchCities() {
+      if (this.form.state) {
+        try {
+          const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${this.form.state}/municipios`);
+          const data = await response.json();
+
+          this.cities = data.map(city => city.nome);
+        } catch (error) {
+          console.error('Erro ao carregar as cidades:', error);
+        }
+      }
+    },
+
     async register() {
+      if (this.passwordMismatch) {
+        return;
+      }
+
       try {
         const response = await fetch('http://localhost:8080/api/students', {
           method: 'POST',
@@ -127,6 +180,11 @@ export default {
         });
 
         const result = await response.json();
+
+        if (!response.ok) {
+  const errorText = await response.text();  // Lê a resposta como texto
+  console.error('Erro na requisição:', errorText);  // Mostra a resposta no console
+}
 
         if (response.ok) {
           this.responseMessage = 'Estudante cadastrado com sucesso!';
@@ -148,17 +206,20 @@ export default {
         userType: "STUDENT",
         name: '',
         dateBirth: '',
-        gender: '',
         email: '',
+        gender: '',
         passwordHash: '',
+        password_confirmation: '',
         disability: false,
         educationLevel: '',
         instituteName: '',
-        experienceYears: null,
-        bio: ''
+        city: '',
+        state: '',
+        casosim: '',
+        FinalObservations: ''
       };
-      this.responseMessage = ''; // Limpa a mensagem de resposta
-    }
+      this.responseMessage = '';
+    },
   }
 }
 </script>

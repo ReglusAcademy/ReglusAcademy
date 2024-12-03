@@ -16,49 +16,47 @@
               <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
             </div>
             <div class="form-group">
-              <label for="gender">Gênero</label>
-              <select id="gender" required>
-                <option value="MALE">Masculino</option>
-                <option value="FEMALE">Feminino</option>
-              </select>
+              <label for="gender">Gênero</label> <br>
+              <select id="gender" v-model="form.gender" class="form-control" required>
+                  <option disabled value="">Por favor, escolha o que melhor define você.</option>
+                  <option value="MALE">Masculino</option>
+                  <option value="FEMALE">Feminino</option>
+                  <option value="OTHER">Outro</option>
+                </select>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" id="email" v-model="form.email" class="form-control" required />
             </div>
             <div class="form-group">
-              <label for="passwordHash">Senha</label>
-              <input type="password" id="passwordHash" v-model="form.passwordHash" class="form-control" required />
-            </div>
-            <div class="form-group">
               <label for="disability">Pessoa com Deficiência?</label>
               <select id="disability" v-model="form.disability" class="form-control" required>
                 <option value="sim">Sim</option>
-                <option value="nao">Não</option>
+                <option value="No">Não</option>
               </select>
             </div>
             <div class="form-group" v-if="form.disability === 'sim'">
               <label for="casosim">Qual o tipo de deficiência?</label>
               <select id="casosim" v-model="form.casosim" class="form-control" required>
-                <option disabled value="">Selecione o tipo de deficiência</option>
-                <option>Auditiva</option>
-                <option>Visual</option>
-                <option>Física</option>
-                <option>Intelectual</option>
-                <option>Múltipla</option>
+                <option disabled value="">Selecione o tipo de deficiência.</option>
+                <option value="Hearing">Auditiva</option>
+                <option value="Visual">Visual</option>
+                <option value="Physical">Física</option>
+                <option value="Intellectual">Intelectual</option>
+                <option value="Multiple">Múltipla</option>
               </select>
             </div>
             <div class="form-group select-container">
               <label for="educationLevel">Grau de Formação</label>
               <select id="educationLevel" v-model="form.educationLevel" class="form-control" required>
-                <option disabled value="">Selecione o grau de formação</option>
-                <option>Ensino Fundamental</option>
-                <option>Ensino Médio</option>
-                <option>Superior Completo</option>
-                <option>Superior Incompleto</option>
-                <option>Pós-graduação</option>
-                <option>Mestrado</option>
-                <option>Doutorado</option>
+                <option disabled value="">Selecione o grau de formação.</option>
+                <option value="Elementary">Ensino Fundamental</option>
+                <option value="Secondary">Ensino Médio</option>
+                <option value="Undergraduate">Superior Completo</option>
+                <option value="Incomplete">Superior Incompleto</option>
+                <option value="Graduate">Pós-graduação</option>
+                <option value="Master">Mestrado</option>
+                <option value="Doctorate">Doutorado</option>
               </select>
             </div>
             <div class="form-group">
@@ -67,12 +65,33 @@
             </div>
             <div class="form-group">
               <label for="experienceYears">Anos de Experiência:</label>
-              <input type="number" id="experienceYears" v-model.number="form.experienceYears" class="form-control"
-                required />
+              <select id="experienceYears" v-model.number="form.experienceYears" class="form-control" required>
+                <option disabled value="">Selecione a quantidade de anos lecionando.</option>
+                <option value="1">1 ano</option>
+                <option value="2">2 anos</option>
+                <option value="3">3 anos</option>
+                <option value="4">4 anos</option>
+                <option value="5+">5 anos ou mais</option>
+                <option value="10+">10 anos ou mais</option>
+                <option value="20+">20 anos ou mais</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="bio">Biografia:</label>
-              <textarea id="bio" v-model="form.bio" class="form-control"></textarea>
+              <textarea id="bio" v-model="form.bio" class="form-control"
+                placeholder="Não se preocupe, você pode editar mais tarde!!"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input type="password" id="password" v-model="form.passwordHash" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation">Confirmar Senha</label>
+              <input type="password" id="password_confirmation" v-model="form.password_confirmation"
+                class="form-control" required />
+            </div>
+            <div v-if="passwordMismatch" class="alert alert-danger">
+              As senhas não coincidem.
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
           </form>
@@ -100,6 +119,7 @@ export default {
         email: '',
         gender: '',
         passwordHash: '',
+        password_confirmation: '',
         disability: '',
         educationLevel: '',
         casosim: '',
@@ -108,11 +128,20 @@ export default {
         bio: ''
       },
       responseMessage: '',
-      responseColor: 'green' // Cor padrão para sucesso
+      responseColor: 'green'
+    }
+  },
+  computed: {
+    passwordMismatch() {
+      return this.form.passwordHash !== this.form.password_confirmation;
     }
   },
   methods: {
     async register() {
+      if (this.passwordMismatch) {
+        return; 
+      }
+
       try {
         const response = await fetch('http://localhost:8080/api/educators', {
           method: 'POST',
@@ -147,13 +176,14 @@ export default {
         gender: '',
         email: '',
         passwordHash: '',
+        password_confirmation: '',
         disability: false,
         educationLevel: '',
         instituteName: '',
         experienceYears: null,
         bio: ''
       };
-      this.responseMessage = ''; // Limpa a mensagem de resposta
+      this.responseMessage = '';
     }
   }
 }
@@ -193,7 +223,9 @@ input:focus {
 select {
   border: none;
   border: 1px solid #fff;
+  border-radius: 5px;
   border-bottom: 1px solid #8c52ff;
+  width: 100%;
   background: transparent;
   padding: 5px;
   font-size: 16px;

@@ -34,6 +34,7 @@ select:focus {
   --preto: #0D0D0D;
   --roxo: #A432A6;
   --lilas: #9c68ff;
+  --lilashover: #5a3abf;
 }
 
 ul,
