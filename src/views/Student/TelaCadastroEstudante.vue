@@ -46,8 +46,8 @@
             <label for="disability">Pessoa com Deficiência?</label>
             <select id="disability" v-model="form.disability" class="form-control" required>
               <option disabled value="">Você possui alguma deficiência?</option>
-              <option value="sim">Sim</option>
-              <option value="No">Não</option>
+              <option value="YES">Sim</option>
+              <option value="NO">Não</option>
             </select>
           </div>
           <div class="form-group" v-if="form.disability === 'sim'">
