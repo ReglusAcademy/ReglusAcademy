@@ -153,9 +153,6 @@ export default {
 
         async refreshForm() {
             await this.fetchHealthWellbeing();
-
-            // this.$emit('show-refresh');
-
             console.log("Informações atualizadas com sucesso!");
         },
 
@@ -171,10 +168,7 @@ export default {
             try {
                 const response = await fetch(`http://localhost:8080/api/students/email/${userEmail}`);
                 const studentData = await response.json();
-
                 const healthwellbeingData = studentData.healthWellbeing;
-
-                console.log(healthwellbeingData)
 
                 if (healthwellbeingData.healthCondition !== "UNDEFINED") {
                     if (healthwellbeingData.healthCondition === "NO") {
@@ -229,8 +223,6 @@ export default {
                 const studentData = await response.json();
 
                 this.healthId = studentData.healthWellbeing.healthId;
-
-                console.log(studentData)
             } catch (error) {
                 console.error("Erro ao recuperar os dados do estudante:", error);
             }
@@ -267,8 +259,6 @@ export default {
                 sleepHours: this.form.sleepHours
             };
 
-            console.log(requestBody)
-
             try {
                 const response = await fetch(`http://localhost:8080/api/healthwellbeing/${this.healthId}`, {
                     method: 'PUT',
@@ -283,17 +273,6 @@ export default {
                 }
 
                 console.log('Dados de healthwellbeing enviados com sucesso!');
-
-                // this.$emit('show-success');
-
-                // setTimeout(() => {
-                //     successMessage.classList.remove('show');
-
-                //     setTimeout(() => {
-                //         successMessage.style.display = 'none';
-                //     }, 500);
-                // }, 3000);
-
             } catch (error) {
                 console.error('Erro ao enviar os dados de healthwellbeing:', error);
             }

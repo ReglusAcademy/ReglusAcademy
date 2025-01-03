@@ -12,26 +12,28 @@
 
         <SocialAspects @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
         <HealthWellbeing @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
+        <StudyHabits @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
+        <InterestHobby @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
+        <SelfAssessment @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
     </div>
-
-    <!-- <div id="success-message" class="notification-att">
-        Dados enviados com sucesso!
-    </div>
-    <div id="refresh-success-message" class="notification-refresh">
-        Informações atualizadas com sucesso!
-    </div> -->
 </template>
 
 <script>
 import NavReglus from "@/components/nav/NavIn.vue";
 import SocialAspects from "@/components/card/ficha/SocialAspects.vue";
 import HealthWellbeing from "@/components/card/ficha/HealthWellbeing.vue";
+import StudyHabits from "@/components/card/ficha/StudyHabits.vue";
+import InterestHobby from "@/components/card/ficha/InterestHobby.vue";
+import SelfAssessment from "@/components/card/ficha/SelfAssessment.vue";
 export default {
     name: "ReglusConta",
     components: {
         NavReglus,
         SocialAspects,
-        HealthWellbeing
+        HealthWellbeing,
+        StudyHabits,
+        InterestHobby,
+        SelfAssessment
     },
     data() {
         return {

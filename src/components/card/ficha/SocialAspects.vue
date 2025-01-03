@@ -105,9 +105,6 @@ export default {
     methods: {
         async refreshForm() {
             await this.fetchSocialAspect();
-
-            // this.$emit('show-refresh');
-
             console.log("Informações atualizadas com sucesso!");
         },
 
@@ -152,8 +149,6 @@ export default {
                 } else {
                     this.form.livingWith = '';
                 }
-
-
 
             } catch (error) {
                 console.error("Erro ao recuperar os dados do estudante:", error);
@@ -236,21 +231,6 @@ export default {
                 if (!response.ok) {
                     throw new Error('Erro ao enviar dados de aspectos sociais');
                 }
-
-                // console.log('Dados enviados com sucesso!');
-
-                // const successMessage = document.getElementById('success-message');
-
-                // successMessage.style.display = 'block'; 
-                // successMessage.classList.add('show'); 
-
-                // setTimeout(() => {
-                //     successMessage.classList.remove('show');
-
-                //     setTimeout(() => {
-                //         successMessage.style.display = 'none';
-                //     }, 500);
-                // }, 3000); 
 
             } catch (error) {
                 console.error('Erro ao enviar os dados:', error);
