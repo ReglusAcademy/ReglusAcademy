@@ -290,12 +290,10 @@
       },
   
       register() {
-        // Chamar API para cadastrar usuário
         if (this.form.password !== this.form.password_confirmation) {
           this.passwordMismatch = true;
         } else {
           this.passwordMismatch = false;
-          // Continue com a submissão do formulário, por exemplo, enviar para o servidor
           alert('Formulário enviado com sucesso!');
         }
         console.log('Cadastro realizado com sucesso!');

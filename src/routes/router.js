@@ -21,6 +21,10 @@ const routes = [
   { path: '/fichaacompanhamento', component: () => import('@/views/Student/FichaAcompanhamento.vue')},
   { path: '/fichaacompanhamentocaroline', component: () => import('@/views/Student/FichaCaroline.vue')},
   { path: '/fichaacompanhamentomaiara', component: () => import('@/views/Student/FichaMaiara.vue')},
+  { path: '/salas', component: () => import('@/views/Educator/RoomAcademy.vue')},
+  { path: '/sala/:roomId', name: 'sala', component: () => import('@/views/Educator/RoomDetails.vue')},
+  { path: '/estudante/:studentId', name: 'estudante', component: () => import('@/views/Educator/StudentDetails.vue')
+}
 ]
 
 const router = createRouter({

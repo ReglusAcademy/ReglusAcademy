@@ -6,7 +6,6 @@
       <div class="box blue">
         <div class="content">
           <h2>Agende reuniões</h2>
-          <p class="small-text">Gratuito</p>
           <router-link to="/agenda" class="button">Agende</router-link>
         </div>
         <img src="@/assets/content/professorealuno.png" alt="Tutor" class="image" />
@@ -15,21 +14,31 @@
       <div class="box purple">
         <div class="content">
           <h2>Acompanhe seus estudantes</h2>
-          <p class="small-text">Gratuito</p>
           <router-link to="/listaralunos" class="button">Acompanhe</router-link>
+        </div>
+        <img src="@/assets/content/organizeosestudos.png" alt="Organização" class="image" />
+      </div>
+
+      <div class="box green boxAll">
+        <div class="content">
+          <h2>Gerencie suas salas</h2>
+          <router-link to="/salas" class="button">Visualize</router-link>
         </div>
         <img src="@/assets/content/organizeosestudos.png" alt="Organização" class="image" />
       </div>
     </div>
   </div>
+  <FooterReglus />
 </template>
 
 <script>
 import NavReglus from "@/components/nav/NavIn.vue";
+import FooterReglus from "@/components/nav/FooterReglus.vue";
 export default {
   name: "HomeProfessor",
   components: {
     NavReglus,
+    FooterReglus
   },
   data() {
     return {
@@ -38,7 +47,7 @@ export default {
   },
   mounted() {
     const user = JSON.parse(localStorage.getItem('user'));
-    
+    console.log(user)
     if (!user) {
       this.$router.push('/');
     } else {
@@ -57,29 +66,33 @@ export default {
 }
 
 .boxes {
-  display: flex;
-  justify-content: space-between;
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr;
+  gap: 1em;
   margin-top: 2em;
 }
 
 .box {
-  width: 45%;
   padding: 1em;
   border-radius: 8px;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+}
+
+.boxAll {
+  grid-column: span 2; 
 }
 
 .blue {
   background-color: #8c52ff;
-  /* Azul escuro */
+}
+
+.green {
+  background-color: var(--verde);
 }
 
 .purple {
   background-color: #003366;
-  /* Roxo */
 }
 
 .content {
@@ -104,7 +117,6 @@ export default {
 
 .image {
   width: 100px;
-  /* Ajuste o tamanho da imagem conforme necessário */
   height: auto;
 }
 </style>
