@@ -45,6 +45,9 @@
           <span>{{ room.course.name }} - {{ room.course.description }}</span><br />
           <span>Início: {{ room.startDate }} - Término: {{ room.endDate || 'Indefinido' }}</span><br />
           <span>Educador(a): {{ room.educator.user.name }}</span><br />
+          <router-link :to="{ name: 'sala', params: { roomId: room.roomId } }">
+            <button>Ver Detalhes</button>
+          </router-link>
         </li>
       </ul>
     </div>

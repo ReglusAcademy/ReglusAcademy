@@ -33,9 +33,11 @@ export default {
     },
     methods: {
         logout() {
-            localStorage.removeItem('user');
-            localStorage.removeItem('userType');
-            this.$router.push('/');
+            localStorage.clear();
+            sessionStorage.clear();
+            this.$nextTick(() => {
+                this.$router.push('/');
+            });
         }
     }
 }

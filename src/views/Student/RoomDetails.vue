@@ -26,22 +26,6 @@
             <p><strong>Experiência:</strong> {{ room.educator.experienceYears }} anos</p>
             <p><strong>Bio:</strong> {{ room.educator.bio || 'Não disponível' }}</p>
 
-            <h4>Alunos Cadastrados</h4>
-            <ul v-if="students.length > 0">
-                <li v-for="student in students" :key="student.studentId">
-                    <strong>{{ student.user.name }}</strong><br />
-                    <span>{{ student.user.email }}</span><br />
-                    <span>Estado: {{ student.state }}</span><br />
-                    <span>Cidade: {{ student.city }}</span><br />
-                    <router-link :to="{ name: 'estudante', params: { studentId: student.studentId } }">
-                        <button>Conferir Ficha de Acompanhamento</button>
-                    </router-link>
-                </li>
-            </ul>
-            <div v-else>
-                Nenhum aluno cadastrado na sala.
-            </div>
-
             <h4>Atividades</h4>
             <div v-if="activities.length > 0">
                 <ul>
@@ -49,9 +33,6 @@
                         <strong>{{ activity.title }}</strong><br />
                         <span>Máxima pontuação: {{ activity.maxPoints }}</span><br />
                         <span>Prazo: {{ activity.dataLimit }}</span><br />
-                        <router-link :to="{ name: 'atividade', params: { activityId: activity.activityId } }">
-                            <button>Conferir</button>
-                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -62,7 +43,6 @@
 
         <FooterReglus />
     </div>
-
 </template>
 
 <script>
@@ -78,7 +58,6 @@ export default {
     data() {
         return {
             room: null,
-            students: [],
             activities: [],
             loading: true,
             errorMessage: '',
@@ -91,11 +70,12 @@ export default {
 
         this.userRole = userType || "";
 
-        if (!user || this.userRole !== "EDUCATOR") {
+        if (!user || this.userRole !== "STUDENT") {
             this.$router.push("/");
             window.location.reload();
             return;
         }
+
         await this.fetchRoomDetails();
     },
     methods: {
@@ -110,12 +90,6 @@ export default {
 
                 const data = await response.json();
                 this.room = data;
-
-                const studentsResponse = await fetch(`http://localhost:8080/api/rooms/${roomId}/students`);
-                if (!studentsResponse.ok) {
-                    throw new Error("Erro ao carregar os alunos.");
-                }
-                this.students = await studentsResponse.json();
 
                 const activitiesResponse = await fetch(`http://localhost:8080/api/activities/room/${roomId}/activities`);
                 if (!activitiesResponse.ok) {
@@ -132,3 +106,7 @@ export default {
     }
 };
 </script>
+
+<style>
+
+</style>

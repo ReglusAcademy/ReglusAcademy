@@ -16,7 +16,7 @@
                     <span>Período: {{ room.course.period }}</span> <br />
                     <span>Frequência: {{ room.course.schedule }}</span> <br />
 
-                    <router-link :to="{ name: 'sala', params: { roomId: room.roomId } }">
+                    <router-link :to="{ name: 'salaAdmin', params: { roomId: room.roomId } }">
                         <button>Conferir</button>
                     </router-link>
 

@@ -70,10 +70,21 @@ export default {
         return {
             student: null, 
             loading: true,  
-            errorMessage: ''
+            errorMessage: '',
+            userRole: ""
         };
     },
     mounted() {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userType = localStorage.getItem("userType");
+
+        this.userRole = userType || "";
+
+        if (!user || this.userRole !== "EDUCATOR") {
+            this.$router.push("/");
+            return;
+        }
+        
         this.fetchStudentDetails();
     },
     methods: {

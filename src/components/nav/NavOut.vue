@@ -48,10 +48,12 @@ export default {
     },
     methods: {
         logout() {
-            localStorage.removeItem('user');
-            localStorage.removeItem('userType');
+            localStorage.clear();
+            sessionStorage.clear();
             this.isLoggedIn = false;
-            this.$router.push('/');
+            this.$nextTick(() => {
+                this.$router.push('/');
+            });
         }
     }
 }

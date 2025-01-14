@@ -42,14 +42,22 @@ export default {
   },
   data() {
     return {
-      userName: ''
+      userName: '',
+      userRole: ""
     };
   },
   mounted() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user)
-    if (!user) {
-      this.$router.push('/');
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userType = localStorage.getItem("userType");
+
+    this.userRole = userType || "";
+
+    console.log('user:', user);
+    console.log('userType:', userType);
+
+    if (!user || this.userRole !== "EDUCATOR") {
+      this.$router.push("/");
+      return;
     } else {
       this.userName = user.name;
     }
@@ -66,8 +74,8 @@ export default {
 }
 
 .boxes {
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 1em;
   margin-top: 2em;
@@ -80,7 +88,7 @@ export default {
 }
 
 .boxAll {
-  grid-column: span 2; 
+  grid-column: span 2;
 }
 
 .blue {
