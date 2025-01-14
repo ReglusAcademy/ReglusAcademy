@@ -16,7 +16,7 @@
         <div class="content">
           <h2>Organize seus estudos</h2>
           <p class="small-text">Gratuito</p>
-          <router-link to="/introducaoaprogramacao" class="button">Organize</router-link>
+          <router-link to="/agenda" class="button">Organize</router-link>
         </div>
         <img src="@/assets/content/organizeosestudos.png" alt="Organização" class="image" />
       </div>

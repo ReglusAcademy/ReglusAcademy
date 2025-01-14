@@ -8,7 +8,7 @@
 
 <script>
 import NavReglus from "@/components/nav/NavOut.vue"
-import HomeHeadAcademy from "@/components/card/HomeHeadAcademy.vue"
+import HomeHeadAcademy from "@/components/card/resources/HomeHeadAcademy.vue"
 import FooterReglus from "@/components/nav/FooterReglus.vue"
 
 export default {
