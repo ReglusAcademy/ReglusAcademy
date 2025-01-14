@@ -7,12 +7,13 @@
                     <router-link to="/">Início</router-link>
                 </li>
                 <li>
-                    <router-link to="/introducaoaprogramacao">Funcionalidades</router-link>
+                    <router-link to="/inicioeducador">Funcionalidades</router-link>
                 </li>
-                <li>
+                <!-- <li>
                     <router-link to="/agenda">Recursos</router-link>
-                </li>
-                <li>Organização</li>
+                </li> -->
+                <!-- <li>Organização</li> -->
+                <li><router-link to="/sobrenos">Sobre Nós</router-link></li>
             </ul>
         </div>
 
@@ -57,15 +58,6 @@ export default {
     width: 100px;
     margin-top: 1em;
 }
-
-/* .listasOpcoes {
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin: 0em 2em;
-} */
 
 ul {
     display: flex;

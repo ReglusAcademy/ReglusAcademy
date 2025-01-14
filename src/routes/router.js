@@ -8,7 +8,7 @@ const routes = [
   { path: '/cadastroeducador', component: () => import('@/views/Educator/TelaCadastroProfessor.vue')},
   { path: '/redirecionarlogin', component: () => import('@/views/TelaRedirecionamento.vue')},
   { path: '/minhacontareglus', component: () => import('@/views/Resources/ReglusConta.vue')},
-  { path: '/sobrenos', component: () => import('@/views/TelaSobreNos.vue')},
+  { path: '/sobrenos', component: () => import('@/views/Resources/ReglusRoomSobre.vue')},
   // estudante
   { path: '/fichadoaluno', component: () => import('@/views/Student/FormsAluno.vue')},
   { path: '/sala/:roomId', name: 'sala', component: () => import('@/views/Student/RoomDetails.vue')},
@@ -21,8 +21,6 @@ const routes = [
   { path: '/salaAdmin/:roomId', name: 'salaAdmin', component: () => import('@/views/Educator/RoomDetails.vue')},
   { path: '/listaralunos', component: () => import('@/views/Educator/ListarAlunos.vue')},
   { path: '/fichaacompanhamento', component: () => import('@/views/Student/FichaAcompanhamento.vue')},
-  { path: '/fichaacompanhamentocaroline', component: () => import('@/views/Student/FichaCaroline.vue')},
-  { path: '/fichaacompanhamentomaiara', component: () => import('@/views/Student/FichaMaiara.vue')},
   { path: '/salas', component: () => import('@/views/Educator/RoomAcademy.vue')},
   { path: '/estudante/:studentId', name: 'estudante', component: () => import('@/views/Educator/StudentDetails.vue')},
   { path: '/atividade/:activityId', name: 'atividade', component: () => import('@/views/Educator/ActivityDetails.vue')}

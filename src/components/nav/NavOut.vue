@@ -4,10 +4,10 @@
             <ul>
                 <img :src="logo" class="logo">
                 <li>
-                    <router-link to="/" style="color: var(--roxo)">Início</router-link>
+                    <router-link to="/">Início</router-link>
                 </li>
-                <li v-if="isLoggedIn">Recursos</li>
-                <li>Sobre Nós</li>
+                <li v-if="isLoggedIn"><router-link to="/inicioeducador">Funcionalidades</router-link></li>
+                <li><router-link to="/sobrenos">Sobre Nós</router-link></li>
             </ul>
         </div>
 
