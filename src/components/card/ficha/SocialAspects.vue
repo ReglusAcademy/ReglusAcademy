@@ -100,7 +100,9 @@ export default {
             this.$router.push('/');
         }
 
-        this.fetchSocialAspect();
+        if (userType === 'STUDENT') {
+            this.fetchSocialAspect();
+        }
     },
     methods: {
         async refreshForm() {

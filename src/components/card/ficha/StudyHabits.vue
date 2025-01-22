@@ -17,14 +17,14 @@
 
                 <div class="form-group">
                     <label for="studyHoursPerDay"> Quantas horas você estuda por dia?</label>
-                        <select name="studyHoursPerDay" id="studyHoursPerDay" v-model="form.studyHoursPerDay"
-                            class="form-control" required>
-                            <option value="" disabled selected>Selecione...</option>
-                            <option value="MENOS_DE_1_HORA">Menos de 1 hora</option>
-                            <option value="UMA_DUAS_HORAS">1 a 2 horas</option>
-                            <option value="DUAS_TRES_HORAS">2 a 3 horas</option>
-                            <option value="MAIS_DE_3_HORAS">Mais de 3 horas</option>
-                        </select>
+                    <select name="studyHoursPerDay" id="studyHoursPerDay" v-model="form.studyHoursPerDay"
+                        class="form-control" required>
+                        <option value="" disabled selected>Selecione...</option>
+                        <option value="MENOS_DE_1_HORA">Menos de 1 hora</option>
+                        <option value="UMA_DUAS_HORAS">1 a 2 horas</option>
+                        <option value="DUAS_TRES_HORAS">2 a 3 horas</option>
+                        <option value="MAIS_DE_3_HORAS">Mais de 3 horas</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -73,7 +73,9 @@ export default {
             this.$router.push('/');
         }
 
-        this.fetchStudyHabit();
+        if (userType === 'STUDENT') {
+            this.fetchStudyHabit();
+        }
     },
     methods: {
         validateForm() {
@@ -216,4 +218,5 @@ input[type="radio"] {
     width: 200px;
     padding: 0.5em;
     margin-top: 10px;
-}</style>
+}
+</style>

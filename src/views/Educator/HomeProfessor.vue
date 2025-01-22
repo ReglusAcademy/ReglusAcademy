@@ -52,9 +52,6 @@ export default {
 
     this.userRole = userType || "";
 
-    console.log('user:', user);
-    console.log('userType:', userType);
-
     if (!user || this.userRole !== "EDUCATOR") {
       this.$router.push("/");
       return;

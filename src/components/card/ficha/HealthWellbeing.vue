@@ -98,7 +98,9 @@ export default {
             this.$router.push('/');
         }
 
-        this.fetchHealthWellbeing();
+        if (userType === 'STUDENT') {
+            this.fetchHealthWellbeing();
+        }
     },
     methods: {
         handleHealthConditionChange() {

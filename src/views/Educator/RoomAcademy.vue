@@ -20,8 +20,8 @@
 
 <script>
 import NavReglus from "@/components/nav/NavIn.vue";
-import RoomRegister from "@/components/card/salas/RoomRegister.vue";
-import RoomList from "@/components/card/salas/RoomListEducator.vue";
+import RoomRegister from "@/components/card/rooms/RoomRegister.vue";
+import RoomList from "@/components/card/rooms/RoomListEducator.vue";
 import FooterReglus from "@/components/nav/FooterReglus.vue";
 
 export default {

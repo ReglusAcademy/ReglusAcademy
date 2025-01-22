@@ -6,7 +6,9 @@
                 <li>
                     <router-link to="/">Início</router-link>
                 </li>
-                <li v-if="isLoggedIn"><router-link to="/inicioeducador">Funcionalidades</router-link></li>
+                <li v-if="isLoggedIn">
+                    <router-link :to="redirectInicio">Funcionalidades</router-link>
+                </li>
                 <li><router-link to="/sobrenos">Sobre Nós</router-link></li>
             </ul>
         </div>
@@ -39,6 +41,12 @@ export default {
             logo: `${process.env.BASE_URL}logoreglus-nobg.png`,
             isLoggedIn: false,
         };
+    },
+    computed: {
+        redirectInicio() {
+            const userType = localStorage.getItem('userType'); 
+            return userType === 'EDUCATOR' ? '/inicioeducador' : '/inicioestudante';
+        }
     },
     mounted() {
         const user = localStorage.getItem('user');

@@ -10,9 +10,9 @@ const routes = [
   { path: '/minhacontareglus', component: () => import('@/views/Resources/ReglusConta.vue')},
   { path: '/sobrenos', component: () => import('@/views/Resources/ReglusRoomSobre.vue')},
   // estudante
+  { path: '/inicioestudante', component: () => import('@/views/Student/HomeEstudante.vue')},
   { path: '/fichadoaluno', component: () => import('@/views/Student/FormsAluno.vue')},
   { path: '/sala/:roomId', name: 'sala', component: () => import('@/views/Student/RoomDetails.vue')},
-  { path: '/inicioestudante', component: () => import('@/views/Student/HomeEstudante.vue')},
   { path: '/agenda', component: () => import('@/views/Resources/ReglusAgenda.vue')},
   // educador
   { path: '/inicioeducador', component: () => import('@/views/Educator/HomeProfessor.vue')},

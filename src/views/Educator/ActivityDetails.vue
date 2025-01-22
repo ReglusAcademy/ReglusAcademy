@@ -1,6 +1,6 @@
 <template>
     <NavReglus />
-    <div v-if="!loading && activity">
+    <div v-if="!loading && activity" id="activity">
         <h2>Detalhes da Atividade</h2>
         <p><strong>Título:</strong> {{ activity.title }}</p>
         <p><strong>Pontuação Máxima:</strong> {{ activity.maxPoints }}</p>
@@ -84,6 +84,13 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+#activity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+    height: 60vh;
+}
 </style>

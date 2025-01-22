@@ -68,7 +68,9 @@ export default {
             this.$router.push('/');
         }
 
-        this.fetchSelfAssessment();
+        if (userType === 'STUDENT') {
+            this.fetchSelfAssessment();
+        }
     },
     methods: {
         validateForm() {

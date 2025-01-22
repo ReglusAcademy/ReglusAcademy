@@ -7,7 +7,7 @@
                     <router-link to="/">Início</router-link>
                 </li>
                 <li>
-                    <router-link to="/inicioeducador">Funcionalidades</router-link>
+                    <router-link :to="redirectInicio">Funcionalidades</router-link>
                 </li>
                 <!-- <li>
                     <router-link to="/agenda">Recursos</router-link>
@@ -31,6 +31,12 @@ export default {
         return {
             logo: `${process.env.BASE_URL}logoreglus-nobg.png`,
         };
+    },
+    computed: {
+        redirectInicio() {
+            const userType = localStorage.getItem('userType'); 
+            return userType === 'EDUCATOR' ? '/inicioeducador' : '/inicioestudante';
+        }
     },
     methods: {
         logout() {

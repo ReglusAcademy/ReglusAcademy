@@ -10,53 +10,61 @@
             {{ errorMessage }}
         </div>
 
-        <div v-if="!loading && room">
-            <h3>{{ room.name }}</h3>
-            <p><strong>Curso:</strong> {{ room.course.name }}</p>
-            <p><strong>Descrição:</strong> {{ room.course.description }}</p>
-            <p><strong>Preço:</strong> R$ {{ room.course.price }}</p>
-            <p><strong>Início:</strong> {{ room.startDate }}</p>
-            <p><strong>Término:</strong> {{ room.endDate || 'Em andamento' }}</p>
-            <p><strong>Período:</strong> {{ room.course.period }}</p>
-            <p><strong>Frequência:</strong> {{ room.course.schedule }}</p>
-
-            <h4>Informações do Educador</h4>
-            <p><strong>Nome:</strong> {{ room.educator.user.name }}</p>
-            <p><strong>Email:</strong> {{ room.educator.user.email }}</p>
-            <p><strong>Experiência:</strong> {{ room.educator.experienceYears }} anos</p>
-            <p><strong>Bio:</strong> {{ room.educator.bio || 'Não disponível' }}</p>
-
-            <h4>Alunos Cadastrados</h4>
-            <ul v-if="students.length > 0">
-                <li v-for="student in students" :key="student.studentId">
-                    <strong>{{ student.user.name }}</strong><br />
-                    <span>{{ student.user.email }}</span><br />
-                    <span>Estado: {{ student.state }}</span><br />
-                    <span>Cidade: {{ student.city }}</span><br />
-                    <router-link :to="{ name: 'estudante', params: { studentId: student.studentId } }">
-                        <button>Conferir Ficha de Acompanhamento</button>
-                    </router-link>
-                </li>
-            </ul>
-            <div v-else>
-                Nenhum aluno cadastrado na sala.
+        <div v-if="!loading && room" id="room">
+            <div class="descRoom">
+                <h3>{{ room.name }}</h3>
+                <p><strong>Curso:</strong> {{ room.course.name }}</p>
+                <p><strong>Descrição:</strong> {{ room.course.description }}</p>
+                <p><strong>Preço:</strong> R$ {{ room.course.price }}</p>
+                <p><strong>Início:</strong> {{ room.startDate }}</p>
+                <p><strong>Término:</strong> {{ room.endDate || 'Em andamento' }}</p>
+                <p><strong>Período:</strong> {{ room.course.period }}</p>
+                <p><strong>Frequência:</strong> {{ room.course.schedule }}</p>
             </div>
 
-            <h4>Atividades</h4>
-            <div v-if="activities.length > 0">
-                <ul>
-                    <li v-for="activity in activities" :key="activity.activityId">
-                        <strong>{{ activity.title }}</strong><br />
-                        <span>Máxima pontuação: {{ activity.maxPoints }}</span><br />
-                        <span>Prazo: {{ activity.dataLimit }}</span><br />
-                        <router-link :to="{ name: 'atividade', params: { activityId: activity.activityId } }">
-                            <button>Conferir</button>
+            <div class="descEducator">
+                <h4>Informações do Educador</h4>
+                <p><strong>Nome:</strong> {{ room.educator.user.name }}</p>
+                <p><strong>Email:</strong> {{ room.educator.user.email }}</p>
+                <p><strong>Experiência:</strong> {{ room.educator.experienceYears }} anos</p>
+                <p><strong>Bio:</strong> {{ room.educator.bio || 'Não disponível' }}</p>
+            </div>
+
+            <div class="descStudents">
+                <h4>Alunos Cadastrados</h4>
+                <ul v-if="students.length > 0">
+                    <li v-for="student in students" :key="student.studentId">
+                        <strong>{{ student.user.name }}</strong><br />
+                        <span>{{ student.user.email }}</span><br />
+                        <span>Estado: {{ student.state }}</span><br />
+                        <span>Cidade: {{ student.city }}</span><br />
+                        <router-link :to="{ name: 'estudante', params: { studentId: student.studentId } }">
+                            <button>Conferir Ficha de Acompanhamento</button>
                         </router-link>
                     </li>
                 </ul>
+                <div v-else>
+                    Nenhum aluno cadastrado na sala.
+                </div>
             </div>
-            <div v-else>
-                Nenhuma atividade cadastrada para esta sala.
+
+            <div class="descActivities">
+                <h4>Atividades</h4>
+                <div v-if="activities.length > 0">
+                    <ul>
+                        <li v-for="activity in activities" :key="activity.activityId">
+                            <strong>{{ activity.title }}</strong><br />
+                            <span>Máxima pontuação: {{ activity.maxPoints }}</span><br />
+                            <span>Prazo: {{ activity.dataLimit }}</span><br />
+                            <router-link :to="{ name: 'atividade', params: { activityId: activity.activityId } }">
+                                <button>Conferir</button>
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
+                <div v-else>
+                    Nenhuma atividade cadastrada para esta sala.
+                </div>
             </div>
         </div>
 
@@ -132,3 +140,28 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+#room {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.descRoom {
+    border: 1px solid red;
+}
+
+.descEducator {
+    border: 1px solid purple;
+}
+
+.descStudents {
+    border: 1px solid green;
+}
+
+.descActivities {
+    border: 1px solid blue;
+}
+</style>

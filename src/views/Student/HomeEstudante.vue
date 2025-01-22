@@ -1,6 +1,9 @@
 <template>
   <NavReglus />
   <div class="container">
+    <div>
+      <img :src="userImage ? userImage : defaultImage" alt="Imagem de perfil" class="imgProfile" />
+    </div>
     <h1>Olá, {{ userName }}!</h1>
     <div class="boxes">
       <div class="box blue">
@@ -67,19 +70,24 @@ export default {
   data() {
     return {
       userName: '',
+      userImage: '',
+      defaultImage: require('@/assets/content/paulofreire.jpeg'),
       rooms: [],
       enrolledRooms: []
     };
   },
   mounted() {
     const user = JSON.parse(localStorage.getItem('user'));
+    this.userImage = null;
 
     if (!user) {
       this.$router.push('/');
     } else {
+      this.profileImage = user.profileImage;
       this.userName = user.name;
       this.fetchAvailableRooms();
       this.fetchEnrolledRooms();
+      this.getProfileImage(user.userId);
     }
   },
   methods: {
@@ -165,13 +173,71 @@ export default {
         console.error('Erro na recuperação das salas:', error);
         this.rooms = [];
       }
-    }
+    },
+
+    async getProfileImage(userId) {
+      try {
+        const savedBase64 = localStorage.getItem('profileImage');
+
+        if (savedBase64) {
+          const response = await fetch(`http://localhost:8080/api/users/${userId}/image`);
+          const serverBlob = await response.blob();
+
+          if (response.ok) {
+            const serverBase64 = await this.blobToBase64(serverBlob);
+
+            if (savedBase64 === serverBase64) {
+              this.userImage = `data:image/jpeg;base64,${savedBase64}`; // Usando base64 diretamente
+              return;
+            }
+          }
+        }
+
+        const response = await fetch(`http://localhost:8080/api/users/${userId}/image`);
+        if (response.ok) {
+          const serverBlob = await response.blob();
+          const newBase64 = await this.blobToBase64(serverBlob);
+
+          this.userImage = `data:image/jpeg;base64,${newBase64}`;
+          localStorage.setItem('profileImage', newBase64);
+        } else {
+          this.userImage = null;
+        }
+      } catch (error) {
+        console.error("Erro ao carregar a imagem de perfil:", error);
+        this.userImage = null;
+      }
+    },
+
+    async blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          resolve(reader.result.split(',')[1]);
+        };
+
+        reader.onerror = () => {
+          reject(new Error('Erro ao converter o Blob para Base64'));
+        };
+
+        reader.readAsDataURL(blob);
+      });
+    },
+
   }
 }
 
 </script>
 
 <style>
+.imgProfile {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .container {
   display: flex;
   justify-content: center;

@@ -55,7 +55,9 @@ export default {
             this.$router.push('/');
         }
 
-        this.fetchInterestHobby();
+        if (userType === 'STUDENT') {
+            this.fetchInterestHobby();
+        }
     },
     methods: {
         validateForm() {

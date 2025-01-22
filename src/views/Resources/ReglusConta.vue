@@ -2,13 +2,22 @@
     <NavReglus />
     <div id="account">
         <div class="descUser">
-            <h1>Confira e atualize as informações da sua conta, {{ userName }}.</h1>
+            <h1>Confira e atualize as informações da sua conta, <br> {{ userName }}.</h1>
+            <div>
+                <img :src="userImage ? userImage : defaultImage" alt="Imagem de perfil" class="imgProfile" />
+            </div>
             <p>Email: {{ userEmail }}</p>
             <p>Nível educacional cadastrado: {{ userEducationLevel }}</p>
             <p>Data de nascimento: {{ userBirthDate }}</p>
             <p>Instituição de Ensino: {{ instituteName }}</p>
             <p>Deficiência: {{ userDisability }}</p>
         </div>
+
+        <form id="uploadForm" enctype="multipart/form-data" @submit.prevent="handleSubmit">
+            <label for="profileImage">Quer atualizar sua foto? escolha uma nova:</label>
+            <input type="file" id="profileImage" name="profileImage" accept="image/*" required ref="profileImage">
+            <button type="submit">Atualizar</button>
+        </form>
 
         <SocialAspects @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
         <HealthWellbeing @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
@@ -44,6 +53,8 @@ export default {
             userBirthDate: '',
             instituteName: '',
             userDisability: 'Nada definido',
+            userImage: null,
+            defaultImage: require('@/assets/content/paulofreire.jpeg'),
             userRole: '',
 
             // aspectos sociais
@@ -73,7 +84,8 @@ export default {
         if (!user) {
             this.$router.push('/');
         } else {
-            this.form.studentId = user.userId;
+            this.getProfileImage(user.userId);
+            this.profileImage = user.profileImage;
             this.userName = user.name;
             this.userEmail = user.email;
             this.userEducationLevel = user.educationLevel;
@@ -103,14 +115,111 @@ export default {
                     }, 500);
                 }, 3000);
             }
-        }
-    
+        },
+
+        async handleSubmit() {
+            const fileInput = this.$refs.profileImage;
+            const imageFile = fileInput.files[0];
+
+            if (imageFile) {
+                try {
+                    const user = JSON.parse(localStorage.getItem('user'));
+                    const userId = user.userId;
+                    await this.uploadProfileImage(userId, imageFile);
+                } catch (error) {
+                    console.error("Erro ao enviar a imagem:", error);
+                    alert("Ocorreu um erro ao enviar a imagem.");
+                }
+            } else {
+                alert("Selecione uma imagem.");
+            }
+        },
+
+        async uploadProfileImage(userId, imageFile) {
+            const formData = new FormData();
+            formData.append("profileImage", imageFile);
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/users/${userId}/image`, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    alert("Ok.");
+                    window.location.reload();
+                } else {
+                    alert("Erro ao atualizar a imagem de perfil.");
+                }
+            } catch (error) {
+                console.error("Erro ao carregar imagem:", error);
+            }
+        },
+
+        async getProfileImage(userId) {
+            try {
+                const savedBase64 = localStorage.getItem('profileImage');
+
+                if (savedBase64) {
+                    const response = await fetch(`http://localhost:8080/api/users/${userId}/image`);
+                    const serverBlob = await response.blob();
+
+                    if (response.ok) {
+                        const serverBase64 = await this.blobToBase64(serverBlob);
+
+                        if (savedBase64 === serverBase64) {
+                            this.userImage = `data:image/jpeg;base64,${savedBase64}`; // Usando base64 diretamente
+                            return;
+                        }
+                    }
+                }
+
+                const response = await fetch(`http://localhost:8080/api/users/${userId}/image`);
+                if (response.ok) {
+                    const serverBlob = await response.blob();
+                    const newBase64 = await this.blobToBase64(serverBlob);
+
+                    this.userImage = `data:image/jpeg;base64,${newBase64}`;
+                    localStorage.setItem('profileImage', newBase64);
+                } else {
+                    this.userImage = null;
+                }
+            } catch (error) {
+                console.error("Erro ao carregar a imagem de perfil:", error);
+                this.userImage = null;
+            }
+        },
+
+        async blobToBase64(blob) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+
+                reader.onloadend = () => {
+                    resolve(reader.result.split(',')[1]);
+                };
+
+                reader.onerror = () => {
+                    reject(new Error('Erro ao converter o Blob para Base64'));
+                };
+
+                reader.readAsDataURL(blob);
+            });
+        },
+
     }
 }
 </script>
 
 <style>
-#account {
+.imgProfile {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#account,
+#uploadForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -203,10 +312,12 @@ input[type="checkbox"]:checked {
 }
 
 .notification-success {
-    background-color: #4caf50; /* Verde para sucesso */
+    background-color: #4caf50;
+    /* Verde para sucesso */
 }
 
 .notification-refresh {
-    background-color: #2196f3; /* Azul para atualização */
+    background-color: #2196f3;
+    /* Azul para atualização */
 }
 </style>

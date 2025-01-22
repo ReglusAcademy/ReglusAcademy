@@ -1,49 +1,61 @@
 <template>
     <NavReglus />
 
-    <div v-if="!loading && student">
+    <div v-if="!loading && student" id="ficha">
         <h3>Ficha de Acompanhamento de {{ student.user.name }}</h3>
 
-        <h4>Informações Pessoais</h4>
-        <p><strong>Nome:</strong> {{ student.user.name }}</p>
-        <p><strong>Email:</strong> {{ student.user.email }}</p>
-        <p><strong>Data de Nascimento:</strong> {{ student.user.dateBirth }}</p>
-        <p><strong>Sexo:</strong> {{ student.user.gender }}</p>
-        <p><strong>Instituição:</strong> {{ student.user.instituteName }}</p>
+        <div class="descPerson">
+            <h4>Informações Pessoais</h4>
+            <p><strong>Nome:</strong> {{ student.user.name }}</p>
+            <p><strong>Email:</strong> {{ student.user.email }}</p>
+            <p><strong>Data de Nascimento:</strong> {{ student.user.dateBirth }}</p>
+            <p><strong>Sexo:</strong> {{ student.user.gender }}</p>
+            <p><strong>Instituição:</strong> {{ student.user.instituteName }}</p>
+            <h4>Observações Finais</h4>
+            <p>{{ student.finalObservations }}</p>
 
-        <h4>Aspectos Sociais</h4>
-        <p><strong>Com quem mora:</strong> {{ student.socialAspect.livingWith }}</p>
-        <p><strong>Relação com colegas:</strong> {{ student.socialAspect.relationshipWithClassmates }}</p>
-        <p><strong>Relação com professores:</strong> {{ student.socialAspect.relationshipWithTeachers }}</p>
-        <p><strong>Relação com a família:</strong> {{ student.socialAspect.relationshipWithFamily }}</p>
+            <h4>Localização</h4>
+            <p><strong>Estado:</strong> {{ student.state }}</p>
+            <p><strong>Cidade:</strong> {{ student.city }}</p>
+        </div>
 
-        <h4>Saúde e Bem-estar</h4>
-        <p><strong>Condição de Saúde:</strong> {{ student.healthWellbeing.healthCondition }}</p>
-        <p><strong>Atividade Física:</strong> {{ student.healthWellbeing.physicalActivity }}</p>
-        <p><strong>Avaliação Dietética:</strong> {{ student.healthWellbeing.dietaryEvaluation }}</p>
-        <p><strong>Horas de Sono:</strong> {{ student.healthWellbeing.sleepHours }}</p>
+        <div class="socialAspects">
+            <h4>Aspectos Sociais</h4>
+            <p><strong>Com quem mora:</strong> {{ student.socialAspect.livingWith }}</p>
+            <p><strong>Relação com colegas:</strong> {{ student.socialAspect.relationshipWithClassmates }}</p>
+            <p><strong>Relação com professores:</strong> {{ student.socialAspect.relationshipWithTeachers }}</p>
+            <p><strong>Relação com a família:</strong> {{ student.socialAspect.relationshipWithFamily }}</p>
+        </div>
 
-        <h4>Hobbies e Interesses</h4>
-        <p><strong>Atividades fora da escola:</strong> {{ student.interestHobby.activitiesOutsideSchool }}</p>
-        <p><strong>Sonhos e Objetivos:</strong> {{ student.interestHobby.dreamsGoals }}</p>
+        <div class="healthWellbeing">
+            <h4>Saúde e Bem-estar</h4>
+            <p><strong>Condição de Saúde:</strong> {{ student.healthWellbeing.healthCondition }}</p>
+            <p><strong>Atividade Física:</strong> {{ student.healthWellbeing.physicalActivity }}</p>
+            <p><strong>Avaliação Dietética:</strong> {{ student.healthWellbeing.dietaryEvaluation }}</p>
+            <p><strong>Horas de Sono:</strong> {{ student.healthWellbeing.sleepHours }}</p>
+        </div>
 
-        <h4>Hábitos de Estudo</h4>
-        <p><strong>Métodos de Estudo:</strong> {{ student.studyHabit.studyMethods }}</p>
-        <p><strong>Horas de Estudo por Dia:</strong> {{ student.studyHabit.studyHoursPerDay }}</p>
-        <p><strong>Locais de Estudo:</strong> {{ student.studyHabit.studyLocations }}</p>
-        <p><strong>Plano de Estudo:</strong> {{ student.studyHabit.studyPlan }}</p>
+        <div class="interestHobby">
+            <h4>Hobbies e Interesses</h4>
+            <p><strong>Atividades fora da escola:</strong> {{ student.interestHobby.activitiesOutsideSchool }}</p>
+            <p><strong>Sonhos e Objetivos:</strong> {{ student.interestHobby.dreamsGoals }}</p>
+        </div>
 
-        <h4>Avaliação Pessoal</h4>
-        <p><strong>Avaliação de Desempenho:</strong> {{ student.selfAssessment.performanceEvaluation }}</p>
-        <p><strong>Pontos Fortes:</strong> {{ student.selfAssessment.strengths }}</p>
-        <p><strong>Áreas de Melhoria:</strong> {{ student.selfAssessment.improvementAreas }}</p>
+        <div class="studyHabits">
+            <h4>Hábitos de Estudo</h4>
+            <p><strong>Métodos de Estudo:</strong> {{ student.studyHabit.studyMethods }}</p>
+            <p><strong>Horas de Estudo por Dia:</strong> {{ student.studyHabit.studyHoursPerDay }}</p>
+            <p><strong>Locais de Estudo:</strong> {{ student.studyHabit.studyLocations }}</p>
+            <p><strong>Plano de Estudo:</strong> {{ student.studyHabit.studyPlan }}</p>
+        </div>
 
-        <h4>Observações Finais</h4>
-        <p>{{ student.finalObservations }}</p>
+        <div class="selfAssessment">
+            <h4>Avaliação Pessoal</h4>
+            <p><strong>Avaliação de Desempenho:</strong> {{ student.selfAssessment.performanceEvaluation }}</p>
+            <p><strong>Pontos Fortes:</strong> {{ student.selfAssessment.strengths }}</p>
+            <p><strong>Áreas de Melhoria:</strong> {{ student.selfAssessment.improvementAreas }}</p>
+        </div>
 
-        <h4>Localização</h4>
-        <p><strong>Estado:</strong> {{ student.state }}</p>
-        <p><strong>Cidade:</strong> {{ student.city }}</p>
     </div>
 
     <div v-if="loading" class="loading-spinner">
@@ -68,8 +80,8 @@ export default {
     },
     data() {
         return {
-            student: null, 
-            loading: true,  
+            student: null,
+            loading: true,
             errorMessage: '',
             userRole: ""
         };
@@ -84,7 +96,7 @@ export default {
             this.$router.push("/");
             return;
         }
-        
+
         this.fetchStudentDetails();
     },
     methods: {
@@ -108,5 +120,35 @@ export default {
 </script>
 
 <style scoped>
+#ficha {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.descPerson {
+    border: 1px solid green;
+}
+
+.socialAspects {
+    border: 1px solid red;
+}
+
+.healthWellbeing {
+    border: 1px solid yellow;
+}
+
+.interestHobby {
+    border: 1px solid purple;
+}
+
+.studyHabits {
+    border: 1px solid blue;
+}
+
+.selfAssessment {
+    border: 1px solid pink;
+}
 
 </style>
