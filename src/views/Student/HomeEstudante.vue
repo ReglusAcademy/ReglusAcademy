@@ -2,7 +2,7 @@
   <NavReglus />
   <div class="container">
     <div>
-      <img :src="userImage ? userImage : defaultImage" alt="Imagem de perfil" class="imgProfile" />
+      <img :src="defaultProfileImage" alt="Imagem de perfil" class="imgProfile" />
     </div>
     <h1>Olá, {{ userName }}!</h1>
     <div class="boxes">
@@ -71,7 +71,9 @@ export default {
     return {
       userName: '',
       userImage: '',
-      defaultImage: require('@/assets/content/paulofreire.jpeg'),
+      defaultImageMale: require('@/assets/content/avatar/11.png'),
+      defaultImageFemale: require('@/assets/content/avatar/10.png'),
+      defaultImageOther: require('@/assets/content/avatar/12.png'),
       rooms: [],
       enrolledRooms: []
     };
@@ -88,6 +90,26 @@ export default {
       this.fetchAvailableRooms();
       this.fetchEnrolledRooms();
       this.getProfileImage(user.userId);
+    }
+  },
+  computed: {
+    defaultProfileImage() {
+      if (this.userImage) {
+        return this.userImage;
+      }
+
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user && user.gender) {
+        if (user.gender === 'MALE') {
+          return this.defaultImageMale;
+        } else if (user.gender === 'FEMALE') {
+          return this.defaultImageFemale;
+        } else {
+          return this.defaultImageOther;
+        }
+      }
+
+      return this.defaultImageOther;
     }
   },
   methods: {
@@ -181,26 +203,35 @@ export default {
 
         if (savedBase64) {
           const response = await fetch(`http://localhost:8080/api/users/${userId}/image`);
-          const serverBlob = await response.blob();
 
-          if (response.ok) {
-            const serverBase64 = await this.blobToBase64(serverBlob);
-
-            if (savedBase64 === serverBase64) {
-              this.userImage = `data:image/jpeg;base64,${savedBase64}`; // Usando base64 diretamente
-              return;
+          if (!response.ok) {
+            if (response.status !== 404) {
+              console.error("Erro ao tentar carregar a imagem do perfil:", response.statusText);
             }
+            return;
+          }
+
+          const serverBlob = await response.blob();
+          const serverBase64 = await this.blobToBase64(serverBlob);
+
+          if (savedBase64 === serverBase64) {
+            this.userImage = `data:image/jpeg;base64,${savedBase64}`;
+            return;
           }
         }
 
         const response = await fetch(`http://localhost:8080/api/users/${userId}/image`);
+
         if (response.ok) {
           const serverBlob = await response.blob();
           const newBase64 = await this.blobToBase64(serverBlob);
 
           this.userImage = `data:image/jpeg;base64,${newBase64}`;
           localStorage.setItem('profileImage', newBase64);
+        } else if (response.status === 404) {
+          this.userImage = null;
         } else {
+          console.error("Erro inesperado ao carregar a imagem de perfil:", response.statusText);
           this.userImage = null;
         }
       } catch (error) {

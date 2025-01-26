@@ -3,8 +3,9 @@
     <div id="account">
         <div class="descUser">
             <h1>Confira e atualize as informações da sua conta, <br> {{ userName }}.</h1>
-            <div>
-                <img :src="userImage ? userImage : defaultImage" alt="Imagem de perfil" class="imgProfile" />
+            <div class="imgProfileContainer">
+                <img :src="defaultProfileImage" alt="Imagem de perfil" class="imgProfile" @click="openModal" />
+                <i class="fa fa-pencil edit-icon"></i>
             </div>
             <p>Email: {{ userEmail }}</p>
             <p>Nível educacional cadastrado: {{ userEducationLevel }}</p>
@@ -13,11 +14,36 @@
             <p>Deficiência: {{ userDisability }}</p>
         </div>
 
-        <form id="uploadForm" enctype="multipart/form-data" @submit.prevent="handleSubmit">
-            <label for="profileImage">Quer atualizar sua foto? escolha uma nova:</label>
-            <input type="file" id="profileImage" name="profileImage" accept="image/*" required ref="profileImage">
-            <button type="submit">Atualizar</button>
-        </form>
+        <div v-if="isModalOpen" class="modal-overlay" @click="closeModal">
+            <div class="modal-content" @click.stop>
+                <form id="uploadForm" enctype="multipart/form-data" @submit.prevent="handleSubmit">
+                    <h2>Escolha sua nova foto</h2>
+
+                    <div class="optionUpload">
+                        <div class="avatars">
+                            <div v-for="avatar in avatars" :key="avatar.id" class="avatar" @click="selectAvatar(avatar)"
+                                :class="{ 'selected': selectedAvatar === avatar }">
+                                <img :src="avatar.image" :alt="avatar.name" />
+                            </div>
+                        </div>
+
+                        <div class="uploadImage">
+                            <label for="profileImage">Ou selecione uma imagem do seu computador:</label>
+                            <input type="file" id="profileImage" name="profileImage" accept="image/*"
+                                @change="handleFileChange" ref="profileImage">
+
+                            <div v-if="previewImage" class="imgPreview">
+                                <h4>Pré-visualização da imagem:</h4>
+                                <img :src="previewImage" alt="Imagem de preview" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit">Atualizar</button>
+                    <button type="button" @click="closeModal">Cancelar</button>
+                </form>
+            </div>
+        </div>
 
         <SocialAspects @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
         <HealthWellbeing @show-success="showNotification('success')" @show-refresh="showNotification('refresh')" />
@@ -46,7 +72,6 @@ export default {
     },
     data() {
         return {
-            // geral
             userName: '',
             userEmail: '',
             userEducationLevel: '',
@@ -54,17 +79,34 @@ export default {
             instituteName: '',
             userDisability: 'Nada definido',
             userImage: null,
-            defaultImage: require('@/assets/content/paulofreire.jpeg'),
+            defaultImageMale: require('@/assets/content/avatar/11.png'),
+            defaultImageFemale: require('@/assets/content/avatar/10.png'),
+            defaultImageOther: require('@/assets/content/avatar/12.png'),
             userRole: '',
 
-            // aspectos sociais
+            avatars: [
+                { id: 1, name: 'Avatar 1', image: require('@/assets/content/avatar/1.png') },
+                { id: 2, name: 'Avatar 2', image: require('@/assets/content/avatar/2.png') },
+                { id: 3, name: 'Avatar 3', image: require('@/assets/content/avatar/3.png') },
+                { id: 3, name: 'Avatar 4', image: require('@/assets/content/avatar/4.png') },
+                { id: 3, name: 'Avatar 5', image: require('@/assets/content/avatar/5.png') },
+                { id: 3, name: 'Avatar 6', image: require('@/assets/content/avatar/6.png') },
+                { id: 3, name: 'Avatar 7', image: require('@/assets/content/avatar/7.png') },
+                { id: 3, name: 'Avatar 8', image: require('@/assets/content/avatar/8.png') },
+                { id: 3, name: 'Avatar 9', image: require('@/assets/content/avatar/9.png') },
+            ],
+            selectedAvatar: null,
+            selectedFile: null,
+            isModalOpen: false,
+            previewImage: null,
+
             form: {
-                livingWith: '', // Para armazenar o valor quando "Outros" é selecionado
+                livingWith: '',
                 relationshipWithClassmates: "MUITO_BOA",
                 relationshipWithTeachers: "MUITO_BOA",
                 relationshipWithFamily: "MUITO_BOA"
             },
-            selectedLivingWith: [], // Armazenar as opções selecionadas
+            selectedLivingWith: [],
             livingWithOptions: [
                 { value: 'pais', label: 'Pais' },
                 { value: 'avos', label: 'Avós' },
@@ -78,6 +120,8 @@ export default {
     mounted() {
         const user = JSON.parse(localStorage.getItem('user'));
         const userType = localStorage.getItem('userType');
+
+        console.log(user)
 
         this.userRole = userType || '';
 
@@ -93,8 +137,44 @@ export default {
             this.instituteName = user.instituteName;
             this.userDisability = user.disability === "false" ? "Nada definido" : user.disability;
         }
+
+        if (user.gender === 'MALE') {
+            this.userImage = this.defaultImageMale;
+        } else if (user.gender === 'FEMALE') {
+            this.userImage = this.defaultImageFemale;
+        } else {
+            this.userImage = this.defaultImageOther;
+        }
+    },
+    computed: {
+        defaultProfileImage() {
+            if (this.userImage) {
+                return this.userImage;
+            }
+
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user && user.gender) {
+                if (user.gender === 'MALE') {
+                    return this.defaultImageMale;
+                } else if (user.gender === 'FEMALE') {
+                    return this.defaultImageFemale;
+                } else {
+                    return this.defaultImageOther;
+                }
+            }
+
+            return this.defaultImageOther;
+        }
     },
     methods: {
+        openModal() {
+            this.isModalOpen = true;
+        },
+
+        closeModal() {
+            this.isModalOpen = false;
+        },
+
         formatDate(dateString) {
             const [year, month, day] = dateString.split('-');
             return `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${year}`;
@@ -117,27 +197,61 @@ export default {
             }
         },
 
-        async handleSubmit() {
-            const fileInput = this.$refs.profileImage;
-            const imageFile = fileInput.files[0];
+        selectAvatar(avatar) {
+            this.selectedAvatar = avatar;
+            this.selectedFile = null;
+        },
 
-            if (imageFile) {
-                try {
-                    const user = JSON.parse(localStorage.getItem('user'));
-                    const userId = user.userId;
-                    await this.uploadProfileImage(userId, imageFile);
-                } catch (error) {
-                    console.error("Erro ao enviar a imagem:", error);
-                    alert("Ocorreu um erro ao enviar a imagem.");
-                }
+        handleFileChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onloadend = () => {
+                    this.previewImage = reader.result;
+                };
+
+                reader.readAsDataURL(file);
+
+                this.selectedFile = file;
+                this.selectedAvatar = null;
             } else {
-                alert("Selecione uma imagem.");
+                this.previewImage = null;
             }
         },
 
-        async uploadProfileImage(userId, imageFile) {
+        async handleSubmit() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const userId = user.userId;
+
+            if (!this.selectedFile && !this.selectedAvatar) {
+                alert("Selecione uma imagem ou um avatar.");
+                return;
+            }
+
+            try {
+                await this.uploadProfileImage(userId);
+            } catch (error) {
+                console.error("Erro ao enviar a imagem:", error);
+                alert("Ocorreu um erro ao enviar a imagem.");
+            }
+        },
+
+        async uploadProfileImage(userId) {
+            let imageToUpload = null;
+
+            if (this.selectedAvatar) {
+                const response = await fetch(this.selectedAvatar.image);
+                imageToUpload = await response.blob();
+            } else if (this.selectedFile) {
+                imageToUpload = this.selectedFile;
+            } else {
+                alert("Por favor, selecione uma imagem ou um avatar.");
+                return;
+            }
+
             const formData = new FormData();
-            formData.append("profileImage", imageFile);
+            formData.append("profileImage", imageToUpload);
 
             try {
                 const response = await fetch(`http://localhost:8080/api/users/${userId}/image`, {
@@ -146,15 +260,18 @@ export default {
                 });
 
                 if (response.ok) {
-                    alert("Ok.");
+                    alert("Imagem de perfil atualizada com sucesso.");
+                    this.closeModal();
                     window.location.reload();
                 } else {
                     alert("Erro ao atualizar a imagem de perfil.");
                 }
             } catch (error) {
                 console.error("Erro ao carregar imagem:", error);
+                alert("Erro ao carregar imagem.");
             }
         },
+
 
         async getProfileImage(userId) {
             try {
@@ -168,7 +285,7 @@ export default {
                         const serverBase64 = await this.blobToBase64(serverBlob);
 
                         if (savedBase64 === serverBase64) {
-                            this.userImage = `data:image/jpeg;base64,${savedBase64}`; // Usando base64 diretamente
+                            this.userImage = `data:image/jpeg;base64,${savedBase64}`;
                             return;
                         }
                     }
@@ -210,12 +327,116 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 800px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.optionUpload {
+    display: flex;
+    flex-direction: row;
+}
+
+.uploadImage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.imgProfileContainer {
+    position: relative;
+    display: inline-block;
+}
+
 .imgProfile {
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    cursor: pointer;
     object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.imgProfile:hover {
+    filter: brightness(50%);
+}
+
+.edit-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.imgProfileContainer:hover .edit-icon {
+    opacity: 1;
+}
+
+.avatars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 1em;
+}
+
+.avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.avatar.selected {
+    transform: scale(1.1);
+}
+
+.avatar img,
+.imgPreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.imgPreview img {
+    width: 200px;
+    height: 200px;
+}
+
+.avatar.selected img {
+    border: 2px solid #4caf50;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
 }
 
 #account,
@@ -313,11 +534,9 @@ input[type="checkbox"]:checked {
 
 .notification-success {
     background-color: #4caf50;
-    /* Verde para sucesso */
 }
 
 .notification-refresh {
     background-color: #2196f3;
-    /* Azul para atualização */
 }
 </style>
