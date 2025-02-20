@@ -8,15 +8,15 @@
           <p>Complete seu cadastro.</p>
           <form @submit.prevent="register">
             <div class="form-group">
-              <label for="name">Nome Completo</label>
+              <label for="name">Nome Completo *</label>
               <input type="text" id="name" v-model="form.name" class="form-control" required />
             </div>
             <div class="form-group">
-              <label for="dateBirth">Data de Nascimento</label>
+              <label for="dateBirth">Data de Nascimento *</label>
               <input type="date" id="dateBirth" v-model="form.dateBirth" class="form-control" required />
             </div>
             <div class="form-group">
-              <label for="gender">Gênero</label> <br>
+              <label for="gender">Gênero *</label> <br>
               <select id="gender" v-model="form.gender" class="form-control" required>
                   <option disabled value="">Por favor, escolha o que melhor define você.</option>
                   <option value="MALE">Masculino</option>
@@ -25,18 +25,18 @@
                 </select>
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email">Email *</label>
               <input type="email" id="email" v-model="form.email" class="form-control" required />
             </div>
             <div class="form-group">
-              <label for="disability">Pessoa com Deficiência?</label>
+              <label for="disability">Pessoa com Deficiência? *</label>
               <select id="disability" v-model="form.disability" class="form-control" required>
                 <option value="sim">Sim</option>
                 <option value="No">Não</option>
               </select>
             </div>
             <div class="form-group" v-if="form.disability === 'sim'">
-              <label for="casosim">Qual o tipo de deficiência?</label>
+              <label for="casosim">Qual o tipo de deficiência? *</label>
               <select id="casosim" v-model="form.casosim" class="form-control" required>
                 <option disabled value="">Selecione o tipo de deficiência.</option>
                 <option value="Hearing">Auditiva</option>
@@ -47,7 +47,7 @@
               </select>
             </div>
             <div class="form-group select-container">
-              <label for="educationLevel">Grau de Formação</label>
+              <label for="educationLevel">Grau de Formação *</label>
               <select id="educationLevel" v-model="form.educationLevel" class="form-control" required>
                 <option disabled value="">Selecione o grau de formação.</option>
                 <option value="Elementary">Ensino Fundamental</option>
@@ -60,11 +60,11 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="instituteName">Nome do Instituto:</label>
+              <label for="instituteName">Nome do Instituto: *</label>
               <input type="text" id="instituteName" v-model="form.instituteName" class="form-control" required />
             </div>
             <div class="form-group">
-              <label for="experienceYears">Anos de Experiência:</label>
+              <label for="experienceYears">Anos de Experiência: *</label>
               <select id="experienceYears" v-model.number="form.experienceYears" class="form-control" required>
                 <option disabled value="">Selecione a quantidade de anos lecionando.</option>
                 <option value="1">1 ano</option>
@@ -77,16 +77,16 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="bio">Biografia:</label>
+              <label for="bio">Biografia: *</label>
               <textarea id="bio" v-model="form.bio" class="form-control"
                 placeholder="Não se preocupe, você pode editar mais tarde!!"></textarea>
             </div>
             <div class="form-group">
-              <label for="password">Senha</label>
+              <label for="password">Senha *</label>
               <input type="password" id="password" v-model="form.passwordHash" class="form-control" required />
             </div>
             <div class="form-group">
-              <label for="password_confirmation">Confirmar Senha</label>
+              <label for="password_confirmation">Confirmar Senha *</label>
               <input type="password" id="password_confirmation" v-model="form.password_confirmation"
                 class="form-control" required />
             </div>
@@ -208,13 +208,13 @@ export default {
 
 input {
   border: none;
-  border: 1px solid #fff;
-  border-bottom: 1px solid #8c52ff;
+  border-bottom: 1px solid grey;
+  transition: 1s;
 }
 
 input:active,
 input:focus {
-  transition: 2s;
+  transition: 1s;
   border: 1px solid #8c52ff;
   color: #8c52ff;
   box-shadow: 0 1px 0 0 #8c52ff;
@@ -222,21 +222,20 @@ input:focus {
 
 select {
   border: none;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  border-bottom: 1px solid #8c52ff;
-  width: 100%;
+  border-bottom: 1px solid grey;
   background: transparent;
   padding: 5px;
   font-size: 16px;
-  transition: 2s;
+  transition: 1s;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
 select:focus,
-select:active {
+select:active, 
+textarea:focus {
+  transition: 1s;
   border: 1px solid #8c52ff;
   color: #8c52ff;
   box-shadow: 0 1px 0 0 #8c52ff;

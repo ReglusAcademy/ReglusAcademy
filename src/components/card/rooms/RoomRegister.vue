@@ -149,6 +149,7 @@ export default {
 
                 this.successMessage = 'Sala cadastrada com sucesso!';
                 this.startTimer();
+                window.location.reload();
             } catch (error) {
                 this.errorMessage = error.message;
             }

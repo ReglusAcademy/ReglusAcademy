@@ -121,7 +121,7 @@ export default {
     align-items: center;
 }
 
-.descRoom {
+/* .descRoom {
     border: 1px solid red;
 }
 
@@ -135,5 +135,5 @@ export default {
 
 .descActivities {
     border: 1px solid blue;
-}
+} */
 </style>

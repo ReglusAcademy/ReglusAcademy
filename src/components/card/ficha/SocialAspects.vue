@@ -2,11 +2,11 @@
     <div id="ficha" v-if="userRole === 'STUDENT'">
         <div class="social-aspects">
             <h3>ASPECTOS SOCIAIS E FAMILIARES</h3>
-            <div class="form-group">
-                <button @click="refreshForm" class="btn btn-primary">
+            <!-- <div class="form-group">
+                <button @click="refreshForm" class="btn">
                     Atualizar Informações
                 </button>
-            </div>
+            </div> -->
             <form @submit.prevent="submitSocialAspect">
                 <div class="form-group">
                     <label>Com quem você mora? (Marque todas as que se aplicam)</label>
@@ -57,8 +57,8 @@
                         <option value="MUITO_RUIM">Muito ruim</option>
                     </select>
                 </div>
-                <div class="btn">
-                    <button type="submit" class="btn-primary btn-sub">Enviar</button>
+                <div>
+                    <button type="submit" class="btn">Atualizar</button>
                 </div>
             </form>
         </div>
@@ -244,20 +244,22 @@ export default {
 
 <style scoped>
 .social-aspects {
-    background-color: var(--roxo);
-    color: #fff;
+    border: 1px solid var(--roxo);
     border-radius: 5px;
     width: 40%;
     padding: 2em;
     margin: 1em;
 }
 
-.btn-sub {
-    background-color: var(--lilas);
-    color: #fff;
+.btn {
+    background-color: black;
     border: none;
-    width: 200px;
-    padding: 0.5em;
-    margin-top: 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 1s;
+    margin-top: 1em;
+    width: 40%;
 }
 </style>

@@ -2,11 +2,11 @@
     <div id="ficha" v-if="userRole === 'STUDENT'">
         <div class="study-habits">
             <h3>HÁBITOS DE ESTUDO</h3>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <button @click="refreshForm" class="btn btn-primary">
                     Atualizar Informações
                 </button>
-            </div>
+            </div> -->
 
             <form @submit.prevent="submitStudyHabit">
                 <div class="form-group">
@@ -39,8 +39,8 @@
                         placeholder="Conte aqui!" class="form-control mt-2">
                 </div>
 
-                <div class="btn">
-                    <button type="submit" class="btn-primary btn-sub">Enviar</button>
+                <div>
+                    <button type="submit" class="btn">Atualizar</button>
                 </div>
             </form>
         </div>
@@ -199,8 +199,7 @@ export default {
 
 <style scoped>
 .study-habits {
-    background-color: var(--lilashover);
-    color: #fff;
+    border: 1px solid var(--lilashover);
     border-radius: 5px;
     width: 40%;
     padding: 2em;
@@ -211,12 +210,15 @@ input[type="radio"] {
     margin: 10px;
 }
 
-.btn-sub {
-    background-color: var(--roxo);
-    color: #fff;
+.btn {
+    background-color: black;
     border: none;
-    width: 200px;
-    padding: 0.5em;
-    margin-top: 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 1s;
+    margin-top: 1em;
+    width: 40%;
 }
 </style>

@@ -50,6 +50,8 @@ export default {
     const user = JSON.parse(localStorage.getItem("user"));
     const userType = localStorage.getItem("userType");
 
+    console.log(user)
+    
     this.userRole = userType || "";
 
     if (!user || this.userRole !== "EDUCATOR") {

@@ -3,11 +3,11 @@
         <div class="health-wellbeing">
             <h3>SAÚDE E BEM-ESTAR</h3>
             <form @submit.prevent="submitHealthWellbeing">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <button @click="refreshForm" class="btn btn-primary">
                         Atualizar Informações
                     </button>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>Você tem condições de saúde ou necessidades especiais?</label>
                     <div>
@@ -64,8 +64,8 @@
                     </select>
                 </div>
 
-                <div class="btn">
-                    <button type="submit" class="btn-primary btn-sub">Enviar</button>
+                <div>
+                    <button type="submit" class="btn">Atualizar</button>
                 </div>
             </form>
         </div>
@@ -285,8 +285,7 @@ export default {
 
 <style scoped>
 .health-wellbeing {
-    background-color: var(--lilas);
-    color: #fff;
+    border: 1px solid var(--lilas);
     border-radius: 5px;
     width: 40%;
     padding: 2em;
@@ -297,12 +296,15 @@ input[type="radio"] {
     margin: 10px;
 }
 
-.btn-sub {
-    background-color: var(--roxo);
-    color: #fff;
+.btn {
+    background-color: black;
     border: none;
-    width: 200px;
-    padding: 0.5em;
-    margin-top: 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 1s;
+    margin-top: 1em;
+    width: 40%;
 }
 </style>

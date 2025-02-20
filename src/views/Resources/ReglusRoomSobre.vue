@@ -1,35 +1,5 @@
-<template>
+<template id="teste">
   <NavReglus />
-  <!-- <main>
-    <section class="about-us">
-      <h2>Sobre Nós</h2>
-      <div class="illustration">
-        <img src="@/assets/content/paulofreire.jpeg" alt="Foto de paulo freire">
-      </div>
-      <div class="quote">
-        <p>
-          "Ensinar não é transferir conhecimento, mas criar as
-          possibilidades para a sua própria produção ou a sua
-          construção."
-        </p>
-        <p>
-          <strong>Paulo Freire</strong>
-          <br>
-          Pedagogia da autonomia. São Paulo: Paz e Terra, 1996.
-        </p>
-      </div>
-      <p>
-        Reglus Academy representa não apenas um esforço para
-        superar as barreiras enfrentadas por pessoas
-        neurodivergentes e em situação de vulnerabilidade
-        socioeconômica no acesso à educação e construção do
-        conhecimento, mas também uma afirmação do
-        compromisso com os ideais de Paulo Freire e sua visão de
-        uma educação libertadora e inclusiva.
-      </p>
-    </section>
-  </main> -->
-
   <main>
     <div class="left">
       <h3>Sobre Nós</h3>
@@ -46,7 +16,7 @@
       </p>
       <p class="personDesc">Paulo Freire <br>
         Pedagogia da autonomia. São Paulo: Paz e Terra, 1996.</p>
-      <img :src="reglus" alt="paulo freire" width="400">
+      <img :src="reglus" alt="foto de paulo freire" width="400">
     </div>
   </main>
   <FooterReglus />
@@ -74,6 +44,7 @@ export default {
 
 <style scoped>
 main {
+  position: relative;
   display: flex;
 }
 
@@ -83,7 +54,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1em;
   width: 50%;
 }
 
@@ -94,11 +64,12 @@ main {
 
 h3 {
   font-weight: bold;
+  font-size: 1.5em;
 }
 
 .quote {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.2em;
   width: 60%;
   font-weight: regular;
 }
@@ -106,5 +77,10 @@ h3 {
 .personDesc {
   text-align: center;
   width: 70%;
+}
+
+.right img {
+  border-radius: 10px;
+  box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.5);
 }
 </style>

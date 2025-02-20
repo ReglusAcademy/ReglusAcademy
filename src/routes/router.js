@@ -14,6 +14,9 @@ const routes = [
   { path: '/fichadoaluno', component: () => import('@/views/Student/FormsAluno.vue')},
   { path: '/sala/:roomId', name: 'sala', component: () => import('@/views/Student/RoomDetails.vue')},
   { path: '/agenda', component: () => import('@/views/Resources/ReglusAgenda.vue')},
+  { path: '/versalas', component: () => import('@/views/Student/RoomView.vue')},
+  { path: '/salasdisponiveis', component: () => import('@/views/Student/RoomAvailable.vue')},
+  { path: '/salasinscritas', component: () => import('@/views/Student/RoomRegistred.vue')},
   // educador
   { path: '/inicioeducador', component: () => import('@/views/Educator/HomeProfessor.vue')},
   { path: '/salaAdmin/:roomId', name: 'salaAdmin', component: () => import('@/views/Educator/RoomDetails.vue')},

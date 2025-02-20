@@ -2,11 +2,11 @@
     <div id="ficha" v-if="userRole === 'STUDENT'">
         <div class="self-assessment">
             <h3>AUTO AVALIAÇÃO</h3>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <button @click="refreshForm" class="btn btn-primary">
                     Atualizar Informações
                 </button>
-            </div>
+            </div> -->
 
             <form @submit.prevent="submitSelfAssessment">
                 <div class="form-group">
@@ -35,8 +35,8 @@
                         placeholder="Detalhe aqui!" class="form-control mt-2">
                 </div>
 
-                <div class="btn">
-                    <button type="submit" class="btn-primary btn-sub">Enviar</button>
+                <div>
+                    <button type="submit" class="btn">Atualizar</button>
                 </div>
             </form>
         </div>
@@ -184,20 +184,22 @@ export default {
 
 <style scoped>
 .self-assessment {
-    background-color: var(--verde);
-    color: #fff;
+    border: 1px solid var(--verde);
     border-radius: 5px;
     width: 40%;
     padding: 2em;
     margin: 1em;
 }
 
-.btn-sub {
-    background-color: var(--lilas);
-    color: #fff;
+.btn {
+    background-color: black;
     border: none;
-    width: 200px;
-    padding: 0.5em;
-    margin-top: 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 1s;
+    margin-top: 1em;
+    width: 40%;
 }
 </style>

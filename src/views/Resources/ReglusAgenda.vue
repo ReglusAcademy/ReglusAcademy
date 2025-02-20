@@ -1,10 +1,10 @@
 <template>
   <NavReglusV2></NavReglusV2>
+  <!--
   <div class="calendar-container">
     <div>
       <NavReglus />
     </div>
-    <!-- Seleção de Mês -->
     <div class="month-selector">
       <button class="btn" @click="prevMonth">Anterior</button>
       <span>{{ months[currentMonth] }} {{ currentYear }}</span>
@@ -12,7 +12,6 @@
     </div>
 
     <div class="main-content">
-      <!-- Exibição do Calendário -->
       <div class="calendar-wrapper">
         <table class="calendar">
           <thead>
@@ -37,7 +36,6 @@
 
       <div class="divider"></div>
 
-      <!-- To-Do List para o Dia Selecionado -->
       <div v-if="selectedDate" class="todo-list">
         <h3>Tarefas para {{ formatDate(selectedDate) }}</h3>
         <ul>
@@ -51,14 +49,21 @@
       </div>
     </div>
   </div>
+-->
+
+<CalendarAcademy />
+
 </template>
 
 <script>
 import NavReglusV2 from "@/components/nav/NavIn.vue";
+import CalendarAcademy from "@/components/card/resources/CalendarAcademy.vue";
+
 export default {
   name: "AgendaReglus",
   components: {
     NavReglusV2,
+    CalendarAcademy
   },
   data() {
     return {

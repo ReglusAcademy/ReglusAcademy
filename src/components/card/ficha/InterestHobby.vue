@@ -2,29 +2,29 @@
     <div id="ficha" v-if="userRole === 'STUDENT'">
         <div class="interest-hobby">
             <h3>PASSA TEMPOS</h3>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <button @click="refreshForm" class="btn btn-primary">
                     Atualizar Informações
                 </button>
-            </div>
+            </div> -->
 
             <form @submit.prevent="submitInterestHobby">
                 <div class="form-group">
                     <label for="activitiesOutsideSchool">Atividades Fora da Escola:</label>
                     <textarea id="activitiesOutsideSchool" name="activitiesOutsideSchool" rows="4" cols="50"
-                        placeholder="Descreva as atividades fora da escola" v-model="form.activitiesOutsideSchool"
+                        placeholder="Conte aqui!" v-model="form.activitiesOutsideSchool"
                         class="form-control mt-2"></textarea><br><br>
                 </div>
 
                 <div class="form-group">
                     <label for="dreamsGoals">Sonhos e Objetivos:</label><br>
                     <textarea id="dreamsGoals" name="dreamsGoals" rows="4" cols="50"
-                        placeholder="Descreva seus sonhos e objetivos" v-model="form.dreamsGoals"
+                        placeholder="Descreva aqui!" v-model="form.dreamsGoals"
                         class="form-control mt-2"></textarea><br><br>
                 </div>
 
-                <div class="btn">
-                    <button type="submit" class="btn-primary btn-sub">Enviar</button>
+                <div>
+                    <button type="submit" class="btn">Atualizar</button>
                 </div>
             </form>
         </div>
@@ -163,20 +163,22 @@ export default {
 
 <style scoped>
 .interest-hobby {
-    background-color: var(--azul);
-    color: #fff;
+    border: 1px solid var(--azul);
     border-radius: 5px;
     width: 40%;
     padding: 2em;
     margin: 1em;
 }
 
-.btn-sub {
-    background-color: var(--lilas);
-    color: #fff;
+.btn {
+    background-color: black;
     border: none;
-    width: 200px;
-    padding: 0.5em;
-    margin-top: 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 1s;
+    margin-top: 1em;
+    width: 40%;
 }
 </style>

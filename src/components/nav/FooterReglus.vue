@@ -12,10 +12,10 @@ export default {
 
 <style scoped>
 #raiz {
-    margin-top: 1em;
     width: 100%; 
     display: flex;
     justify-content: center;
+    height: 100px;
 }
 
 .Title {
