@@ -174,12 +174,15 @@ main {
     padding: 0em 2em;
     gap: 1em;
     height: 100vh;
+    grid-template-columns: 300px 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
     margin-bottom: 1em;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .header {
@@ -202,30 +205,42 @@ ul {
 .chat {
     width: 300px;
     height: 100%;
-    border: 1px solid;
+    border: 1px solid rgb(180, 178, 178);
+    box-shadow: 0 0 10px #8c52ff;
+    border-radius: 8px;
     grid-column: 1 / 2;
     grid-row: 1 / 3;
     box-sizing: border-box;
+    justify-content: flex-start;
+    padding: 1em;
+    font-size: 1.1em;
+    border-radius: 8px;
 }
 
 .available {
-    width: 100%;
-    height: 50vh;
-    border: 1px solid black;
+    width: 205%;
+    height: 100%;
+    border: 1px solid rgb(180, 178, 178);
+    box-shadow: 0 0 10px #8c52ff;
+    border-radius: 8px;
     gap: 1em;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     padding: 1em;
     font-size: 1.1em;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
 }
 
 .registered {
-    width: 100%;
-    height: 50vh;
-    border: 1px solid black;
+    width: 205%;
+    height: 100%;
+    border: 1px solid rgb(180, 178, 178);
+    box-shadow: 0 0 10px #8c52ff;
+    border-radius: 8px;
     gap: 1em;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
@@ -233,9 +248,10 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     padding: 1em;
     font-size: 1.1em;
+    border-radius: 8px;
 }
 
 .registered li {
@@ -272,8 +288,19 @@ ul {
 }
 
 .btnLink {
-    color: var(--lilashover);
-    text-decoration: underline;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btnLink:hover {
+    background-color: #8c52ff;
 }
 
 .btn {

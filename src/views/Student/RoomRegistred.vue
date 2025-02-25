@@ -1,9 +1,8 @@
 <template>
     <NavReglus />
-    <h1>REGLUS ROOM</h1>
+    <h1>SALAS INSCRITAS</h1>
     <main>
         <div class="registered">
-            <h2>Inscrito</h2>
             <ul>
                 <li v-for="room in enrolledRooms" :key="room.roomId">
                     <strong>{{ room.name }}</strong>
@@ -89,14 +88,10 @@ main {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
     margin-bottom: 1em;
-}
-
-main h2 {
-    font-size: 1.5em;
-    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 ul {
@@ -104,10 +99,12 @@ ul {
 }
 
 .registered {
-    width: 100%;
-    height: 50vh;
-    border: 1px solid black;
-    gap: 1em;
+    width: calc(100% - 60px);
+    height: calc(100vh - 45px);
+    margin: 30px;
+    border: 1px solid rgb(180, 178, 178);
+    box-shadow: 0 0 10px #8c52ff;
+    border-radius: 8px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

@@ -8,29 +8,30 @@
     <div class="boxes">
       <div class="box blue">
         <div class="content">
-          <h2>Seja acompanhado por um tutor</h2>
+          <h2>Fale com um tutor</h2>
           <p class="small-text">Gratuito</p>
-          <router-link to="/agenda" class="button">Agende</router-link>
         </div>
         <img src="@/assets/content/professorealuno.png" alt="Tutor" class="image" />
-      </div>
+      </div>  
+          <router-link to="/agenda" class="button">Comece</router-link>
 
       <div class="box purple">
         <div class="content">
           <h2>Organize seus estudos</h2>
           <p class="small-text">Gratuito</p>
-          <router-link to="/agenda" class="button">Organize</router-link>
         </div>
         <img src="@/assets/content/organizeosestudos.png" alt="Organização" class="image" />
-      </div>
+      </div>  
+          <router-link to="/agenda" class="button">Organize</router-link>
 
-      <div class="box green boxAll">
+      <div class="box green">
         <div class="content">
           <h2>Salas Disponíveis</h2>
-          <router-link to="/versalas" class="button">Visualize</router-link>
+          <p class="small-text">Gratuito</p> 
         </div>
-        <img src="@/assets/content/professorealuno.png" alt="Tutor" class="image" />
-      </div>
+        <img src="@/assets/content/saladeaula.png" alt="Sala" class="image" />
+      </div>   
+          <router-link to="/versalas" class="button">Visualize</router-link>  
     </div>
   </div>
   <FooterReglus />
@@ -88,10 +89,6 @@ export default {
   padding: 1em;
   border-radius: 8px;
   color: white;
-}
-
-.boxAll {
-  grid-column: span 2;
 }
 
 .blue {
