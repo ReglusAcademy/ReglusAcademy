@@ -69,18 +69,31 @@ export default {
         async loadActivities() {
             try {
                 const user = JSON.parse(localStorage.getItem('user'));
-                const studentEmail = user ? user.email : null;
+                const userEmail = user?.email;
+                const userType = user?.userType; // Pegando o tipo de usuário
 
-                if (!studentEmail) {
-                    throw new Error('Email do estudante não encontrado');
+                if (!userEmail || !userType) {
+                    throw new Error('Usuário ou tipo de usuário não encontrado');
                 }
 
-                const studentResponse = await fetch(`http://localhost:8080/api/students/email/${encodeURIComponent(studentEmail)}`);
-                const studentData = await studentResponse.json();
-                const studentId = studentData.studentId;
+                let rooms = [];
 
-                const roomsResponse = await fetch(`http://localhost:8080/api/rooms/student/${studentId}`);
-                const rooms = await roomsResponse.json();
+                if (userType === 'STUDENT') {
+                    const studentResponse = await fetch(`http://localhost:8080/api/students/email/${encodeURIComponent(userEmail)}`);
+                    const studentData = await studentResponse.json();
+                    const studentId = studentData.studentId;
+
+                    const roomsResponse = await fetch(`http://localhost:8080/api/rooms/student/${studentId}`);
+                    rooms = await roomsResponse.json();
+                }
+                else if (userType === 'EDUCATOR') {
+                    const educatorResponse = await fetch(`http://localhost:8080/api/educators/email/${encodeURIComponent(userEmail)}`);
+                    const educatorData = await educatorResponse.json();
+                    const educatorId = educatorData.educatorId;
+
+                    const roomsResponse = await fetch(`http://localhost:8080/api/rooms/educator/${educatorId}`);
+                    rooms = await roomsResponse.json();
+                }
 
                 let allEvents = [];
 
@@ -114,6 +127,7 @@ export default {
                 console.error("Erro ao buscar atividades:", error);
             }
         },
+
         handleEventClick(info) {
             this.selectedActivity = info.event.extendedProps;
             this.showModal = true;
@@ -122,7 +136,7 @@ export default {
             this.showModal = false;
             this.selectedActivity = {};
         },
-}
+    }
 };
 </script>
 
