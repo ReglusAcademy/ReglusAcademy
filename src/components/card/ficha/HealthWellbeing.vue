@@ -285,8 +285,10 @@ export default {
 
 <style scoped>
 .health-wellbeing {
-    border: 1px solid var(--lilas);
-    border-radius: 5px;
+    border: 1px solid rgb(180, 178, 178);
+    box-shadow: 0 0 10px #8c52ff;
+    border-radius: 8px;
+    box-sizing: border-box;
     width: 40%;
     padding: 2em;
     margin: 1em;
@@ -306,5 +308,6 @@ input[type="radio"] {
     transition: 1s;
     margin-top: 1em;
     width: 40%;
+    margin-left: 30%;
 }
 </style>

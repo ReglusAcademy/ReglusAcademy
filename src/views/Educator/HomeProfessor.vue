@@ -19,7 +19,7 @@
         <img src="@/assets/content/organizeosestudos.png" alt="Organização" class="image" />
       </div>
 
-      <div class="box green boxAll">
+      <div class="box green">
         <div class="content">
           <h2>Gerencie suas salas</h2>
           <router-link to="/salas" class="button">Visualize</router-link>
@@ -74,8 +74,8 @@ export default {
 
 .boxes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 1em;
   margin-top: 2em;
 }
@@ -86,20 +86,17 @@ export default {
   color: white;
 }
 
-.boxAll {
-  grid-column: span 2;
-}
 
 .blue {
   background-color: #8c52ff;
 }
 
-.green {
-  background-color: var(--verde);
-}
-
 .purple {
   background-color: #003366;
+}
+
+.green {
+  background-color: var(--verde);
 }
 
 .content {
@@ -108,7 +105,7 @@ export default {
 }
 
 .small-text {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .button {
@@ -123,7 +120,9 @@ export default {
 }
 
 .image {
-  width: 100px;
-  height: auto;
+  margin-left: 10em;
+  width: 160px;
+  height: 130px;
+  object-fit: contain;
 }
 </style>

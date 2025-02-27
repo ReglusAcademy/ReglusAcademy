@@ -10,28 +10,28 @@
         <div class="content">
           <h2>Fale com um tutor</h2>
           <p class="small-text">Gratuito</p>
+          <router-link to="/agenda" class="button">Chat</router-link>
         </div>
-        <img src="@/assets/content/professorealuno.png" alt="Tutor" class="image" />
-      </div>  
-          <router-link to="/agenda" class="button">Comece</router-link>
+        <img src="@/assets/content/professorealuno.png" alt="Tutor" class="image"/>
+      </div>
 
       <div class="box purple">
         <div class="content">
           <h2>Organize seus estudos</h2>
           <p class="small-text">Gratuito</p>
+          <router-link to="/agenda" class="button">Organize</router-link>
         </div>
         <img src="@/assets/content/organizeosestudos.png" alt="Organização" class="image" />
-      </div>  
-          <router-link to="/agenda" class="button">Organize</router-link>
+      </div>
 
       <div class="box green">
         <div class="content">
           <h2>Salas Disponíveis</h2>
-          <p class="small-text">Gratuito</p> 
+          <p class="small-text">Gratuito</p>
+          <router-link to="/versalas" class="button">Visualize</router-link>
         </div>
-        <img src="@/assets/content/saladeaula.png" alt="Sala" class="image" />
-      </div>   
-          <router-link to="/versalas" class="button">Visualize</router-link>  
+        <img src="@/assets/content/teachers.png" alt="Tutor" class="image" /> 
+        </div>   
     </div>
   </div>
   <FooterReglus />
@@ -79,8 +79,8 @@ export default {
 
 .boxes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 1em;
   margin-top: 2em;
 }
@@ -90,6 +90,7 @@ export default {
   border-radius: 8px;
   color: white;
 }
+
 
 .blue {
   background-color: #8c52ff;
@@ -121,5 +122,12 @@ export default {
   border-radius: 4px;
   text-decoration: none;
   text-align: center;
+}
+
+.image {
+  margin-left: 10em;
+  width: 160px;
+  height: 130px;
+  object-fit: contain;
 }
 </style>
