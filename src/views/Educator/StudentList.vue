@@ -19,7 +19,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/agenda">
+                <router-link to="/agenda/estudante">
                   <i class="far fa-calendar-alt"></i> Agenda
                 </router-link>
               </li>

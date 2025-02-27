@@ -52,18 +52,20 @@
 -->
 
 <CalendarAcademy />
-
+<FooterReglus />
 </template>
 
 <script>
 import NavReglusV2 from "@/components/nav/NavIn.vue";
+import FooterReglus from "@/components/nav/FooterReglus.vue";
 import CalendarAcademy from "@/components/card/resources/CalendarAcademy.vue";
 
 export default {
   name: "AgendaReglus",
   components: {
     NavReglusV2,
-    CalendarAcademy
+    CalendarAcademy,
+    FooterReglus
   },
   data() {
     return {

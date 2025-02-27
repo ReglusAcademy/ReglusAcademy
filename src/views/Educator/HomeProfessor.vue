@@ -6,7 +6,7 @@
       <div class="box blue">
         <div class="content">
           <h2>Agende reuniões</h2>
-          <router-link to="/agenda" class="button">Agende</router-link>
+          <router-link to="/agenda/educador" class="button">Agende</router-link>
         </div>
         <img src="@/assets/content/professorealuno.png" alt="Tutor" class="image" />
       </div>

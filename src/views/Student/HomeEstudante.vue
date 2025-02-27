@@ -10,7 +10,7 @@
         <div class="content">
           <h2>Fale com um tutor</h2>
           <p class="small-text">Gratuito</p>
-          <router-link to="/agenda" class="button">Chat</router-link>
+          <router-link to="/versalas" class="button">Chat</router-link>
         </div>
         <img src="@/assets/content/professorealuno.png" alt="Tutor" class="image"/>
       </div>
@@ -19,7 +19,7 @@
         <div class="content">
           <h2>Organize seus estudos</h2>
           <p class="small-text">Gratuito</p>
-          <router-link to="/agenda" class="button">Organize</router-link>
+          <router-link to="/agenda/estudante" class="button">Organize</router-link>
         </div>
         <img src="@/assets/content/organizeosestudos.png" alt="Organização" class="image" />
       </div>
