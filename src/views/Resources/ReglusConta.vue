@@ -60,6 +60,7 @@ import HealthWellbeing from "@/components/card/ficha/HealthWellbeing.vue";
 import StudyHabits from "@/components/card/ficha/StudyHabits.vue";
 import InterestHobby from "@/components/card/ficha/InterestHobby.vue";
 import SelfAssessment from "@/components/card/ficha/SelfAssessment.vue";
+
 export default {
     name: "ReglusConta",
     components: {

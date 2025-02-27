@@ -40,8 +40,8 @@
                 <div class="educatorHeader">
                     <h4>Informações do Educador</h4>
                     <button @click="toggleEducatorInfo" class="toggleButton">
-                        <span v-if="isEducatorInfoVisible">&#x25BE;</span>  <!-- Seta para baixo -->
-                        <span v-else>&#x25B4;</span>  <!-- Seta para cima -->
+                        <span v-if="isEducatorInfoVisible">&#x25BE;</span> <!-- Seta para baixo -->
+                        <span v-else>&#x25B4;</span> <!-- Seta para cima -->
                     </button>
                 </div>
 
@@ -72,14 +72,6 @@
                 <div v-else class="no-activities">
                     Nenhuma atividade cadastrada para esta sala.
                 </div>
-
-                <!-- Formulário de nova atividade -->
-                <div class="newActivityForm">
-                    <h5>Nova Atividade</h5>
-                    <textarea v-model="newActivityText" placeholder="Descreva sua atividade aqui..." rows="4" class="textInput"></textarea>
-                    <input type="file" @change="handleFileUpload" class="fileInput" />
-                    <button @click="submitActivity" class="btn submitBtn">Enviar Atividade</button>
-                </div>
             </div>
 
         </div>
@@ -102,8 +94,6 @@ export default {
         return {
             room: null,
             activities: [],
-            newActivityText: '',
-            newActivityFile: null,
             loading: true,
             errorMessage: '',
             userRole: "",
@@ -152,7 +142,7 @@ export default {
         },
 
         toggleRoomVisibility() {
-        this.isRoomVisible = !this.isRoomVisible;
+            this.isRoomVisible = !this.isRoomVisible;
         },
 
         handleFileUpload(event) {

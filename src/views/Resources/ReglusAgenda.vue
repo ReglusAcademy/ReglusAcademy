@@ -1,6 +1,6 @@
 <template>
   <NavReglusV2></NavReglusV2>
-  <!--
+<!--   
   <div class="calendar-container">
     <div>
       <NavReglus />
@@ -48,7 +48,7 @@
         <button class="btn" @click="addTask">Adicionar Tarefa</button>
       </div>
     </div>
-  </div>
+  </div> 
 -->
 
 <CalendarAcademy />
@@ -90,7 +90,6 @@ export default {
         days.push({ date: new Date(this.currentYear, this.currentMonth, i) });
       }
 
-      // Preenche as semanas
       const weeks = [];
       let week = new Array(firstDay).fill(null);
       for (let day of days) {
@@ -101,7 +100,7 @@ export default {
         week.push(day);
       }
       while (week.length < 7) {
-        week.push(null); // Preenche com dias vazios
+        week.push(null); 
       }
       weeks.push(week);
 
@@ -130,7 +129,6 @@ export default {
     },
     selectDate(date) {
       this.selectedDate = date;
-      // Inicializa a lista de tarefas para a data selecionada, se ainda não existir
       if (!this.todos[this.selectedDateString]) {
         this.todos[this.selectedDateString] = [];
       }
@@ -178,13 +176,13 @@ export default {
 }
 
 .calendar-wrapper, .todo-list {
-  flex: 1; /* Ocupa metade da largura */
+  flex: 1;
   padding: 20px;
   box-sizing: border-box;
 }
 
 .calendar-wrapper {
-  border-right: 2px solid #8c52ff; /* Cor e estilo da divisória */
+  border-right: 2px solid #8c52ff; 
 }
 
 .calendar {
@@ -214,22 +212,21 @@ export default {
   margin-bottom: 10px;
 }
 
-/* Estilo para os itens da lista */
 .todo-list ul {
-  list-style-type: none; /* Remove os marcadores da lista */
-  padding: 0; /* Remove o padding padrão */
+  list-style-type: none; 
+  padding: 0; 
 }
 
 .todo-list li {
-  display: flex; /* Usa flexbox para alinhas itens */
-  align-items: center; /* Alinha itens verticalmente no centro */
-  margin-bottom: 10px; /* Espaço entre os itens */
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 10px; 
 }
 
 .todo-list input[type="text"] {
-  flex: 1; /* Faz com que o campo de texto ocupe o máximo de espaço disponível */
-  padding: 5px; /* Espaçamento interno */
-  margin-right: 10px; /* Espaço entre o campo de texto e o botão */
+  flex: 1; 
+  padding: 5px;
+  margin-right: 10px; 
 }
 
 .divider {
@@ -241,26 +238,24 @@ export default {
 .btn {
   background-color: #8c52ff; 
   color: white; 
-  border: none; /* Remove bordas padrão */
-  border-radius: 4px; /* Bordas arredondadas */
-  padding: 10px 20px; /* Espaçamento interno */
-  font-size: 14px; /* Tamanho da fonte */
-  cursor: pointer; /* Muda o cursor para indicar clicabilidade */
-  transition: background-color 0.3s ease; /* Efeito de transição suave */
+  border: none; 
+  border-radius: 4px;
+  padding: 10px 20px; 
+  font-size: 14px;
+  cursor: pointer; 
+  transition: background-color 0.3s ease;
 }
 
-/* Efeito ao passar o mouse sobre o botão */
 .btn:hover {
-  background-color: #8c52ff; /* Cor roxa mais escura para hover */
+  background-color: #8c52ff; 
 }
 
-/* Estilo para os cabeçalhos dos dias da semana */
 .day-header {
-  background-color: #8c52ff; /* Cor roxa clara */
-  color: white; /* Texto branco */
-  padding: 10px; /* Espaçamento interno */
-  text-align: center; /* Alinha o texto ao centro */
-  border: 1px solid #ddd; /* Borda leve ao redor das células */
+  background-color: #8c52ff; 
+  color: white;
+  padding: 10px; 
+  text-align: center;
+  border: 1px solid #ddd;
 }
 
 /* Estilo para as células do calendário */

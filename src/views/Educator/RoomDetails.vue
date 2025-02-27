@@ -65,6 +65,16 @@
                 <div v-else>
                     Nenhuma atividade cadastrada para esta sala.
                 </div>
+
+                <!-- Formulário de nova atividade -->
+                <div class="newActivityForm">
+                    <form @submit.prevent="createActivity">
+                        <input v-model="newActivity.title" placeholder="Título da atividade" required />
+                        <input v-model="newActivity.maxPoints" type="number" placeholder="Máxima pontuação" required />
+                        <input v-model="dataLimitString" type="datetime-local" required />
+                        <button type="submit">Criar Atividade</button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -87,7 +97,14 @@ export default {
         return {
             room: null,
             students: [],
-            activities: [],
+            activities: [],            
+            newActivityText: '',
+            newActivityFile: null,
+            newActivity: {
+                title: '',
+                maxPoints: '',
+                dataLimit: ''
+            },
             loading: true,
             errorMessage: '',
             userRole: ""
@@ -136,7 +153,52 @@ export default {
                 this.errorMessage = error.message;
                 this.loading = false;
             }
-        }
+        },
+
+        async createActivity() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const educatorEmail = user ? user.email : null;
+
+            if (!educatorEmail) {
+                throw new Error('Email do educador não encontrado');
+            }
+
+            const educatorResponse = await fetch(`http://localhost:8080/api/users/email/${encodeURIComponent(educatorEmail)}`);
+            const educatorData = await educatorResponse.json();
+            const educatorId = educatorData.userId;
+
+            const roomId = parseInt(this.$route.params.roomId, 10);
+
+            const dataLimitString = "2025-02-27T15:48";
+            const dataLimit = new Date(dataLimitString).toISOString();
+
+            const activityData = {
+                roomId,
+                educatorId,
+                title: this.newActivity.title,
+                maxPoints: this.newActivity.maxPoints,
+                dataLimit: dataLimit
+            };
+
+            console.log(activityData)
+
+            const createResponse = await fetch('http://localhost:8080/api/activities', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(activityData)
+            });
+
+            if (createResponse.ok) {
+                this.newActivity.title = '';
+                this.newActivity.maxPoints = '';
+                this.newActivity.dataLimit = '';
+                window.location.reload();
+            } else {
+                console.error('Erro ao criar atividade');
+            }
+        },
     }
 };
 </script>
