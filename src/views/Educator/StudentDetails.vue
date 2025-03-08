@@ -5,6 +5,9 @@
         <div id="ficha">
             <div class="descPerson">
                 <h4>Informações Pessoais</h4>
+                <div class="student-image">
+                    <img :src="getStudentImage(student)" alt="Foto do Estudante" />
+                </div>
                 <p><strong>Nome:</strong> {{ student.user.name }}</p>
                 <p><strong>Email:</strong> {{ student.user.email }}</p>
                 <p><strong>Data de Nascimento:</strong> {{ student.user.dateBirth }}</p>
@@ -106,11 +109,25 @@ export default {
         this.fetchStudentDetails();
     },
     methods: {
+        getStudentImage(student) {
+            if (student.user.profileImage) {
+                return "data:image/png;base64," + student.user.profileImage;
+            } else {
+                if (student.user.gender === "MALE") {
+                    return require("@/assets/content/avatar/11.png");
+                } else if (student.user.gender === "FEMALE") {
+                    return require("@/assets/content/avatar/10.png");
+                } else {
+                    return require("@/assets/content/avatar/12.png");
+                }
+            }
+        },
+
         async fetchStudentDetails() {
             const studentId = this.$route.params.studentId;
 
             try {
-                const response = await fetch(`http://localhost:8080/api/students/id/${studentId}`);
+                const response = await fetch(`http://localhost:8080/api/students/${studentId}`);
                 if (!response.ok) {
                     throw new Error("Erro ao carregar os detalhes do estudante.");
                 }
@@ -126,6 +143,32 @@ export default {
 </script>
 
 <style scoped>
+.student-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.student-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.default-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
 #raizFicha {
     display: flex;
     flex-direction: column;
@@ -160,6 +203,7 @@ h3 {
 
 .descPerson {
     border: 2px solid var(--roxo);
+    min-width: 470px;
     grid-column: 1 / 2;
     grid-row: 1 / span 2;
 }

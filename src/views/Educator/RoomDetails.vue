@@ -31,15 +31,18 @@
             </div>
 
             <div class="descStudents">
-                <h4>Alunos Cadastrados</h4>
+                <h4>Estudantes Cadastrados</h4>
                 <ul v-if="students.length > 0">
                     <li v-for="student in students" :key="student.studentId">
+                        <div class="student-image">
+                            <img :src="getStudentImage(student)" alt="Foto do Estudante" />
+                        </div>
                         <strong>{{ student.user.name }}</strong><br />
                         <span>{{ student.user.email }}</span><br />
                         <span>Estado: {{ student.state }}</span><br />
                         <span>Cidade: {{ student.city }}</span><br />
                         <router-link :to="{ name: 'estudante', params: { studentId: student.studentId } }">
-                            <button>Conferir Ficha de Acompanhamento</button>
+                            <button>Conferir Ficha</button>
                         </router-link>
                     </li>
                 </ul>
@@ -97,7 +100,7 @@ export default {
         return {
             room: null,
             students: [],
-            activities: [],            
+            activities: [],
             newActivityText: '',
             newActivityFile: null,
             newActivity: {
@@ -124,6 +127,20 @@ export default {
         await this.fetchRoomDetails();
     },
     methods: {
+        getStudentImage(student) {
+            if (student.user.profileImage) {
+                return "data:image/png;base64," + student.user.profileImage;
+            } else {
+                if (student.user.gender === "MALE") {
+                    return require("@/assets/content/avatar/11.png");
+                } else if (student.user.gender === "FEMALE") {
+                    return require("@/assets/content/avatar/10.png");
+                } else {
+                    return require("@/assets/content/avatar/12.png");
+                }
+            }
+        },
+
         async fetchRoomDetails() {
             const roomId = this.$route.params.roomId;
 
@@ -138,7 +155,7 @@ export default {
 
                 const studentsResponse = await fetch(`http://localhost:8080/api/rooms/${roomId}/students`);
                 if (!studentsResponse.ok) {
-                    throw new Error("Erro ao carregar os alunos.");
+                    throw new Error("Erro ao carregar os estudantes.");
                 }
                 this.students = await studentsResponse.json();
 
@@ -204,6 +221,32 @@ export default {
 </script>
 
 <style scoped>
+.student-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.student-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.default-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
 #room {
     display: flex;
     flex-direction: column;

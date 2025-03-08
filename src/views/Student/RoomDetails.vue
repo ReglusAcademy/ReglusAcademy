@@ -40,12 +40,15 @@
                 <div class="educatorHeader">
                     <h4>Informações do Educador</h4>
                     <button @click="toggleEducatorInfo" class="toggleButton">
-                        <span v-if="isEducatorInfoVisible">&#x25BE;</span> <!-- Seta para baixo -->
-                        <span v-else>&#x25B4;</span> <!-- Seta para cima -->
+                        <span v-if="isEducatorInfoVisible">&#x25BE;</span>
+                        <span v-else>&#x25B4;</span>
                     </button>
                 </div>
 
                 <div v-if="isEducatorInfoVisible">
+                    <div class="educator-image">
+                        <img :src="getEducatorImage(room.educator)" alt="Foto do Educador" />
+                    </div>
                     <p><strong>Nome:</strong> {{ room.educator.user.name }}</p>
                     <p><strong>Email:</strong> {{ room.educator.user.email }}</p>
                     <p><strong>Experiência:</strong> {{ room.educator.experienceYears }} anos</p>
@@ -116,6 +119,20 @@ export default {
         await this.fetchRoomDetails();
     },
     methods: {
+        getEducatorImage(educator) {
+            if (educator.user.profileImage) {
+                return "data:image/png;base64," + educator.user.profileImage;
+            } else {
+                if (educator.user.gender === "MALE") {
+                    return require("@/assets/content/avatar/11.png");
+                } else if (educator.user.gender === "FEMALE") {
+                    return require("@/assets/content/avatar/10.png");
+                } else {
+                    return require("@/assets/content/avatar/12.png");
+                }
+            }
+        },
+
         async fetchRoomDetails() {
             const roomId = this.$route.params.roomId;
 
@@ -172,6 +189,31 @@ export default {
 </script>
 
 <style scoped>
+.educator-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.educator-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.educator-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .roomTitle {
     background-color: #8c52ff;
     color: white;

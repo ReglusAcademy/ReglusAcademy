@@ -40,7 +40,7 @@
 
           <div class="main-content">
             <div class="students-table">
-              <div v-if="loading" class="loading-message">Carregando alunos...</div>
+              <div v-if="loading" class="loading-message">Carregando estudantes...</div>
               <div v-else-if="errorMessage" class="error-message">{{ errorMessage }}</div>
               <div v-else-if="studentsByRoom.length === 0" class="no-students-message">
                 Nenhuma sala encontrada.
@@ -53,22 +53,28 @@
                   <table>
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Nome do Aluno</th>
                         <th>E-mail</th>
                         <th>Estado</th>
                         <th>Cidade</th>
-                        <th>Ações</th>
+                        <th>Ficha</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="student in students" :key="student.studentId">
+                        <td>
+                          <div class="student-image">
+                            <img :src="getStudentImage(student)" alt="Foto do Estudante" />
+                          </div>
+                        </td>
                         <td>{{ student.user.name }}</td>
                         <td>{{ student.user.email }}</td>
                         <td>{{ student.state }}</td>
                         <td>{{ student.city }}</td>
                         <td>
                           <button @click="goToStudentProfile(student.studentId)" class="profile-button">
-                            Ver Ficha
+                            Conferir
                           </button>
                         </td>
                       </tr>
@@ -101,9 +107,24 @@ export default {
     };
   },
   methods: {
+    getStudentImage(student) {
+      if (student.user.profileImage) {
+        return "data:image/png;base64," + student.user.profileImage;
+      } else {
+        if (student.user.gender === "MALE") {
+          return require("@/assets/content/avatar/11.png");
+        } else if (student.user.gender === "FEMALE") {
+          return require("@/assets/content/avatar/10.png");
+        } else {
+          return require("@/assets/content/avatar/12.png");
+        }
+      }
+    },
+
     toggleCourses() {
       this.showCourses = !this.showCourses;
     },
+
     async fetchAllStudents() {
       this.loading = true;
       this.studentsByRoom = [];
@@ -149,7 +170,7 @@ export default {
               `http://localhost:8080/api/rooms/${room.roomId}/students`
             );
             if (!studentsResponse.ok) {
-              throw new Error(`Erro ao carregar alunos da sala ${room.name}`);
+              throw new Error(`Erro ao carregar estudantes da sala ${room.name}`);
             }
             const students = await studentsResponse.json();
             return { room, students };
@@ -179,6 +200,32 @@ export default {
 </script>
 
 <style scoped>
+.student-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.student-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.default-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -258,13 +305,13 @@ main {
 }
 
 .sub-items:nth-child(1) {
-margin-top: 1em;
+  margin-top: 1em;
 }
 
-.sub-items  {
+.sub-items {
   opacity: 0.8;
   width: 95% !important;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .main-content {
