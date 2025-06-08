@@ -10,11 +10,11 @@
                 </div>
                 <p><strong>Nome:</strong> {{ student.user.name }}</p>
                 <p><strong>Email:</strong> {{ student.user.email }}</p>
-                <p><strong>Data de Nascimento:</strong> {{ student.user.dateBirth }}</p>
-                <p><strong>Sexo:</strong> {{ student.user.gender }}</p>
+                <p><strong>Data de Nascimento:</strong> {{ formatDate(student.user.dateBirth) }}</p>
+                <p><strong>Sexo:</strong> {{ translatedGender }}</p>
                 <p><strong>Instituição:</strong> {{ student.user.instituteName }}</p>
                 <h4>Observações Finais</h4>
-                <p>{{ student.finalObservations }}</p>
+                <p>{{ translatedFinalObservations }}</p>
 
                 <h4>Localização</h4>
                 <p><strong>Estado:</strong> {{ student.state }}</p>
@@ -23,18 +23,21 @@
 
             <div class="socialAspects">
                 <h4>Aspectos Sociais</h4>
-                <p><strong>Com quem mora:</strong> {{ student.socialAspect.livingWith }}</p>
-                <p><strong>Relação com colegas:</strong> {{ student.socialAspect.relationshipWithClassmates }}</p>
-                <p><strong>Relação com professores:</strong> {{ student.socialAspect.relationshipWithTeachers }}</p>
-                <p><strong>Relação com a família:</strong> {{ student.socialAspect.relationshipWithFamily }}</p>
+                <p><strong>Com quem mora:</strong> {{ capitalizeFirstLetter(student.socialAspect.livingWith) }}</p>
+                <p><strong>Relação com colegas:</strong> {{
+                    translateRelationship(student.socialAspect.relationshipWithClassmates) }}</p>
+                <p><strong>Relação com professores:</strong> {{
+                    translateRelationship(student.socialAspect.relationshipWithTeachers) }}</p>
+                <p><strong>Relação com a família:</strong> {{
+                    translateRelationship(student.socialAspect.relationshipWithFamily) }}</p>
             </div>
 
             <div class="healthWellbeing">
                 <h4>Saúde e Bem-estar</h4>
-                <p><strong>Condição de Saúde:</strong> {{ student.healthWellbeing.healthCondition }}</p>
-                <p><strong>Atividade Física:</strong> {{ student.healthWellbeing.physicalActivity }}</p>
-                <p><strong>Avaliação Dietética:</strong> {{ student.healthWellbeing.dietaryEvaluation }}</p>
-                <p><strong>Horas de Sono:</strong> {{ student.healthWellbeing.sleepHours }}</p>
+                <p><strong>Condição de Saúde:</strong> {{ translatedHealthCondition }}</p>
+                <p><strong>Atividade Física:</strong> {{ translatedPhysicalActivity }}</p>
+                <p><strong>Avaliação Dietética:</strong> {{ translatedDietaryEvaluation }}</p>
+                <p><strong>Horas de Sono:</strong> {{ translatedSleepHours }}</p>
             </div>
 
             <div class="interestHobby">
@@ -46,14 +49,14 @@
             <div class="studyHabits">
                 <h4>Hábitos de Estudo</h4>
                 <p><strong>Métodos de Estudo:</strong> {{ student.studyHabit.studyMethods }}</p>
-                <p><strong>Horas de Estudo por Dia:</strong> {{ student.studyHabit.studyHoursPerDay }}</p>
+                <p><strong>Horas de Estudo por Dia:</strong> {{ translatedStudyHoursPerDay }}</p>
                 <p><strong>Locais de Estudo:</strong> {{ student.studyHabit.studyLocations }}</p>
                 <p><strong>Plano de Estudo:</strong> {{ student.studyHabit.studyPlan }}</p>
             </div>
 
             <div class="selfAssessment">
                 <h4>Avaliação Pessoal</h4>
-                <p><strong>Avaliação de Desempenho:</strong> {{ student.selfAssessment.performanceEvaluation }}</p>
+                <p><strong>Avaliação de Desempenho:</strong> {{ translatedPerformanceEvaluation }}</p>
                 <p><strong>Pontos Fortes:</strong> {{ student.selfAssessment.strengths }}</p>
                 <p><strong>Áreas de Melhoria:</strong> {{ student.selfAssessment.improvementAreas }}</p>
             </div>
@@ -92,8 +95,63 @@ export default {
             student: null,
             loading: true,
             errorMessage: '',
-            userRole: ""
+            userRole: "",
+
+            relationshipMap: {
+                'MUITO_BOA': 'Muito Boa',
+                'BOA': 'Boa',
+                'REGULAR': 'Regular',
+                'RUIM': 'Ruim',
+                'MUITO_RUIM': 'Muito Ruim',
+            },
+            genderMap: {
+                'MALE': 'Masculino',
+                'FEMALE': 'Feminino',
+                'OTHER': 'Outro',
+                'UNDEFINED': 'Não definido',
+            },
+            observationsMap: {
+                'UNDEFINED': 'Não há observações',
+            },
+            healthConditionMap: {
+                'YES': 'Sim',
+                'NO': 'Não',
+                'NONE': 'Nenhuma',
+            },
+            physicalActivityMap: {
+                'NONE': 'Nenhuma',
+                'DAILY': 'Diariamente',
+                'WEEKLY': 'Semanalmente',
+                'OCCASIONAL': 'Ocasionalmente',
+            },
+            dietaryEvaluationMap: {
+                'SAUDAVEL': 'Saudável',
+                'UNHEALTHY': 'Não Saudável',
+                'BALANCED': 'Balanceada',
+                'VEGAN': 'Vegana',
+                'VEGETARIAN': 'Vegetariana',
+            },
+            sleepHoursMap: {
+                'MENOS_DE_SEIS_HORAS': 'Menos de 6 horas',
+                'SEIS_SETE_HORAS': '6 a 7 horas',
+                'OITO_NOVE_HORAS': '8 a 9 horas',
+                'MAIS_DE_DEZ_HORAS': 'Mais de 10 horas',
+            },
+            studyHoursMap: {
+                'MENOS_DE_UMA_HORA': 'Menos de 1 hora',
+                'UMA_DUAS_HORAS': '1 a 2 horas',
+                'DUAS_TRES_HORAS': '2 a 3 horas',
+                'MAIS_DE_QUATRO_HORAS': 'Mais de 4 horas',
+            },
+            performanceMap: {
+                'OTIMA': 'Ótima',
+                'BOA': 'Boa',
+                'REGULAR': 'Regular',
+                'RUIM': 'Ruim',
+                'MUITO_RUIM': 'Muito Ruim',
+            },
         };
+
     },
     mounted() {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -108,7 +166,54 @@ export default {
 
         this.fetchStudentDetails();
     },
+    computed: {
+        translatedGender() {
+            return this.translateValue(this.student.user.gender, this.genderMap);
+        },
+        translatedFinalObservations() {
+            return this.translateValue(this.student.finalObservations, this.observationsMap, 'Não há observações');
+        },
+        translatedHealthCondition() {
+            return this.translateValue(this.student.healthWellbeing.healthCondition, this.healthConditionMap);
+        },
+        translatedPhysicalActivity() {
+            return this.translateValue(this.student.healthWellbeing.physicalActivity, this.physicalActivityMap);
+        },
+        translatedDietaryEvaluation() {
+            return this.translateValue(this.student.healthWellbeing.dietaryEvaluation, this.dietaryEvaluationMap);
+        },
+        translatedSleepHours() {
+            return this.translateValue(this.student.healthWellbeing.sleepHours, this.sleepHoursMap);
+        },
+        translatedStudyHoursPerDay() {
+            return this.translateValue(this.student.studyHabit.studyHoursPerDay, this.studyHoursMap);
+        },
+        translatedPerformanceEvaluation() {
+            return this.translateValue(this.student.selfAssessment.performanceEvaluation, this.performanceMap);
+        },
+    },
     methods: {
+        translateValue(value, translationMap, defaultValue = 'Não informado') {
+            if (translationMap && typeof value !== 'undefined' && value !== null) {
+                return translationMap[value] || value;
+            }
+            return defaultValue;
+        },
+
+        translateRelationship(value) {
+            return this.translateValue(value, this.relationshipMap);
+        },
+
+        capitalizeFirstLetter(string) {
+            if (!string) return '';
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+
+        formatDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            return `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${year}`;
+        },
+
         getStudentImage(student) {
             if (student.user.profileImage) {
                 return "data:image/png;base64," + student.user.profileImage;
@@ -172,11 +277,11 @@ export default {
 #raizFicha {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    /* justify-content: center; */
 }
 
-#ficha {
+/* #ficha {
     display: grid;
     grid-template-columns: 40% auto;
     grid-template-rows: auto;
@@ -184,6 +289,19 @@ export default {
     gap: 1em;
     align-items: start;
     padding: 0em 5em;
+} */
+
+#ficha {
+  display: grid;
+  /* Define larguras fixas para as colunas. Ajuste 400px e 550px conforme sua necessidade. */
+  /* minmax(400px, 1fr) permite que a primeira coluna seja no mínimo 400px, mas se estenda se houver espaço. */
+  /* 550px para a segunda coluna, para um valor fixo. */
+  grid-template-columns: minmax(300px, 1fr) 650px;
+  gap: 1.5em; /* Aumentei um pouco o espaçamento entre as colunas e linhas */
+  align-items: start; /* Alinha os itens ao topo da célula da grade */
+  padding: 1em 2em; /* Padding geral para a ficha */
+  max-width: 1200px; /* Limita a largura máxima da ficha para não esticar demais */
+  width: 100%; /* Garante que ocupe a largura disponível até o max-width */
 }
 
 h3 {

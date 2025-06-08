@@ -31,7 +31,7 @@
             <div class="form-group">
               <label for="disability">Pessoa com Deficiência? *</label>
               <select id="disability" v-model="form.disability" class="form-control" required>
-                <option value="sim">Sim</option>
+                <option value="Yes">Sim</option>
                 <option value="No">Não</option>
               </select>
             </div>

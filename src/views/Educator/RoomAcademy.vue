@@ -58,6 +58,10 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+    color: var(--roxo);
+}
+
 .headerContainer {
     align-items: center;
     justify-content: center;

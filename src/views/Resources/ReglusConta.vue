@@ -181,8 +181,8 @@ export default {
 
         translatedDisability() {
             const disabilityMap = {
-                'YES': 'Sim',
-                'NO': 'Não'
+                'Yes': 'Sim',
+                'No': 'Não'
             };
             return disabilityMap[this.userDisability] || this.userDisability;
         }

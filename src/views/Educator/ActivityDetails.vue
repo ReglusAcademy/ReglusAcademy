@@ -112,14 +112,87 @@ export default {
 };
 </script>
 
-
 <style scoped>
-#activity {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa; 
+  color: #343a40;
+  margin: 0;
+  padding: 0;
 }
 
+h2 {
+  font-size: 2.5em;
+  color: var(--roxo); 
+  margin-bottom: 1.5em;
+  text-align: center;
+  width: 100%; 
+}
 
+h3 {
+  font-size: 1.8em;
+  color: #495057; 
+  margin-top: 2em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #e9ecef;
+  text-align: center;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 0.8em;
+}
+
+strong {
+  color: #212529; 
+}
+
+#activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2em;
+  margin: 2em auto;
+  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e0e0e0;
+}
+
+#activity > div {
+  width: 100%;
+  padding: 0 1em;
+  box-sizing: border-box;
+}
+
+embed {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  margin-top: 1.5em;
+  display: block;
+}
+
+p {
+  text-align: left;
+}
+
+#activity > p {
+  text-align: center;
+  font-style: italic;
+  color: #6c757d;
+  margin-top: 1.5em;
+}
+
+#activity > div[v-else-if]:first-of-type {
+  text-align: center;
+  font-weight: bold;
+  color: #dc3545;
+  margin-top: 2em;
+  font-size: 1.2em;
+}
 </style>

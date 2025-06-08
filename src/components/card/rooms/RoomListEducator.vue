@@ -88,7 +88,124 @@ export default {
 </script>
 
 <style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 2.5em;
+  color: var(--roxo);
+  margin-bottom: 1.5em;
+  text-align: center;
+  padding-top: 1em;
+}
+
 .list {
-    margin: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8em;
+  width: 100%;
+  margin-top: 1em;
+}
+
+li {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 180px; 
+}
+
+li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+li strong {
+  font-size: 1.4em;
+  color: var(--roxo);
+  margin-bottom: 0.5em;
+  display: block;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.5em;
+}
+
+li span {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 0.3em;
+  display: block;
+}
+
+router-link {
+  align-self: flex-end;
+  margin-top: 1em;
+}
+
+button {
+  padding: 10px 18px;
+  font-size: 0.95em;
+  background-color: var(--roxo);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #69076f;
+}
+
+.loading-spinner {
+  text-align: center;
+  font-size: 1.2em;
+  color: var(--roxo);
+  margin-top: 2em;
+}
+
+.alert {
+  padding: 1em;
+  margin: 1.5em auto;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  max-width: 600px;
+}
+
+.alert-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: 1px solid #dc3545;
+}
+
+div[v-if="!loading && rooms.length === 0"] {
+  text-align: center;
+  font-size: 1.2em;
+  color: #6c757d;
+  margin-top: 2em;
+  width: 100%;
 }
 </style>
