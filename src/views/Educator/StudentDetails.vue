@@ -127,7 +127,7 @@ export default {
             const studentId = this.$route.params.studentId;
 
             try {
-                const response = await fetch(`http://localhost:8080/api/students/${studentId}`);
+                const response = await fetch(`http://localhost:8080/api/students/id/${studentId}`);
                 if (!response.ok) {
                     throw new Error("Erro ao carregar os detalhes do estudante.");
                 }

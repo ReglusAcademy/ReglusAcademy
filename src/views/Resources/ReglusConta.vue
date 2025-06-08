@@ -8,10 +8,10 @@
                 <i class="fa fa-pencil edit-icon"></i>
             </div>
             <p>Email: {{ userEmail }}</p>
-            <p>Nível educacional cadastrado: {{ userEducationLevel }}</p>
+            <p>Nível educacional cadastrado: {{ translatedEducationLevel }}</p>
             <p>Data de nascimento: {{ userBirthDate }}</p>
             <p>Instituição de Ensino: {{ instituteName }}</p>
-            <p>Deficiência: {{ userDisability }}</p>
+            <p>Deficiência: {{ translatedDisability }}</p>
         </div>
 
         <div v-if="isModalOpen" class="modal-overlay" @click="closeModal">
@@ -165,6 +165,26 @@ export default {
             }
 
             return this.defaultImageOther;
+        },
+
+        translatedEducationLevel() {
+            const educationMap = {
+                'Elementary': 'Ensino Fundamental',
+                'Undergraduate': 'Superior Completo',
+                'Incomplete': 'Superior Incompleto',
+                'Graduate': 'Pós-graduação',
+                'Master': 'Mestrado',
+                'Doctorate': 'Doutorado',
+            };
+            return educationMap[this.userEducationLevel] || this.userEducationLevel;
+        },
+
+        translatedDisability() {
+            const disabilityMap = {
+                'YES': 'Sim',
+                'NO': 'Não'
+            };
+            return disabilityMap[this.userDisability] || this.userDisability;
         }
     },
     methods: {

@@ -73,11 +73,14 @@
                 <div class="newActivityForm">
                     <form @submit.prevent="createActivity">
                         <input v-model="newActivity.title" placeholder="Título da atividade" required />
-                        <input v-model="newActivity.maxPoints" type="number" placeholder="Máxima pontuação" required />
+                        <input v-model="newActivity.description" placeholder="Descrição da atividade" required />
+                        <input v-model="newActivity.maxPoints" type="number" placeholder="Máxima pontuação" />
                         <input v-model="dataLimitString" type="datetime-local" required />
+                        <input type="file" @change="handleFileChange" />
                         <button type="submit">Criar Atividade</button>
                     </form>
                 </div>
+
             </div>
         </div>
 
@@ -106,8 +109,12 @@ export default {
             newActivity: {
                 title: '',
                 maxPoints: '',
-                dataLimit: ''
+                description: '',
+                roomId: null,
+                educatorId: null,
+                fileData: null,
             },
+            dataLimitString: '',
             loading: true,
             errorMessage: '',
             userRole: ""
@@ -125,6 +132,14 @@ export default {
             return;
         }
         await this.fetchRoomDetails();
+
+        const roomId = this.$route.params.roomId;
+        this.newActivity.roomId = this.$route.params.roomId;
+
+        const response = await fetch(`http://localhost:8080/api/rooms/${roomId}`);
+        const roomData = await response.json();
+
+        this.newActivity.educatorId = roomData.educator.educatorId;
     },
     methods: {
         getStudentImage(student) {
@@ -172,55 +187,105 @@ export default {
             }
         },
 
-        async createActivity() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            const educatorEmail = user ? user.email : null;
-
-            if (!educatorEmail) {
-                throw new Error('Email do educador não encontrado');
-            }
-
-            const educatorResponse = await fetch(`http://localhost:8080/api/users/email/${encodeURIComponent(educatorEmail)}`);
-            const educatorData = await educatorResponse.json();
-            const educatorId = educatorData.userId;
-
-            const roomId = parseInt(this.$route.params.roomId, 10);
-
-            const dataLimitString = "2025-02-27T15:48";
-            const dataLimit = new Date(dataLimitString).toISOString();
-
-            const activityData = {
-                roomId,
-                educatorId,
-                title: this.newActivity.title,
-                maxPoints: this.newActivity.maxPoints,
-                dataLimit: dataLimit
-            };
-
-            console.log(activityData)
-
-            const createResponse = await fetch('http://localhost:8080/api/activities', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(activityData)
-            });
-
-            if (createResponse.ok) {
-                this.newActivity.title = '';
-                this.newActivity.maxPoints = '';
-                this.newActivity.dataLimit = '';
-                window.location.reload();
-            } else {
-                console.error('Erro ao criar atividade');
-            }
+        handleFileChange(event) {
+            this.newActivity.fileData = event.target.files[0];
         },
+
+        async createActivity() {
+            const formData = new FormData();
+            formData.append('title', this.newActivity.title);
+            formData.append('maxPoints', this.newActivity.maxPoints);
+            formData.append('description', this.newActivity.description);
+            formData.append('roomId', this.newActivity.roomId);
+            formData.append('educatorId', this.newActivity.educatorId);
+            formData.append('dataLimit', this.dataLimitString);
+
+            if (this.newActivity.fileData) {
+                formData.append('fileData', this.newActivity.fileData);
+            }
+
+            try {
+                const response = await fetch('http://localhost:8080/api/activities', {
+                    method: 'POST',
+                    body: formData, // Envia os dados do formulário, incluindo o arquivo
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao criar atividade');
+                }
+
+                // const data = await response.json();
+                // console.log('Atividade criada:', data);
+                window.location.reload()
+            } catch (error) {
+                console.error('Erro ao criar atividade:', error.message);
+            }
+        }
     }
 };
 </script>
 
 <style scoped>
+.newActivityForm {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilo dos campos de entrada */
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+/* Estilo do botão */
+button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para inputs de tipo number e file */
+input[type="number"],
+input[type="file"],
+input[type="datetime-local"] {
+    max-width: 100%;
+}
+
+/* Placeholder estilizado */
+input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
 .student-image {
     width: 60px;
     height: 60px;

@@ -172,6 +172,7 @@ export default {
 main {
     display: grid;
     padding: 0em 2em;
+    margin-bottom: 5em;
     gap: 1em;
     height: 100vh;
     grid-template-columns: 300px 1fr 1fr;
@@ -256,7 +257,7 @@ ul {
 
 .registered li {
     background: #fafafa;
-    height: 250px;
+    height: 200px;
     padding: 10px;
     border-radius: 10px; 
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
@@ -267,7 +268,8 @@ ul {
 
 .available li {
     background: #fafafa;
-    height: 250px;
+    height: 230px;
+    width: 230px;
     padding: 10px;
     border-radius: 10px; 
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
