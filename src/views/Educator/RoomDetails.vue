@@ -44,6 +44,7 @@
             <router-link :to="{ name: 'estudante', params: { studentId: student.studentId } }">
               <button>Conferir Ficha</button>
             </router-link>
+            <button @click="iniciarChatComAluno(student.user.userId)">Conversar</button>
           </li>
         </ul>
         <div v-else>
@@ -237,6 +238,24 @@ export default {
       } catch (error) {
         console.error('Erro ao criar atividade:', error.message);
       }
+    },
+
+    iniciarChatComAluno(alunoId) {
+      const professor = JSON.parse(localStorage.getItem("user"));
+      const professorId = professor.userId;
+
+      if (!professorId || !alunoId) {
+        alert("IDs inválidos.");
+        return;
+      }
+
+      this.$router.push({
+        name: "chat",
+        query: {
+          myUserId: professorId,
+          targetUserId: alunoId
+        }
+      });
     }
   }
 };

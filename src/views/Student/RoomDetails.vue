@@ -53,6 +53,10 @@
                     <p><strong>Email:</strong> {{ room.educator.user.email }}</p>
                     <p><strong>Experiência:</strong> {{ room.educator.experienceYears }} anos</p>
                     <p><strong>Bio:</strong> {{ room.educator.bio || 'Não disponível' }}</p>
+
+                    <button @click="iniciarChatComProfessor" class="btn-iniciar-chat">
+  💬 Conversar com o professor
+</button>
                 </div>
             </div>
 
@@ -183,6 +187,26 @@ export default {
 
         toggleEducatorInfo() {
             this.isEducatorInfoVisible = !this.isEducatorInfoVisible;
+        },
+
+        iniciarChatComProfessor() {
+            const user = JSON.parse(localStorage.getItem("user"));
+            const alunoId = user.userId;
+            const professorId = this.room.educator.user.userId;
+
+            if (!alunoId || !professorId) {
+                alert("IDs inválidos.");
+                return;
+            }
+
+            // Redireciona pra página de chat passando os IDs
+            this.$router.push({
+                name: "chat", // ou o nome da rota que exibe ChatTest.vue
+                query: {
+                myUserId: alunoId,
+                targetUserId: professorId
+                }
+            });
         }
     }
 };

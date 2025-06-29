@@ -51,8 +51,8 @@ export default {
       isConnected: false,
       receivedMessages: [], // Aqui serão armazenadas as mensagens do histórico + as novas via WebSocket
       messageContent: '',
-      myUserId: '3', // PREENCHA COM SEU ID DE TESTE (Educador)
-      targetUserId: '1', // PREENCHA COM OUTRO ID DE TESTE (Estudante)
+      myUserId: '', // PREENCHA COM SEU ID DE TESTE (Educador)
+      targetUserId: '', // PREENCHA COM OUTRO ID DE TESTE (Estudante)
       conversationId: null,
       error: null,
     };
@@ -60,6 +60,11 @@ export default {
   async mounted() {
     // Chamamos a função combinada no mounted
     await this.getConversationAndConnect();
+
+    const query = this.$route.query;
+    if (query.myUserId) this.myUserId = query.myUserId;
+    if (query.targetUserId) this.targetUserId = query.targetUserId;
+    this.getConversationAndConnect();
   },
   beforeUnmount() {
     if (this.stompClient && this.isConnected) {

@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router"
 const routes = [
   // geral
   { path: '/', component: () => import('@/views/HomeAcademy.vue')},
-  { path: '/chat', component: () => import('@/views/Resources/ChatTest.vue')},
+  { path: '/chat', name: 'chat', component: () => import('@/views/Resources/ChatTest.vue')},
   { path: '/login', component: () => import('@/views/Resources/TelaLogin.vue')},
   { path: '/cadastroestudante', component: () => import('@/views/Student/TelaCadastroEstudante.vue')},
   { path: '/cadastroeducador', component: () => import('@/views/Educator/TelaCadastroProfessor.vue')},

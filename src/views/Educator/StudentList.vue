@@ -58,7 +58,7 @@
                         <th>E-mail</th>
                         <th>Estado</th>
                         <th>Cidade</th>
-                        <th>Ficha</th>
+                        <th>Interações</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -72,10 +72,11 @@
                         <td>{{ student.user.email }}</td>
                         <td>{{ student.state }}</td>
                         <td>{{ student.city }}</td>
-                        <td>
+                        <td class="btnInteractions">
                           <button @click="goToStudentProfile(student.studentId)" class="profile-button">
-                            Conferir
+                            Ficha
                           </button>
+                          <button @click="iniciarChatComAluno(student.user.userId)" class="profile-button">Conversar</button>
                         </td>
                       </tr>
                     </tbody>
@@ -119,6 +120,24 @@ export default {
           return require("@/assets/content/avatar/12.png");
         }
       }
+    },
+
+    iniciarChatComAluno(alunoId) {
+      const professor = JSON.parse(localStorage.getItem("user"));
+      const professorId = professor.userId;
+
+      if (!professorId || !alunoId) {
+        alert("IDs inválidos.");
+        return;
+      }
+
+      this.$router.push({
+        name: "chat",
+        query: {
+          myUserId: professorId,
+          targetUserId: alunoId
+        }
+      });
     },
 
     toggleCourses() {
@@ -385,5 +404,9 @@ main {
 
 .profile-button:hover {
   background-color: #6a3fcc;
+}
+
+.btnInteractions {
+  display: flex;
 }
 </style>
